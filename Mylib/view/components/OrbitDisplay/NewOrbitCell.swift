@@ -31,9 +31,10 @@ class inlineNewOrbitCell: UICollectionViewCell {
         backgroundColor = Styles.Colors.primaryBlue
         layer.cornerRadius = 8
         let lbl = UILabel.titleLabel("new", .large)
+        lbl.textColor = Styles.Colors.offWhite
+        lbl.textAlignment = .center
         addSubview(lbl)
-        lbl.sizeToFit()
-        lbl.center = center
+        lbl.frame = bounds
     }
     
     required init?(coder: NSCoder) {
