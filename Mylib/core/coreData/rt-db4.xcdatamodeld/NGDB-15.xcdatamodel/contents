@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Orbit" representedClassName="Orbit" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="icon" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="thoughts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thought" inverseName="orbits" inverseEntity="Thought"/>
+    </entity>
+    <entity name="SubThoughts" representedClassName="SubThoughts" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="detail" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="link" optional="YES" attributeType="String"/>
+        <attribute name="rawPhoto" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <relationship name="thought" maxCount="1" deletionRule="Nullify" destinationEntity="Thought" inverseName="subThoughts" inverseEntity="Thought"/>
+    </entity>
+    <entity name="Thought" representedClassName="Thought" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <relationship name="orbits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Orbit" inverseName="thoughts" inverseEntity="Orbit"/>
+        <relationship name="subThoughts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubThoughts" inverseName="thought" inverseEntity="SubThoughts"/>
+    </entity>
+    <elements>
+        <element name="SubThoughts" positionX="28.56640625" positionY="8.29296875" width="128" height="133"/>
+        <element name="Thought" positionX="30.953125" positionY="-235.0859375" width="128" height="148"/>
+        <element name="Orbit" positionX="18" positionY="-81" width="128" height="118"/>
+    </elements>
+</model>
