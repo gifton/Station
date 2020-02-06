@@ -8,6 +8,8 @@ protocol SortOptionDelegate {
     var selectedOption: SortOption { get }
 }
 
+
+
 enum SortOption: String {
     case dateAscending = "Date ascending"
     case dateDescending = "Date Descending"

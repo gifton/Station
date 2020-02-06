@@ -10,7 +10,7 @@ import UIKit
 protocol OrbitSelectorDelegate {
     
     func createNewOrbit()
-    var orbits: [OrbitPreview] { get }
+    var orbits: [Orbit] { get }
     
     func didSelectOrbit(atIndex index: Int)
 }

@@ -16,9 +16,9 @@ class OrbitCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var orbit: OrbitPreview?
+    private var orbit: Orbit?
     
-    public func set(withOrbit orbit: OrbitPreview) {
+    public func set(withOrbit orbit: Orbit) {
         self.orbit = orbit
         
         setView()

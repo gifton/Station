@@ -18,6 +18,7 @@
 		6095B11523EBF82F000B9BAC /* NewOrbitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B11423EBF82F000B9BAC /* NewOrbitCell.swift */; };
 		6095B11823EBF873000B9BAC /* SortOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B11723EBF873000B9BAC /* SortOptionButton.swift */; };
 		6095B11A23EC1048000B9BAC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B11923EC1048000B9BAC /* Device.swift */; };
+		6095B11C23ECB1DA000B9BAC /* BasicStatsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B11B23ECB1DA000B9BAC /* BasicStatsBar.swift */; };
 		60FE09CB23E2D5E1003FB238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CA23E2D5E1003FB238 /* AppDelegate.swift */; };
 		60FE09CD23E2D5E1003FB238 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CC23E2D5E1003FB238 /* SceneDelegate.swift */; };
 		60FE09CF23E2D5E1003FB238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CE23E2D5E1003FB238 /* ViewController.swift */; };
@@ -70,6 +71,7 @@
 		6095B11423EBF82F000B9BAC /* NewOrbitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrbitCell.swift; sourceTree = "<group>"; };
 		6095B11723EBF873000B9BAC /* SortOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionButton.swift; sourceTree = "<group>"; };
 		6095B11923EC1048000B9BAC /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		6095B11B23ECB1DA000B9BAC /* BasicStatsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStatsBar.swift; sourceTree = "<group>"; };
 		60FE09C723E2D5E1003FB238 /* Mylib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mylib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FE09CA23E2D5E1003FB238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FE09CC23E2D5E1003FB238 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				6095B10C23EBF419000B9BAC /* ConfirmationButton.swift */,
 				6095B11723EBF873000B9BAC /* SortOptionButton.swift */,
 				6095B10E23EBF6FC000B9BAC /* NewThoughtCard.swift */,
+				6095B11B23ECB1DA000B9BAC /* BasicStatsBar.swift */,
 				6095B11623EBF835000B9BAC /* OrbitDisplay */,
 			);
 			path = components;
@@ -415,6 +418,7 @@
 				6095B10D23EBF419000B9BAC /* ConfirmationButton.swift in Sources */,
 				60FE0A0B23E348FD003FB238 /* CGSize.swift in Sources */,
 				6095B10623EB7D5B000B9BAC /* Orbit.swift in Sources */,
+				6095B11C23ECB1DA000B9BAC /* BasicStatsBar.swift in Sources */,
 				60FE09FB23E3485E003FB238 /* UICollectionView.swift in Sources */,
 				6095B11A23EC1048000B9BAC /* Device.swift in Sources */,
 				60FE0A0D23E34909003FB238 /* String.swift in Sources */,

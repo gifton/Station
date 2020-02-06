@@ -28,6 +28,29 @@ extension UILabel {
         }
     }
     
+    // add image to right of text
+    
+    public static func directionLabel(_ desiredText: String, direction: UIRectEdge) -> UILabel {
+        
+        let lbl = UILabel()
+        let fullString = NSMutableAttributedString(string: desiredText)
+        let image1Attachment = NSTextAttachment()
+        let image = UIImage(systemName: "heart.fill")
+        // TODO: write rotation method
+//        switch direction {
+//        case .all: fatalError("unable to satisfy direction paramenter")
+//        case .bottom: image?.rotate(radians: .pi / 2)
+//        }
+        image1Attachment.image = image
+        
+        let image1String = NSAttributedString(attachment: image1Attachment)
+        fullString.append(image1String)
+        lbl.attributedText = fullString
+        
+        
+        return lbl
+    }
+    
     // set text to date
     func getStringFromDate(date: Date, withStyle style: DateFormatter.Style) {
         let dateFormatter: DateFormatter = {
@@ -67,9 +90,24 @@ extension UILabel {
         
     }
     
+    public func minimumHeight(forWidth desiredWidth: CGFloat) -> CGFloat {
+        if desiredWidth == Device.width {
+            return requiredHeight
+        }
+        
+        let label = UILabel(frame: CGRect(origin: .zero, size: .init(desiredWidth, CGFloat.greatestFiniteMagnitude)))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = text
+        label.attributedText = attributedText
+        label.sizeToFit()
+        return label.frame.height
+    }
+    
     // Required height for a label
     public var requiredHeight: CGFloat {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: Styles.width, height: CGFloat.greatestFiniteMagnitude))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: Device.width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.font = font
@@ -148,7 +186,7 @@ extension UILabel {
     }
     
     // titlelabel
-    static func lightBodyLabel(_ payload: String? = nil, _ fontSize: Styles.FontSize = .small) -> UILabel {
+    static func lightBodyLabel(_ payload: String? = nil, _ fontSize: Styles.FontSize = .medium) -> UILabel {
         let lbl = UILabel(payload)
         lbl.font = Styles.Font.lightBody(ofSize: fontSize)
         lbl.sizeToFit()
