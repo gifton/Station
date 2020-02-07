@@ -10,6 +10,7 @@ class OrbitCell: UICollectionViewCell {
         layer.borderColor = Styles.Colors.darkGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 8
+        layer.masksToBounds = true
     }
     
     required init?(coder: NSCoder) {
@@ -50,44 +51,5 @@ class OrbitCell: UICollectionViewCell {
         title.frame = CGRect(x: iconView.right + Styles.Padding.medium.rawValue, y: 0, width: width - (iconView.right + (Styles.Padding.medium.rawValue * 2)), height: height)
         title.adjustsFontSizeToFitWidth = true
         title.textAlignment = .center
-    }
-}
-
-class LongOrbitCell: UITableViewCell {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    private var orbit: Orbit?
-    
-    public func set(withORbit orbit: Orbit) {
-        self.orbit = orbit
-        
-        setView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setView() {
-        guard let orbit = orbit else { return }
-        
-        // create views
-        let arrow = UIImageView(image: UIImage(color: Styles.Colors.primaryGreen))
-        let count = UILabel.bodyLabel(String(describing: orbit.count), .large)
-        let icon = UILabel.bodyLabel(orbit.icon, .large)
-        let title = UILabel.bodyLabel(orbit.title, .large)
-        
-        let rightStack = UIStackView(arrangedSubviews: [count, arrow], axis: .horizontal, spacing: 5, alignment: .trailing, distribution: .fillProportionally)
-        let leftStack = UIStackView(arrangedSubviews: [icon, title], axis: .horizontal, spacing: 15, alignment: .leading, distribution: .equalCentering)
-        // add views
-        addSubview(rightStack)
-        addSubview(leftStack)
-        
-        // style views
-        
-        count.textColor = Styles.Colors.darkGray
-        title.textColor = Styles.Colors.primaryBlue
     }
 }

@@ -4,20 +4,19 @@ import UIKit
 public extension UITableView {
     
     // register cell
-    func register(cellType: UITableViewCell.Type, bundle: Bundle? = nil) {
-        let className = cellType.className
-        let nib = UINib(nibName: className, bundle: bundle)
-        register(nib, forCellReuseIdentifier: className)
+    func register<T: UITableViewCell>(cellWithClass name: T.Type) {
+        register(T.self, forCellReuseIdentifier: String(describing: name))
     }
-
-    // register multiple cells
-    func register(cellTypes: [UITableViewCell.Type], bundle: Bundle? = nil) {
-        cellTypes.forEach { register(cellType: $0, bundle: bundle) }
+    
+    // - Returns: UICollectionViewCell object with associated class name.
+    func dequeueReusableCell<T: UITableViewCell>(withClass name: T.Type, for indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withIdentifier: String(describing: name), for: indexPath) as? T else {
+            fatalError("Couldn't find UICollectionViewCell for \(String(describing: name))")
+        }
+        return cell
     }
-
-    // deqeue cell
-    func dequeueReusableCell<T: UITableViewCell>(with type: T.Type, for indexPath: IndexPath) -> T {
-        dequeueReusableCell(withIdentifier: type.className, for: indexPath) as! T
+    func registerHeaderFooter<T: UITableViewHeaderFooterView>(cellWithClass name: T.Type) {
+        register(T.self, forHeaderFooterViewReuseIdentifier: String(describing: name))
     }
     
     // table header size to fit

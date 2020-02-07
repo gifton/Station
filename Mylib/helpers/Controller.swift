@@ -42,12 +42,8 @@ class Controller: UIViewController {
     // set delegate and dataSource to self automatically
     var tableView: UITableView? {
         didSet {
-            if let table = tableView {
-                table.delegate = self
-                table.dataSource = self
-                view.addSubview(table)
-                
-            }
+            
+            setTableView()
         }
     }
     
@@ -106,6 +102,20 @@ class Controller: UIViewController {
     
 }
 
+private extension Controller {
+    func setTableView() {
+        if let table = tableView {
+            table.delegate = self
+            table.dataSource = self
+            table.register(cellWithClass: LongOrbitCell.self)
+            view.addSubview(table)
+            
+        } else {
+            print("no tv found")
+        }
+    }
+}
+
 extension Controller: DataManagerDelegate {
     func data<T>() -> T where T : DataPreview {
         return ThoughtPreview.zero as! T
@@ -143,10 +153,7 @@ extension Controller: UITableViewDelegate { }
 extension Controller: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell()
-        cell.backgroundView = .init(withColor: .red)
-        
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

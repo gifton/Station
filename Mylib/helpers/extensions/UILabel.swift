@@ -142,7 +142,7 @@ extension UILabel {
     func textDropShadow(_ color: UIColor = .black) {
         self.layer.masksToBounds = false
         self.layer.shadowRadius = 2.0
-        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOpacity = 0.35
         self.layer.shadowOffset = CGSize(width: 1, height: 2)
         self.layer.shadowColor = color.cgColor
     }

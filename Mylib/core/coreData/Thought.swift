@@ -33,6 +33,12 @@ extension Thought {
         return CLLocation(latitude: lat.doubleValue, longitude: lon.doubleValue)
     }
     
+    public var computedOrbits: [Orbit] {
+        if let orbits = orbits {
+            return orbits.map { $0 as! Orbit}
+        }
+        return []
+    }
 }
 
 // MARK: static initializer
@@ -69,5 +75,12 @@ extension Thought {
 extension Thought: Managed {
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
+    }
+}
+
+
+extension Array where Element == Orbit {
+    func icons() -> [String] {
+        return map{ $0.icon }
     }
 }

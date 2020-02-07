@@ -24,7 +24,7 @@ class ConfirmationButton: UIButton {
             setTitleColor(Styles.Colors.offWhite, for: .normal)
         case .light:
             backgroundColor = Styles.Colors.lightGray
-            setTitleColor(.darkGray, for: .normal)
+            setTitleColor(Styles.Colors.black.withAlphaComponent(0.8), for: .normal)
         case .monoChrome:
             backgroundColor = .black
             setTitleColor(Styles.Colors.offWhite, for: .normal)
