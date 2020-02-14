@@ -17,7 +17,7 @@ class ThoughtsCoordinator: Coordinator {
     var navigationController: UINavigationController = UINavigationController()
     
     func start() {
-        let vc = UIViewController()
+        let vc = UIViewController(withColor: Styles.Colors.yellow)
         navigationController.pushViewController(vc, animated: true)
     }
     

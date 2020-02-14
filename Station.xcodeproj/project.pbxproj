@@ -35,10 +35,10 @@
 		6095B12523ED6D0B000B9BAC /* ThoughtDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12423ED6D0B000B9BAC /* ThoughtDisplay.swift */; };
 		6095B12723ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12623ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift */; };
 		6095B12923EE3A64000B9BAC /* DashboardHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12823EE3A64000B9BAC /* DashboardHead.swift */; };
+		60E2992C23F6F54D009B9A84 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2992B23F6F54D009B9A84 /* UIViewController.swift */; };
 		60FE09CB23E2D5E1003FB238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CA23E2D5E1003FB238 /* AppDelegate.swift */; };
 		60FE09CD23E2D5E1003FB238 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CC23E2D5E1003FB238 /* SceneDelegate.swift */; };
 		60FE09CF23E2D5E1003FB238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CE23E2D5E1003FB238 /* ViewController.swift */; };
-		60FE09D223E2D5E1003FB238 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FE09D023E2D5E1003FB238 /* Main.storyboard */; };
 		60FE09D423E2D5E6003FB238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FE09D323E2D5E6003FB238 /* Assets.xcassets */; };
 		60FE09D723E2D5E6003FB238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FE09D523E2D5E6003FB238 /* LaunchScreen.storyboard */; };
 		60FE09E623E2D683003FB238 /* coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09E523E2D683003FB238 /* coordinator.swift */; };
@@ -104,11 +104,11 @@
 		6095B12423ED6D0B000B9BAC /* ThoughtDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDisplay.swift; sourceTree = "<group>"; };
 		6095B12623ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtExtendedPreviewCell.swift; sourceTree = "<group>"; };
 		6095B12823EE3A64000B9BAC /* DashboardHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHead.swift; sourceTree = "<group>"; };
+		60E2992B23F6F54D009B9A84 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		60FE09C723E2D5E1003FB238 /* Station.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Station.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FE09CA23E2D5E1003FB238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FE09CC23E2D5E1003FB238 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		60FE09CE23E2D5E1003FB238 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		60FE09D123E2D5E1003FB238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		60FE09D323E2D5E6003FB238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60FE09D623E2D5E6003FB238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60FE09D823E2D5E6003FB238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -268,7 +268,6 @@
 		60FE09E123E2D639003FB238 /* app */ = {
 			isa = PBXGroup;
 			children = (
-				60FE09D023E2D5E1003FB238 /* Main.storyboard */,
 				60FE09D323E2D5E6003FB238 /* Assets.xcassets */,
 				60FE09D523E2D5E6003FB238 /* LaunchScreen.storyboard */,
 				60FE09D823E2D5E6003FB238 /* Info.plist */,
@@ -347,6 +346,7 @@
 				60FE0A0A23E348FD003FB238 /* CGSize.swift */,
 				60FE0A0C23E34909003FB238 /* String.swift */,
 				60FE0A0E23E349FE003FB238 /* NSObject.swift */,
+				60E2992B23F6F54D009B9A84 /* UIViewController.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -451,7 +451,6 @@
 			files = (
 				60FE09D723E2D5E6003FB238 /* LaunchScreen.storyboard in Resources */,
 				60FE09D423E2D5E6003FB238 /* Assets.xcassets in Resources */,
-				60FE09D223E2D5E1003FB238 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +475,7 @@
 				6095B12723ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift in Sources */,
 				60FE0A1123E34EAF003FB238 /* DataPreview.swift in Sources */,
 				60FE09E823E2D6CE003FB238 /* dataManager.swift in Sources */,
+				60E2992C23F6F54D009B9A84 /* UIViewController.swift in Sources */,
 				60FE09CF23E2D5E1003FB238 /* ViewController.swift in Sources */,
 				60FE0A0723E348E9003FB238 /* DateFormatter.swift in Sources */,
 				6095B11323EBF7E5000B9BAC /* OrbitCell.swift in Sources */,
@@ -531,14 +531,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		60FE09D023E2D5E1003FB238 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				60FE09D123E2D5E1003FB238 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		60FE09D523E2D5E6003FB238 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
