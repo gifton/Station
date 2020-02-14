@@ -52,7 +52,7 @@ final class Styles {
         case large   = 16.0
         case xLarge  = 18.0
         case xXLarge = 20.0
-        case max     = 28.0
+        case max     = 40.0
     }
 
     // font
