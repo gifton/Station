@@ -28,10 +28,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             
             if let window = self.window {
-                window.makeKeyAndVisible()
                 window.windowScene = windowScene
-                window.backgroundColor = Styles.Colors.bglightBlue
-                window.rootViewController = UINavigationController(rootViewController: DashboardController())
+                window.backgroundColor = .black
+                let appCoordinator = AppCoordinator(window: window)
+                appCoordinator.moc = container.viewContext
+                
+                appCoordinator.start()
             }
         }
         

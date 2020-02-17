@@ -20,8 +20,6 @@ protocol Coordinator {
     func start()
     func navigateBack()
     
-    init(withNavigationController nav: UINavigationController)
-    
 }
 
 // MARK: BaseCoordinator

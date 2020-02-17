@@ -7,7 +7,7 @@ class OrbitCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.borderColor = Styles.Colors.darkGray.cgColor
+        layer.borderColor = Styles.Colors.lightGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 8
         layer.masksToBounds = true
@@ -21,16 +21,34 @@ class OrbitCell: UICollectionViewCell {
     
     public func set(withOrbit orbit: Orbit) {
         self.orbit = orbit
-        
+        print(orbit)
         setView()
     }
+    
+    deinit {
+        
+        iconView.text = ""
+        title.text = ""
+        
+    }
+    
+    public func didGetSelected() {
+        print("orbit selected in cell")
+        if backgroundColor == .clear {
+            backgroundColor = Styles.Colors.accentBlue
+        } else {
+            backgroundColor = .clear
+        }
+    }
+    
+    let iconView = UILabel()
+    let title = UILabel.bodyLabel()
     
     private func setView() {
         
         
         
-        let iconView = UILabel()
-        let title = UILabel.bodyLabel()
+        
         
         addSubview(iconView)
         addSubview(title)

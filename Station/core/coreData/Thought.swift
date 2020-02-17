@@ -51,18 +51,17 @@ extension Thought {
         let thought: Thought = context.insertObject()
         
         // set variables
-        
         thought.title      = title
         thought.createdAt  = Date()
         thought.id         = UserDefaults.createdNewThought()
-        
+        print(thought.id)
         //save location if available
         if let loc: CLLocation = location {
             thought.latitude  = loc.coordinate.latitude as NSNumber
             thought.longitude = loc.coordinate.longitude as NSNumber
         }
         
-        
+        print(thought.createdAt)
         return thought
     }
     
@@ -81,6 +80,6 @@ extension Thought: Managed {
 
 extension Array where Element == Orbit {
     func icons() -> [String] {
-        return map{ $0.icon }
+        return map { $0.icon }
     }
 }

@@ -25,6 +25,7 @@ extension Orbit {
         orbit.id = UserDefaults.creatednewOrbit()
         orbit.title = title
         orbit.icon = icon
+        orbit.createdAt = Date()
         
         return orbit
         
@@ -60,5 +61,16 @@ extension Orbit {
 extension Orbit: Managed {
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
+    }
+}
+
+
+extension Array where Element == Orbit {
+    func addThoughtRelationship(_ thought: Thought) {
+        forEach {
+            if let thoughts = $0.thoughts {
+                thoughts.adding(thought)
+            }
+        }
     }
 }

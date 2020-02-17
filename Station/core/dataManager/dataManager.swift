@@ -1,5 +1,6 @@
 
 import CoreData
+import CoreLocation
 // MARK: DataManager protocol
 // defines any object with conformance as able to access data
 // any object that makes network or storage calls conforms to this protocol
@@ -8,6 +9,7 @@ import CoreData
 protocol DataManagerDelegate {
     func data(isSet success: Bool)
     func data<T: DataPreview>() -> T
+    func requestLocation() -> CLLocation?
 }
 
 
@@ -15,6 +17,7 @@ protocol DataManager: class {
     
     func start(completion: (() ->())? )
     var delegate: DataManagerDelegate? { get set }
+    var moc: NSManagedObjectContext { get }
     init(moc: NSManagedObjectContext)
 }
 

@@ -5,10 +5,16 @@ import UIKit
 extension UIImage {
     
     // returns cropped image of size
-    public func cropped(to rect: CGRect) -> UIImage {
-        guard rect.size.width < size.width && rect.size.height < size.height else { return self }
-        guard let image: CGImage = cgImage?.cropping(to: rect) else { return self }
-        return UIImage(cgImage: image)
+    public func cropped(to rect: CGRect?) -> UIImage {
+        
+        if let rect = rect {
+            guard rect.size.width < size.width && rect.size.height < size.height else { return self }
+            guard let image: CGImage = cgImage?.cropping(to: rect) else { return self }
+            return UIImage(cgImage: image)
+        }
+        
+        return self
+        
     }
     
     // rotate image

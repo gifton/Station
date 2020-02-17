@@ -4,15 +4,16 @@ import UIKit
 
 // new thought card is where users input informatino for a new thought object to be createed
 
-protocol NewThoughtViewDelegate {
-    func newThought(withTitle title: String)
+protocol NewThoughtCardDelegate {
+    func titleUpdated()
     
 }
 
 class NewThoughtCard: UIView {
     
     init(point: CGPoint) {
-        super.init(frame: CGRect(origin: point, size: CGSize(width: Device.width - (Styles.Padding.medium.rawValue * 2), height: 200)))
+        super.init(frame: CGRect(origin: point, size: CGSize(width: Device.width - (Styles.Padding.xLarge.rawValue * 2), height: 200)))
+        
         setView()
         
     }
@@ -24,26 +25,35 @@ class NewThoughtCard: UIView {
     public var thoughtText: String {
         return thoughtTextView.text
     }
-    var delegate: NewThoughtViewDelegate?
+    
+    var thoughtDelegate: NewThoughtCardDelegate?
     private var topView = UIView(withColor: .white)
     private var tapToStart = UILabel.bodyLabel("tap to start", .large)
     private var thoughtTextView = UITextView()
-    private var icon: UIImageView = UIImageView(image: UIImage(color: Styles.Colors.accentBlue))
+    private var icon: UIImageView = UIImageView(image: Icons.iconForType(.thought)?.tintImage(toColor: Styles.Colors.darkGray))
     private var title = UILabel.mediumTitleLabel("New Thought", .xLarge)
+    
+    func reset() {
+        thoughtTextView.removeFromSuperview()
+        thoughtTextView = UITextView()
+        
+        addTapToStart()
+    }
 }
 
 
 private extension NewThoughtCard {
+    
     func setView() {
-        setShadow(color: .black, opacity: 0.35, offset: CGSize(width: 0, height: -2), radius: 4.0, viewCornerRadius: 8)
+        
+        setShadow(color: .black, opacity: 0.615, offset: .init(0), radius: 6.0, viewCornerRadius: 8)
         layer.cornerRadius = 8
-        layer.borderColor = UIColor.black.cgColor
-        layer.borderWidth = 0.5
-        layer.masksToBounds = true
         backgroundColor = Styles.Colors.lightGray
         
         addSubview(topView)
         topView.frame = CGRect(origin: .zero, size: CGSize(width, 54))
+        topView.layer.cornerRadius = 8
+        
         topView.addSubview(title)
         topView.addSubview(icon)
         title.sizeToFit()
@@ -54,12 +64,17 @@ private extension NewThoughtCard {
         icon.right = topView.right - Styles.Padding.large.rawValue
         icon.top = topView.top + Styles.Padding.large.rawValue
         
+        addTapToStart()
+        
+    }
+    
+    func addTapToStart() {
         
         addSubview(tapToStart)
         tapToStart.sizeToFit()
         tapToStart.center = CGPoint(width/2, 125)
-        
         addTapGestureRecognizer(action: startThought)
+        
     }
     
     func startThought() {
@@ -71,8 +86,26 @@ private extension NewThoughtCard {
         thoughtTextView.backgroundColor = .clear
         thoughtTextView.autocapitalizationType = .sentences
         thoughtTextView.isEditable = true
-        thoughtTextView.text = "This is where you would type a thoughtThis is where you would type a thoughtThis is where you would type a thoughtThis is where you would type a thoughtThis is where you would type a thought"
+        thoughtTextView.keyboardDismissMode = .onDrag
+        thoughtTextView.returnKeyType = .done
+        thoughtTextView.delegate = self
+        
         addSubview(thoughtTextView)
+        thoughtTextView.becomeFirstResponder()
     }
     
+}
+
+extension NewThoughtCard: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+        }
+        return true
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        thoughtDelegate?.titleUpdated()
+    }
 }

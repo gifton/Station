@@ -14,8 +14,22 @@ final class TabBarController: UITabBarController {
             
             if let image = UIImage(named: titles[index]) {
                 element.image = image.scaled(toHeight: 24)
-            } else { print("nooooo")}
+            } else {
+                let img = UIImage(systemName: "heart.fill")
+            }
             
+        }
+    }
+    
+    public func setTabIcons(_ icons: [Icons.IconType]) {
+        guard let items = self.tabBar.items else { return }
+        
+        if items.count == icons.count {
+            for (index, element) in items.enumerated() {
+                if let img = Icons.iconForType(icons[index]) {
+                    element.image = img.scaled(toHeight: 24, opaque: true)
+                }
+            }
         }
     }
     

@@ -1,6 +1,7 @@
 
 
 import UIKit
+import CoreData
 
 // 1
 // Flow Controller
@@ -13,7 +14,7 @@ final class TabBarCoordinator: Coordinator {
     var flow: [Coordinator] = []
     var navigationController: UINavigationController
     var tabController: UITabBarController
-    
+    var moc: NSManagedObjectContext?
     
     init(withNavigationController nav: UINavigationController) {
         
@@ -36,10 +37,14 @@ final class TabBarCoordinator: Coordinator {
     func start() {
         
         let exploreCoordinator = ExploreCoordinator(withNavigationController: navBar())
-        let projCoordinator = NewThoughtCoordinator(withNavigationController: navBar())
+        let newCoordinator = NewThoughtCoordinator(withNavigationController: navBar())
         let quotesCoordinator = ThoughtsCoordinator(withNavigationController: navBar())
    
-        let coordinators: [Coordinator] = [exploreCoordinator, projCoordinator, quotesCoordinator]
+        exploreCoordinator.moc = moc
+        newCoordinator.moc = moc
+        quotesCoordinator.moc = moc
+        
+        let coordinators: [Coordinator] = [newCoordinator, exploreCoordinator, quotesCoordinator]
         let controllers = coordinators.controllers()
         coordinators.start()
         
@@ -47,7 +52,7 @@ final class TabBarCoordinator: Coordinator {
         
 
         tabController.setViewControllers(controllers, animated: true)
-        (tabController as? TabBarController)?.setIconImages(titles: ["new", "explore", "thoughts"])
+        (tabController as? TabBarController)?.setTabIcons([.new, .explore, .thought])
         tabController.selectedIndex = 0;
 
         navigationController.pushViewController(tabController, animated: false)

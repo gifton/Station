@@ -7,18 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class NewThoughtCoordinator: Coordinator {
     
     var flow: [Coordinator] = []
-    
+    var moc: NSManagedObjectContext? 
     var parentCoordinator: BaseCoordinator? = nil
     
     var navigationController: UINavigationController = UINavigationController()
     
     func start() {
-        let vc = UIViewController(withColor: Styles.Colors.primaryBlue)
+        let vc = NewThoughtController()
+        vc.coordinator = self
+        
+        if let moc = moc {
+            let dm = NewThoughtDataManager(moc: moc)
+            vc.dataManager = dm
+        }
+        
         navigationController.pushViewController(vc, animated: true)
+        
     }
     
     required init(withNavigationController nav: UINavigationController) {
@@ -32,4 +41,24 @@ class NewThoughtCoordinator: Coordinator {
     }
     
     
+}
+
+extension NewThoughtCoordinator: NewOrbitFlow {
+    func showOrbit(_ completion: @escaping (String, String) -> ()) {
+        
+        let orbitController = NewOrbitController()
+        orbitController.preferredContentSize = .init(Device.width, 500)
+        navigationController.showDetailViewController(orbitController, sender: nil)
+        
+        orbitController.saveButton.addTapGestureRecognizer {
+            
+            if let title = orbitController.orbitTitle {
+                completion(title, orbitController.orbitIcon)
+                
+                self.navigationController.popViewController(animated: true)
+            }
+            
+        }
+        
+    }
 }

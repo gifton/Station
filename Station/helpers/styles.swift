@@ -53,6 +53,7 @@ final class Styles {
         case xLarge  = 18.0
         case xXLarge = 20.0
         case max     = 40.0
+        case emoji   = 60.0
     }
 
     // font

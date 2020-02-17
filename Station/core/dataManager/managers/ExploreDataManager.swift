@@ -18,6 +18,7 @@ class DashboardDataManager: DataManager {
     
     required init(moc: NSManagedObjectContext) {
         self.moc = moc
+        print("dm init'd")
     }
     
 }

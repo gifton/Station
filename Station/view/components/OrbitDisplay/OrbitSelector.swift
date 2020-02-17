@@ -28,15 +28,18 @@ class OrbitSelector: UIView {
         setCollection()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func needReset() {
+        if let collection = collection {
+            collection.reloadData()
+        }
     }
     
-    var title = UILabel.bodyLabel()
-    var collection: UICollectionView!
-    var collectionHeight: CGFloat = 0
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
-    var delegate: OrbitSelectorDelegate
+    private var title = UILabel.bodyLabel()
+    private var collection: UICollectionView?
+    private var collectionHeight: CGFloat = 0
+    private var delegate: OrbitSelectorDelegate
     
 }
 
@@ -57,15 +60,19 @@ private extension OrbitSelector {
         layout.itemSize = CGSize(175, 50)
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 0)
         
-        let collection = UICollectionView(frame: CGRect(x: 0, y: title.bottom + Styles.Padding.medium.rawValue, width: width, height: collectionHeight), collectionViewLayout: layout)
-        collection.backgroundView = .init(withColor: .white)
-        collection.registerCell(OrbitCell.self)
-        collection.registerCell(inlineNewOrbitCell.self)
-        collection.registerCell(CircularNewOrbitCell.self)
-        collection.delegate = self
-        collection.dataSource = self
+        collection = UICollectionView(frame: CGRect(x: 0, y: title.bottom + Styles.Padding.medium.rawValue, width: width, height: collectionHeight), collectionViewLayout: layout)
         
-        addSubview(collection)
+        if let collection = collection {
+            collection.backgroundView = .init(withColor: .white)
+            collection.registerCell(OrbitCell.self)
+            collection.registerCell(inlineNewOrbitCell.self)
+            collection.registerCell(CircularNewOrbitCell.self)
+            collection.delegate = self
+            collection.dataSource = self
+            
+            addSubview(collection)
+        }
+        
     }
 }
 
@@ -75,7 +82,7 @@ extension OrbitSelector: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(delegate.orbits.count)
-        return delegate.orbits.count
+        return delegate.orbits.count  + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,8 +96,18 @@ extension OrbitSelector: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate.didSelectOrbit(atIndex: indexPath.row - 1)
+        
+        if indexPath.row == 0 {
+            delegate.createNewOrbit()
+        } else {
+            
+            let cell = collectionView.cellForItem(at: indexPath)
+            (cell as? OrbitCell)?.didGetSelected()
+            delegate.didSelectOrbit(atIndex: indexPath.row - 1)
+            
+        }
     }
+    
     
 }
 
