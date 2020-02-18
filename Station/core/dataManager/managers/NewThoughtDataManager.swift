@@ -28,22 +28,41 @@ class NewThoughtDataManager: DataManager {
     
     private(set) var moc: NSManagedObjectContext
     private(set) var orbits: [Orbit] = []
+    private(set) var filteredOrbits: [Orbit] = []
+    private var isSearching: Bool = false
+    
+    public var displayableOrbits: [Orbit] {
+        if isSearching {
+            return filteredOrbits
+        } else {
+            return orbits
+        }
+    }
     
     func refresh() {
         orbits = []
         orbits = getOrbits()
     }
+    
+    func filterOrbits(_ predicate: String) {
+        if predicate != "" {
+            print("filtering in DM")
+            isSearching = true
+            filteredOrbits = orbits.filter({ (orbit) -> Bool in
+                orbit.title.lowercased().contains(predicate)
+            })
+            print(filteredOrbits.count)
+        } else { isSearching = false }
+    }
 }
 
 
 extension NewThoughtDataManager: ThoughtDataAccessable {
-    func getThoughts(withOrbitPredicate: Orbit?) -> [Thought] {
-        return []
-    }
+    func getThoughts(withOrbitPredicate: Orbit?) -> [Thought] { return [] }
     
     func createThought(fromTitle title: String, withLocation: CLLocation?, andOrbits orbits: [Orbit]?) {
         
-        print("creating thought with  title:  \(title)")
+        print("creating thought with  title:  \(title) and orbit count: \(orbits?.count ?? 0)")
         let t = Thought.insert(in: moc, title: title, location: CLLocation())
         orbits?.addThoughtRelationship(t)
         
@@ -68,17 +87,12 @@ extension NewThoughtDataManager: OrbitDataAccessable {
         request.sortDescriptors = [sortDescriptor]
         
         do {
-            let out = try moc.fetch(request)
-            print("------")
-            print(out.count)
-            return out
+            return try moc.fetch(request)
             
         } catch { return [] }
     }
     
     func createOrbit(withTitle title: String, andIcon icon: String) {
-        
-        print("creating orbit with  title:  \(title) and icon: \(icon)")
         
         _ = Orbit.insert(into: moc, with: icon, and: title)
         
@@ -88,6 +102,7 @@ extension NewThoughtDataManager: OrbitDataAccessable {
         } catch let err { print(err)}
         
         refresh()
+        
     }
     
 }

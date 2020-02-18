@@ -43,7 +43,7 @@ private extension NewThoughtView {
         // set save button
         saveButton.frame.origin = .init(Styles.Padding.medium.rawValue, bottom - 50 - 100 )
         saveButton.addTapGestureRecognizer(action: didPressSave)
-        saveIsAvailable(false)
+        thoughtHasContent(false)
         
         addSubview(saveButton)
         
@@ -53,10 +53,11 @@ private extension NewThoughtView {
         thoughtDelegate?.save(withTitle: card.thoughtText, andOrbits: selectedOrbits)
     }
     
-    func saveIsAvailable(_ isAvailable: Bool) {
+    func thoughtHasContent(_ isAvailable: Bool) {
         if isAvailable {
             saveButton.alpha = 1.0
             saveButton.isEnabled = true
+            orbitView.setAvalibility(true)
         } else {
             saveButton.alpha = 0.4
             saveButton.isEnabled = false
@@ -68,17 +69,24 @@ private extension NewThoughtView {
 extension NewThoughtView: NewThoughtCardDelegate {
     func titleUpdated() {
         if card.thoughtText != "" {
-            saveIsAvailable(true)
+            thoughtHasContent(true)
         } else {
-            saveIsAvailable(false)
+            thoughtHasContent(false)
         }
     }
 }
 
 extension NewThoughtView: OrbitSelectorDelegate {
+    
+    func filterOrbits(withPredicate predicate: String) {
+        thoughtDelegate?.filterOrbits(withPredicate: predicate)
+    }
     func didSelectOrbit(atIndex index: Int) {
-        print("selected orbit")
-        selectedOrbits.append(orbits[index])
+        
+        if !(selectedOrbits.contains(orbits[index])) {
+            selectedOrbits.append(orbits[index])
+        }
+        
     }
     
     func createNewOrbit() {

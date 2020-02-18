@@ -7,6 +7,7 @@ class OrbitCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .clear
         layer.borderColor = Styles.Colors.lightGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 8
@@ -21,7 +22,6 @@ class OrbitCell: UICollectionViewCell {
     
     public func set(withOrbit orbit: Orbit) {
         self.orbit = orbit
-        print(orbit)
         setView()
     }
     
@@ -44,11 +44,7 @@ class OrbitCell: UICollectionViewCell {
     let iconView = UILabel()
     let title = UILabel.bodyLabel()
     
-    private func setView() {
-        
-        
-        
-        
+    private func setView() {        
         
         addSubview(iconView)
         addSubview(title)

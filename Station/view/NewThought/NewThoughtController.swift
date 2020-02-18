@@ -59,10 +59,14 @@ extension NewThoughtController: NewThoughtViewDelegate {
     
     var orbits: [Orbit] {
         if let dm = self.dataManager as? NewThoughtDataManager {
-            return dm.orbits
+            return dm.displayableOrbits
         }
         return []
     }
     
-    
+    func filterOrbits(withPredicate pred: String) {
+        if let dm = self.dataManager as? NewThoughtDataManager {
+            dm.filterOrbits(pred)
+        }
+    }
 }

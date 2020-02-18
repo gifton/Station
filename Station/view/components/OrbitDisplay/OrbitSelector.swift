@@ -11,7 +11,7 @@ protocol OrbitSelectorDelegate {
     
     func createNewOrbit()
     var orbits: [Orbit] { get }
-    
+    func filterOrbits(withPredicate predicate: String)
     func didSelectOrbit(atIndex index: Int)
 }
 
@@ -22,10 +22,22 @@ class OrbitSelector: UIView {
         self.delegate = delegate
         collectionHeight = (50 + (Styles.Padding.medium.rawValue)) * CGFloat(numberOfRows)
         
-        super.init(frame: CGRect(origin: point, size: CGSize(width: Device.width, height: collectionHeight + 55)))
+        super.init(frame: CGRect(origin: point, size: CGSize(width: Device.width, height: collectionHeight + 95)))
         
         setTitle()
+        setSearch()
         setCollection()
+        setAvalibility()
+    }
+    
+    func setAvalibility(_ available: Bool = false) {
+        
+        if available {
+            layer.opacity = 1.0
+        } else {
+            layer.opacity = 0.4
+        }
+        
     }
     
     func needReset() {
@@ -40,6 +52,7 @@ class OrbitSelector: UIView {
     private var collection: UICollectionView?
     private var collectionHeight: CGFloat = 0
     private var delegate: OrbitSelectorDelegate
+    private let searchbar = UISearchBar()
     
 }
 
@@ -54,16 +67,27 @@ private extension OrbitSelector {
         addSubview(title)
     }
     
+    func setSearch() {
+        searchbar.frame = CGRect(origin: .init(Styles.Padding.xSmall.rawValue, title.bottom + Styles.Padding.medium.rawValue), size: .init(Device.width - (Styles.Padding.medium.rawValue * 2), 45))
+        searchbar.placeholder = "Search for an Orbit"
+        searchbar.autocapitalizationType = .none
+        searchbar.backgroundImage = UIImage()
+        searchbar.barStyle = .default
+        searchbar.delegate = self
+        addSubview(searchbar)
+    }
+    
     func setCollection() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(175, 50)
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 0)
         
-        collection = UICollectionView(frame: CGRect(x: 0, y: title.bottom + Styles.Padding.medium.rawValue, width: width, height: collectionHeight), collectionViewLayout: layout)
+        collection = UICollectionView(frame: CGRect(x: 0, y: searchbar.bottom + Styles.Padding.medium.rawValue, width: width, height: collectionHeight), collectionViewLayout: layout)
         
         if let collection = collection {
             collection.backgroundView = .init(withColor: .white)
+            collection.showsHorizontalScrollIndicator = false
             collection.registerCell(OrbitCell.self)
             collection.registerCell(inlineNewOrbitCell.self)
             collection.registerCell(CircularNewOrbitCell.self)
@@ -86,6 +110,7 @@ extension OrbitSelector: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         if indexPath.row == 0 {
             return collectionView.dequeueReusableCell(withClass: inlineNewOrbitCell.self, for: indexPath)
         } else {
@@ -93,12 +118,15 @@ extension OrbitSelector: UICollectionViewDataSource {
             cell.set(withOrbit: delegate.orbits[indexPath.row - 1])
             return cell
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
+            
             delegate.createNewOrbit()
+            
         } else {
             
             let cell = collectionView.cellForItem(at: indexPath)
@@ -117,4 +145,16 @@ extension OrbitSelector: UICollectionViewDelegateFlowLayout {
 
 extension OrbitSelector: UICollectionViewDelegate {
     
+}
+
+extension OrbitSelector: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        delegate.filterOrbits(withPredicate: searchText)
+        needReset()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        delegate.filterOrbits(withPredicate: "")
+        needReset()
+    }
 }
