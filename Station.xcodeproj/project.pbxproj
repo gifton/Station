@@ -47,6 +47,8 @@
 		60E2994023F90B0B009B9A84 /* NewOrbitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2993F23F90B0B009B9A84 /* NewOrbitView.swift */; };
 		60E2994223F92193009B9A84 /* NewOrbitFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2994123F92193009B9A84 /* NewOrbitFlow.swift */; };
 		60E2994423FA1C7B009B9A84 /* LocataionDataAccessable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2994323FA1C7B009B9A84 /* LocataionDataAccessable.swift */; };
+		60E2994623FC7521009B9A84 /* ThoughtListDatamanager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2994523FC7521009B9A84 /* ThoughtListDatamanager.swift */; };
+		60E2994923FC7637009B9A84 /* ThoughtListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2994823FC7637009B9A84 /* ThoughtListController.swift */; };
 		60FE09CB23E2D5E1003FB238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CA23E2D5E1003FB238 /* AppDelegate.swift */; };
 		60FE09CD23E2D5E1003FB238 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CC23E2D5E1003FB238 /* SceneDelegate.swift */; };
 		60FE09CF23E2D5E1003FB238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CE23E2D5E1003FB238 /* ViewController.swift */; };
@@ -126,6 +128,8 @@
 		60E2993F23F90B0B009B9A84 /* NewOrbitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrbitView.swift; sourceTree = "<group>"; };
 		60E2994123F92193009B9A84 /* NewOrbitFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrbitFlow.swift; sourceTree = "<group>"; };
 		60E2994323FA1C7B009B9A84 /* LocataionDataAccessable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocataionDataAccessable.swift; sourceTree = "<group>"; };
+		60E2994523FC7521009B9A84 /* ThoughtListDatamanager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtListDatamanager.swift; sourceTree = "<group>"; };
+		60E2994823FC7637009B9A84 /* ThoughtListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtListController.swift; sourceTree = "<group>"; };
 		60FE09C723E2D5E1003FB238 /* Station.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Station.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FE09CA23E2D5E1003FB238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FE09CC23E2D5E1003FB238 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +249,14 @@
 			path = types;
 			sourceTree = "<group>";
 		};
+		60E2994723FC7629009B9A84 /* ThoughtList */ = {
+			isa = PBXGroup;
+			children = (
+				60E2994823FC7637009B9A84 /* ThoughtListController.swift */,
+			);
+			path = ThoughtList;
+			sourceTree = "<group>";
+		};
 		60FE09BE23E2D5E1003FB238 = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +300,7 @@
 		60FE09DF23E2D62A003FB238 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				60E2994723FC7629009B9A84 /* ThoughtList */,
 				6095B10B23EBF402000B9BAC /* components */,
 				60FE0A2E23E3FC40003FB238 /* Dashboard */,
 				60E2993723F73157009B9A84 /* NewThought */,
@@ -424,6 +437,7 @@
 				60FE0A2823E3C355003FB238 /* ExploreDataManager.swift */,
 				60FE0A2A23E3C364003FB238 /* NewThoughtDataManager.swift */,
 				60FE0A2C23E3C373003FB238 /* SettingsDataManager.swift */,
+				60E2994523FC7521009B9A84 /* ThoughtListDatamanager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -552,8 +566,10 @@
 				60E2993423F7314A009B9A84 /* NewThoughtView.swift in Sources */,
 				606AD40323F53F8B00751B77 /* ThoughtsFlow.swift in Sources */,
 				60FE0A2123E35B80003FB238 /* ManageedObject.swift in Sources */,
+				60E2994923FC7637009B9A84 /* ThoughtListController.swift in Sources */,
 				6095B10F23EBF6FC000B9BAC /* NewThoughtCard.swift in Sources */,
 				60FE0A2923E3C355003FB238 /* ExploreDataManager.swift in Sources */,
+				60E2994623FC7521009B9A84 /* ThoughtListDatamanager.swift in Sources */,
 				60FE09CB23E2D5E1003FB238 /* AppDelegate.swift in Sources */,
 				60FE09EE23E34664003FB238 /* Thought.swift in Sources */,
 				60E2993223F73145009B9A84 /* NewThoughtController.swift in Sources */,

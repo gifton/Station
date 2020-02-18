@@ -22,7 +22,6 @@ final class AppCoordinator: Coordinator {
         window.rootViewController = coordinator.navigationController
         window.makeKeyAndVisible()
         
-        
     }
     
     func navigateBack() {

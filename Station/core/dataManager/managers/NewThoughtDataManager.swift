@@ -4,8 +4,7 @@ import UIKit
 import CoreLocation
 
 class NewThoughtDataManager: DataManager {
-    
-    func start(completion: (() -> ())?) { }
+
     
     var delegate: DataManagerDelegate?
     
@@ -58,7 +57,7 @@ class NewThoughtDataManager: DataManager {
 
 
 extension NewThoughtDataManager: ThoughtDataAccessable {
-    func getThoughts(withOrbitPredicate: Orbit?) -> [Thought] { return [] }
+    func getThoughts() -> [Thought] { return [] }
     
     func createThought(fromTitle title: String, withLocation: CLLocation?, andOrbits orbits: [Orbit]?) {
         

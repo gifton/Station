@@ -16,7 +16,13 @@ class ThoughtsCoordinator: Coordinator {
     var navigationController: UINavigationController = UINavigationController()
     
     func start() {
-        let vc = UIViewController(withColor: Styles.Colors.yellow)
+        let vc = ThoughtListController()
+        if let moc = moc {
+            let dm = ThoughtLIstDataManager(moc: moc)
+            vc.dataManager = dm
+            print("init'd dm in thoughtcoordinator")
+        }
+        
         navigationController.pushViewController(vc, animated: true)
         
     }

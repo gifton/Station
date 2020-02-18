@@ -74,6 +74,8 @@ private extension OrbitSelector {
         searchbar.backgroundImage = UIImage()
         searchbar.barStyle = .default
         searchbar.delegate = self
+        searchbar.returnKeyType = .done
+        searchbar.showsCancelButton = true
         addSubview(searchbar)
     }
     
@@ -155,6 +157,7 @@ extension OrbitSelector: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         delegate.filterOrbits(withPredicate: "")
+        self.searchbar.resignFirstResponder()
         needReset()
     }
 }

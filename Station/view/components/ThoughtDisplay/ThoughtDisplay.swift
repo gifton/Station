@@ -2,7 +2,7 @@
 import UIKit
 
 protocol ThoughtDisplayDelegate {
-    var thoughts: [ThoughtPreview] { get set }
+    var thoughts: [ThoughtPreview] { get }
 }
 
 class ThoughtDisplay: UIView {
