@@ -49,6 +49,8 @@
 		60E2994423FA1C7B009B9A84 /* LocataionDataAccessable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2994323FA1C7B009B9A84 /* LocataionDataAccessable.swift */; };
 		60E2994623FC7521009B9A84 /* ThoughtListDatamanager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2994523FC7521009B9A84 /* ThoughtListDatamanager.swift */; };
 		60E2994923FC7637009B9A84 /* ThoughtListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2994823FC7637009B9A84 /* ThoughtListController.swift */; };
+		60E2994B23FC8C4A009B9A84 /* ThoughtDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2994A23FC8C4A009B9A84 /* ThoughtDetailCoordinator.swift */; };
+		60E2994D23FCAB90009B9A84 /* OrbitDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2994C23FCAB90009B9A84 /* OrbitDetailCoordinator.swift */; };
 		60FE09CB23E2D5E1003FB238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CA23E2D5E1003FB238 /* AppDelegate.swift */; };
 		60FE09CD23E2D5E1003FB238 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CC23E2D5E1003FB238 /* SceneDelegate.swift */; };
 		60FE09CF23E2D5E1003FB238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE09CE23E2D5E1003FB238 /* ViewController.swift */; };
@@ -130,6 +132,8 @@
 		60E2994323FA1C7B009B9A84 /* LocataionDataAccessable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocataionDataAccessable.swift; sourceTree = "<group>"; };
 		60E2994523FC7521009B9A84 /* ThoughtListDatamanager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtListDatamanager.swift; sourceTree = "<group>"; };
 		60E2994823FC7637009B9A84 /* ThoughtListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtListController.swift; sourceTree = "<group>"; };
+		60E2994A23FC8C4A009B9A84 /* ThoughtDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDetailCoordinator.swift; sourceTree = "<group>"; };
+		60E2994C23FCAB90009B9A84 /* OrbitDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitDetailCoordinator.swift; sourceTree = "<group>"; };
 		60FE09C723E2D5E1003FB238 /* Station.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Station.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FE09CA23E2D5E1003FB238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FE09CC23E2D5E1003FB238 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 				606AD40023F53D6600751B77 /* NewThoughtCoordinator.swift */,
 				606AD40423F53FC000751B77 /* ExploreCoordinator.swift */,
 				603BD94523F6ECA000C94334 /* ThoughtsCoordinator.swift */,
+				60E2994C23FCAB90009B9A84 /* OrbitDetailCoordinator.swift */,
+				60E2994A23FC8C4A009B9A84 /* ThoughtDetailCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -579,12 +585,14 @@
 				6095B11123EBF772000B9BAC /* OrbitSelector.swift in Sources */,
 				6095B11823EBF873000B9BAC /* SortOptionButton.swift in Sources */,
 				60E2993E23F735FF009B9A84 /* SubThoughtDataAccessable.swift in Sources */,
+				60E2994D23FCAB90009B9A84 /* OrbitDetailCoordinator.swift in Sources */,
 				60FE0A0123E348A5003FB238 /* UIStackView.swift in Sources */,
 				60FE0A3223E3FC5D003FB238 /* Controller.swift in Sources */,
 				6095B10423EB7984000B9BAC /* SubThought.swift in Sources */,
 				60FE09F023E346EA003FB238 /* ExploreFlow.swift in Sources */,
 				60FE0A1823E35300003FB238 /* rt-db4.xcdatamodeld in Sources */,
 				60E2994223F92193009B9A84 /* NewOrbitFlow.swift in Sources */,
+				60E2994B23FC8C4A009B9A84 /* ThoughtDetailCoordinator.swift in Sources */,
 				60FE0A2623E370D2003FB238 /* ThoughtPreview.swift in Sources */,
 				60FE0A2323E360BA003FB238 /* UserDefaults.swift in Sources */,
 				60E2993C23F7358E009B9A84 /* OrbitDataAccessable.swift in Sources */,

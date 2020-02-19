@@ -43,6 +43,7 @@ class OrbitSelector: UIView {
     func needReset() {
         if let collection = collection {
             collection.reloadData()
+            setAvalibility()
         }
     }
     

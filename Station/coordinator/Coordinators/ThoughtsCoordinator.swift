@@ -16,6 +16,7 @@ class ThoughtsCoordinator: Coordinator {
     var navigationController: UINavigationController = UINavigationController()
     
     func start() {
+        
         let vc = ThoughtListController()
         if let moc = moc {
             let dm = ThoughtLIstDataManager(moc: moc)
@@ -30,10 +31,20 @@ class ThoughtsCoordinator: Coordinator {
     
     
     func navigateBack() {
-        //
+        navigationController.popViewController(animated: true)
     }
     
     required init(withNavigationController nav: UINavigationController) {
         self.navigationController = nav
+    }
+}
+
+extension ThoughtsCoordinator: ThoughtDetailFlow {
+    func showThought(_ thought: Thought) {
+        
+    }
+    
+    func showTHought(_ id: String) {
+//
     }
 }

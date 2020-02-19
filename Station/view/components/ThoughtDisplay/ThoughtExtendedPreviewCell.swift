@@ -57,14 +57,14 @@ private extension ThoughtExtendedPreviewCell {
         title.top = Styles.Padding.medium.rawValue
         title.layer.cornerRadius = 10
         title.layer.masksToBounds = true
-        title.backgroundColor = Styles.Colors.lightGray
+        title.backgroundColor = Styles.Colors.offWhite
         title.textColor = Styles.Colors.darkGray
         title.padding = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 5)
         
         // date
         dateLabel.text = "March 3rd, 2020"
         dateLabel.sizeToFit()
-        dateLabel.right = right - Styles.Padding.xLarge.rawValue
+        dateLabel.right = title.right
         dateLabel.top = title.bottom + Styles.Padding.medium.rawValue + 2 // center since text is smaller on right than left
         dateLabel.textColor = Styles.Colors.secondaryGray
         

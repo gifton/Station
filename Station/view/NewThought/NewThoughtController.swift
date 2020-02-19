@@ -3,9 +3,6 @@ import UIKit
 
 class NewThoughtController: Controller {
     
-    override func viewWillDisappear(_ animated: Bool) {
-        print("view dissappearing")
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

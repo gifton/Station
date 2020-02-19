@@ -51,6 +51,8 @@ private extension NewThoughtView {
     
     func didPressSave() {
         thoughtDelegate?.save(withTitle: card.thoughtText, andOrbits: selectedOrbits)
+        card.reset()
+        orbitView.needReset()
     }
     
     func thoughtHasContent(_ isAvailable: Bool) {

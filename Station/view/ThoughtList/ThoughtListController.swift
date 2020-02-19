@@ -7,8 +7,8 @@ class ThoughtListController: Controller {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .green
-        
+        view.backgroundColor = Styles.Colors.offWhite
+        setView()
     }
     
     required init?(coder: NSCoder) {
@@ -30,5 +30,16 @@ extension ThoughtListController: ThoughtDisplayDelegate {
         }
     }
     
+    func selectedThought(atIndex index: Int) {
+        print("tohught at index: \(index) selected")
+    }
     
+}
+
+
+private extension ThoughtListController {
+    func setView() {
+        display = ThoughtDisplay(point: .init(0, 25), title: true, delegate: self)
+        view.addSubview(display!)
+    }
 }
