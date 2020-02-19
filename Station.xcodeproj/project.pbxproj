@@ -35,6 +35,7 @@
 		6095B12523ED6D0B000B9BAC /* ThoughtDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12423ED6D0B000B9BAC /* ThoughtDisplay.swift */; };
 		6095B12723ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12623ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift */; };
 		6095B12923EE3A64000B9BAC /* DashboardHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12823EE3A64000B9BAC /* DashboardHead.swift */; };
+		60B9A3A423FD3D9A00BB4CFB /* ThoughtsTableHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A3A323FD3D9A00BB4CFB /* ThoughtsTableHead.swift */; };
 		60E2992C23F6F54D009B9A84 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2992B23F6F54D009B9A84 /* UIViewController.swift */; };
 		60E2992E23F6F62B009B9A84 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2992D23F6F62B009B9A84 /* AppCoordinator.swift */; };
 		60E2993023F71FBA009B9A84 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2992F23F71FBA009B9A84 /* Icons.swift */; };
@@ -118,6 +119,7 @@
 		6095B12423ED6D0B000B9BAC /* ThoughtDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDisplay.swift; sourceTree = "<group>"; };
 		6095B12623ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtExtendedPreviewCell.swift; sourceTree = "<group>"; };
 		6095B12823EE3A64000B9BAC /* DashboardHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHead.swift; sourceTree = "<group>"; };
+		60B9A3A323FD3D9A00BB4CFB /* ThoughtsTableHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsTableHead.swift; sourceTree = "<group>"; };
 		60E2992B23F6F54D009B9A84 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		60E2992D23F6F62B009B9A84 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		60E2992F23F71FBA009B9A84 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				6095B11623EBF835000B9BAC /* OrbitDisplay */,
 				60452DE723F538E20087C791 /* TabBarController.swift */,
 				60E2993F23F90B0B009B9A84 /* NewOrbitView.swift */,
+				60B9A3A323FD3D9A00BB4CFB /* ThoughtsTableHead.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				60FE0A0B23E348FD003FB238 /* CGSize.swift in Sources */,
 				6095B10623EB7D5B000B9BAC /* Orbit.swift in Sources */,
 				60E2994423FA1C7B009B9A84 /* LocataionDataAccessable.swift in Sources */,
+				60B9A3A423FD3D9A00BB4CFB /* ThoughtsTableHead.swift in Sources */,
 				6095B11C23ECB1DA000B9BAC /* BasicStatsBar.swift in Sources */,
 				6095B12923EE3A64000B9BAC /* DashboardHead.swift in Sources */,
 				60FE09FB23E3485E003FB238 /* UICollectionView.swift in Sources */,

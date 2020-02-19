@@ -59,5 +59,6 @@ extension UserDefaults {
     
     static var isLocationAvailable: Bool {
         get { return UserDefaults.standard.bool(forKey: UserDefaults.Keys.locationAuth) }
+        set { UserDefaults.standard.set(newValue, forKey: UserDefaults.Keys.locationAuth)}
     }
 }

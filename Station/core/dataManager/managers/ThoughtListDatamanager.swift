@@ -3,10 +3,10 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class ThoughtLIstDataManager: DataManager {
+class ThoughtListDataManager: DataManager {
 
     var delegate: DataManagerDelegate?
-    
+    var isSearching = false
     var moc: NSManagedObjectContext
     
     required init(moc: NSManagedObjectContext) {
@@ -19,9 +19,41 @@ class ThoughtLIstDataManager: DataManager {
     
     public var displayableThoughts: [Thought] = []
     
+    func filterThoughts(_ predicate: String) {
+        if predicate != "" {
+            print("filtering in DM")
+            isSearching = true
+            filteredThoughts = thoughts.filter({ (thought) -> Bool in
+                thought.title.lowercased().contains(predicate)
+            })
+            print(filteredThoughts.count)
+        } else { isSearching = false }
+    }
+    
+    func sort(by option: SortOption) {
+        switch option {
+        case .dateAscending:
+            thoughts.sort { (t1, t2) -> Bool in
+                t1.createdAt < t2.createdAt
+            }
+        case .dateDescending:
+            thoughts.sort { (t1, t2) -> Bool in
+                t1.createdAt > t2.createdAt
+            }
+        case .subThoughtAscending:
+            thoughts.sort { (t1, t2) -> Bool in
+                t1.computedSubThoughts.count < t2.computedSubThoughts.count
+            }
+        case .subThoughtDescending:
+            thoughts.sort { (t1, t2) -> Bool in
+                t1.computedSubThoughts.count < t2.computedSubThoughts.count
+            }
+        }
+        
+    }
 }
 
-extension ThoughtLIstDataManager: ThoughtDataAccessable {
+extension ThoughtListDataManager: ThoughtDataAccessable {
     
     func getThoughts() -> [Thought] {
         
@@ -34,7 +66,10 @@ extension ThoughtLIstDataManager: ThoughtDataAccessable {
         request.sortDescriptors = [sortDescriptor]
         
         do {
-            return try moc.fetch(request)
+            
+            var out = try moc.fetch(request)
+            print(out.count)
+            return out
             
         } catch { return [] }
     }

@@ -19,7 +19,7 @@ class ThoughtsCoordinator: Coordinator {
         
         let vc = ThoughtListController()
         if let moc = moc {
-            let dm = ThoughtLIstDataManager(moc: moc)
+            let dm = ThoughtListDataManager(moc: moc)
             vc.dataManager = dm
             print("init'd dm in thoughtcoordinator")
         }

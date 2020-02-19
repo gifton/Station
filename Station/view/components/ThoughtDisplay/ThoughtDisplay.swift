@@ -36,7 +36,7 @@ class ThoughtDisplay: UIView {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(Device.width - (Styles.Padding.medium.rawValue * 2), 155)
+        layout.itemSize = CGSize(275, 155)
         
         collection = UICollectionView(frame: CGRect(x: 0, y: 55, width: width, height: Device.height - 150), collectionViewLayout: layout)
         collection.registerCell(ThoughtExtendedPreviewCell.self)

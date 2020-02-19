@@ -51,6 +51,28 @@ extension UILabel {
         return lbl
     }
     
+    public static func  labelWithImage(_ text: String,  image: UIImage?, location: UIRectEdge)-> UILabel {
+        let lbl = UILabel()
+        lbl.font = Styles.Font.mediumTitle(ofSize: .xXLarge)
+        let fullString = NSMutableAttributedString(string: text)
+        let image1Attachment = NSTextAttachment()
+        
+        image1Attachment.image = image
+        let image1String = NSMutableAttributedString(attachment: image1Attachment)
+        
+        if location == .right {
+            fullString.append(image1String)
+            lbl.attributedText = fullString
+        } else if location == .left {
+            image1String.append(fullString)
+            lbl.attributedText = image1String
+        } else {
+            fatalError("label images must be added to the left or right")
+        }
+        
+        return lbl
+    }
+    
     // set text to date
     func getStringFromDate(date: Date, withStyle style: DateFormatter.Style) {
         let dateFormatter: DateFormatter = {
@@ -165,6 +187,13 @@ extension UILabel {
         lbl.sizeToFit()
         
         return lbl
+    }
+    
+    func underlineLabel() {
+        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.byWord.rawValue]
+        let underlineAttributedString = NSAttributedString(string: text ?? "", attributes: underlineAttribute)
+        text = ""
+        attributedText = underlineAttributedString
     }
     
     // titlelabel

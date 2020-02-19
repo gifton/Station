@@ -54,5 +54,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Station lets you save photos directly in the application</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>You can optionally keep track of your location for thoughts and Sub Thoughts</string>
 </dict>
 </plist>

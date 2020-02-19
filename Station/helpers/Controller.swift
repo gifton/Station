@@ -80,10 +80,21 @@ extension Controller: DataManagerDelegate {
     }
     
     func requestLocation() -> CLLocation? {
-        reqLoc()
-        return CLLocation()
+        
+        if UserDefaults.isLocationAvailable {
+            print("user  is set wiith location")
+            return CLLocation()
+        }
+        print("user  is not set wiith location")
+        
+        var loc: CLLocation?
+        reqLoc {
+            loc = CLLocation()
+        }
+        return loc
+        
     }
-    func reqLoc() {
+    private func reqLoc(completion: () -> ()) {
         
         var locationManager: CLLocationManager?
         locationManager = CLLocationManager()
@@ -93,7 +104,16 @@ extension Controller: DataManagerDelegate {
     }
 }
 
-extension Controller: CLLocationManagerDelegate {}
+extension Controller: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse: UserDefaults.isLocationAvailable = true
+        default: UserDefaults.isLocationAvailable = false
+        }
+        
+        print("set location status",  status.rawValue)
+    }
+}
 
 
 enum Failure {

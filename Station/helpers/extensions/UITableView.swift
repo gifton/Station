@@ -19,6 +19,14 @@ public extension UITableView {
         register(T.self, forHeaderFooterViewReuseIdentifier: String(describing: name))
     }
     
+    func dequeueReusableHeader<T: UITableViewHeaderFooterView>(cellWithClassName name: T.Type) -> T {
+        guard let head = dequeueReusableHeaderFooterView(withIdentifier: String(describing: name)) as? T else {
+            fatalError("Couldnt identify header with cell name: \(name)")
+        }
+        
+        return head
+    }
+    
     // table header size to fit
     func tableHeaderViewSizeToFit() {
         tableHeaderOrFooterViewSizeToFit(\.tableHeaderView)
