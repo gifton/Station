@@ -73,4 +73,10 @@ extension Array where Element == Orbit {
             }
         }
     }
+    
+    func getAllIcons() -> [String] {
+        return map {
+            $0.icon
+        }
+    }
 }

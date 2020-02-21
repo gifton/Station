@@ -44,7 +44,7 @@ private extension ThoughtExtendedPreviewCell {
         orbits.text = "🧘🏽‍♂️ 🛤 🍕 🎄"
         orbits.sizeToFit()
         orbits.preferredMaxLayoutWidth = 150
-        orbits.left = Styles.Padding.xLarge.rawValue
+        orbits.left = left.addPadding(.xLarge)
         orbits.bottom = height - Styles.Padding.large.rawValue
         orbits.textDropShadow()
         
@@ -52,7 +52,7 @@ private extension ThoughtExtendedPreviewCell {
         title.numberOfLines = 3
         title.text = thought.title
         title.height = 75
-        title.width = width - (Styles.Padding.large.rawValue * 2)
+        title.width = width.subtractPadding(multiplier: 2)
         title.left = Styles.Padding.medium.rawValue
         title.top = Styles.Padding.medium.rawValue
         title.layer.cornerRadius = 10
@@ -65,13 +65,13 @@ private extension ThoughtExtendedPreviewCell {
         dateLabel.text = "March 3rd, 2020"
         dateLabel.sizeToFit()
         dateLabel.right = title.right
-        dateLabel.top = title.bottom + Styles.Padding.medium.rawValue + 2 // center since text is smaller on right than left
+        dateLabel.top = title.bottom.addPadding(.medium) + 2 // center since text is smaller on right than left
         dateLabel.textColor = Styles.Colors.secondaryGray
         
         // subthought
         subThoughts.sizeToFit()
         subThoughts.textColor = Styles.Colors.primaryBlue
-        subThoughts.top = title.bottom + Styles.Padding.medium.rawValue
+        subThoughts.top = title.bottom.addPadding(.medium)
         subThoughts.left = Styles.Padding.xLarge.rawValue
         
     }

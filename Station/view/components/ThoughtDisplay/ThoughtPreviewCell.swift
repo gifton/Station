@@ -49,7 +49,7 @@ private extension ThoughtPreviewCell {
         addSubview(subThoughtCount)
         
         // title
-        titleLabel.preferredMaxLayoutWidth = width - (Styles.Padding.xLarge.rawValue * 2)
+        titleLabel.preferredMaxLayoutWidth = width.subtractPadding(.xLarge, multiplier: 2)
         titleLabel.text = thought.title
         titleLabel.sizeToFit()
         titleLabel.left = Styles.Padding.xLarge.rawValue
@@ -63,7 +63,7 @@ private extension ThoughtPreviewCell {
         orbits.sizeToFit()
         orbits.preferredMaxLayoutWidth = 200.0
         orbits.left = Styles.Padding.xLarge.rawValue
-        orbits.bottom = height - Styles.Padding.large.rawValue
+        orbits.bottom = height.subtractPadding()
         orbits.textDropShadow()
         
         
@@ -76,8 +76,8 @@ private extension ThoughtPreviewCell {
         subThoughtCount.sizeToFit()
         subThoughtCount.height += 10
         subThoughtCount.width += 10
-        subThoughtCount.right = right - Styles.Padding.xLarge.rawValue
-        subThoughtCount.bottom = height - Styles.Padding.large.rawValue
+        subThoughtCount.right = right.subtractPadding(.xLarge)
+        subThoughtCount.bottom = height.subtractPadding()
         subThoughtCount.backgroundColor = Styles.Colors.primaryBlue
         subThoughtCount.layer.cornerRadius = 6
         subThoughtCount.layer.masksToBounds = true

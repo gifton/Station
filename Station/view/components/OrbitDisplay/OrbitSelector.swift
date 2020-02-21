@@ -20,7 +20,7 @@ class OrbitSelector: UIView {
     init(point: CGPoint, title: String, delegate: OrbitSelectorDelegate, numberOfRows: Int = 2) {
         self.title.text = title
         self.delegate = delegate
-        collectionHeight = (50 + (Styles.Padding.medium.rawValue)) * CGFloat(numberOfRows)
+        collectionHeight = (CGFloat(50).addPadding(.medium)) * CGFloat(numberOfRows)
         
         super.init(frame: CGRect(origin: point, size: CGSize(width: Device.width, height: collectionHeight + 95)))
         
@@ -69,7 +69,7 @@ private extension OrbitSelector {
     }
     
     func setSearch() {
-        searchbar.frame = CGRect(origin: .init(Styles.Padding.xSmall.rawValue, title.bottom + Styles.Padding.medium.rawValue), size: .init(Device.width - (Styles.Padding.medium.rawValue * 2), 45))
+        searchbar.frame = CGRect(origin: .init(Styles.Padding.xSmall.rawValue, title.bottom.addPadding(.medium)), size: .init(Device.width.subtractPadding(.medium, multiplier: 2), 45))
         searchbar.placeholder = "Search for an Orbit"
         searchbar.autocapitalizationType = .none
         searchbar.backgroundImage = UIImage()

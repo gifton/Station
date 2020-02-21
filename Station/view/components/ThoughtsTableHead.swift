@@ -5,6 +5,7 @@ protocol ThoughtTableHeadDelegate {
     func filter(withPredicate predicate: String)
     func showInfo()
     func showSortOptions()
+    var numberOfThoughts: Int { get }
 }
 
 class ThoughtTableHead: UITableViewHeaderFooterView {
@@ -17,7 +18,7 @@ class ThoughtTableHead: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var searchBar: UISearchBar!
+    public var searchBar: UISearchBar!
     private var titleLable: UILabel!
     private var countView: UILabel!
     private var infoButton: UIImageView!
@@ -64,7 +65,7 @@ private extension ThoughtTableHead {
         sortButton.left = left + Styles.Padding.xXLarge.rawValue
         sortButton.top = searchBar.bottom  + Styles.Padding.small.rawValue
         // countView
-        countView  = UILabel.bodyLabel("25", .medium)
+        countView = UILabel.bodyLabel(String(describing: delegate?.numberOfThoughts ?? 0), .medium)
         countView.sizeToFit()
         countView.textColor = Styles.Colors.darkGray
         countView.top = infoButton.bottom + Styles.Padding.large.rawValue// TODO: make helper func  for adding padding

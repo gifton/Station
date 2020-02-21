@@ -10,11 +10,19 @@ enum BasicStatsType: String {
     
 }
 
+struct BasicStatInfo {
+    var type: BasicStatsType
+    var weekCount: Int
+    var monthCount: Int
+}
+
 
 class BasicStatsBar: UIView {
     
-    init(point: CGPoint, type: BasicStatsType, withTitle title: Bool = false) {
-        self.statType = type
+    init(point: CGPoint, info: BasicStatInfo, withTitle title: Bool = false) {
+        self.statType = info.type
+        weekCount = info.weekCount
+        monthCount = info.monthCount
         
         if (title == true) {
             titleLabel = UILabel.bodyLabel("Stats", .medium)
@@ -29,6 +37,9 @@ class BasicStatsBar: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    var weekCount: Int
+    var monthCount: Int
     
     var titleLabel: UILabel?
     var statType: BasicStatsType
@@ -88,14 +99,14 @@ private extension BasicStatsBar {
         
         weekCountLabel.textColor = Styles.Colors.primaryBlue
         monthCountLabel.textColor = Styles.Colors.primaryBlue
-        weekCountLabel.text = "12"
-        monthCountLabel.text = "55"
+        weekCountLabel.text = String(describing: weekCount)
+        monthCountLabel.text = String(describing: monthCount)
         weekCountLabel.sizeToFit()
         monthCountLabel.sizeToFit()
         
         let countStack = UIStackView(arrangedSubviews: [weekCountLabel, monthCountLabel], axis: .vertical, spacing: 5, alignment: .leading, distribution: .fillEqually)
         countStack.frame.size = CGSize(max(weekCountLabel.width, monthCountLabel.width), (monthCountLabel.height * 2) + 5)
-        countStack.right = cell.right - Styles.Padding.xLarge.rawValue
+        countStack.right = cell.right.subtractPadding(.xLarge)
         countStack.centerY = cell.centerY
         
         addSubview(countStack)

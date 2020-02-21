@@ -16,7 +16,11 @@ class ExploreCoordinator: Coordinator {
     var navigationController: UINavigationController = UINavigationController()
     
     func start() {
-        let vc = UIViewController(withColor: Styles.Colors.primaryRed)
+        let vc = ExploreController()
+        vc.coordinator = self
+        if let moc = moc {
+//            let dm =
+        }
         
         navigationController.pushViewController(vc, animated: true)
         

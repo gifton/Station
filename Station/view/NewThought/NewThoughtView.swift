@@ -6,7 +6,7 @@ class NewThoughtView: UIView {
     init() {
         super.init(frame: Device.frame)
         
-        backgroundColor = .white
+        backgroundColor = Styles.Colors.offWhite
         setView()
     }
     
@@ -33,7 +33,7 @@ class NewThoughtView: UIView {
 private extension NewThoughtView {
     func setView() {
         // set thought card
-        card = NewThoughtCard(point: .init(Styles.Padding.xLarge.rawValue, 65))
+        card = NewThoughtCard(point: .init(Styles.Padding.large.rawValue, 65))
         card.thoughtDelegate = self
         
         addSubview(card)

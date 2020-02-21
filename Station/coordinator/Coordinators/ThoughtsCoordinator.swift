@@ -18,12 +18,12 @@ class ThoughtsCoordinator: Coordinator {
     func start() {
         
         let vc = ThoughtListController()
+        
         if let moc = moc {
             let dm = ThoughtListDataManager(moc: moc)
             vc.dataManager = dm
-            print("init'd dm in thoughtcoordinator")
         }
-        
+        vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
         
     }
@@ -46,5 +46,19 @@ extension ThoughtsCoordinator: ThoughtDetailFlow {
     
     func showTHought(_ id: String) {
 //
+    }
+}
+
+
+extension ThoughtsCoordinator {
+    func showInfoController() {
+        let infoController = InfoController(type: .thought)
+        infoController.coordinator = self
+        navigationController.showDetailViewController(infoController, sender: self)
+        
+    }
+    
+    func showSortOptions(completion: (SortOption) -> ()) {
+        
     }
 }

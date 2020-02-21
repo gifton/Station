@@ -17,16 +17,19 @@ class ThoughtListDataManager: DataManager {
     private var thoughts: [Thought] = []
     private var filteredThoughts: [Thought] = []
     
-    public var displayableThoughts: [Thought] = []
+    public var displayableThoughts: [Thought] {
+        if isSearching {
+            return filteredThoughts
+        }
+        return thoughts
+    }
     
     func filterThoughts(_ predicate: String) {
         if predicate != "" {
-            print("filtering in DM")
             isSearching = true
             filteredThoughts = thoughts.filter({ (thought) -> Bool in
                 thought.title.lowercased().contains(predicate)
             })
-            print(filteredThoughts.count)
         } else { isSearching = false }
     }
     

@@ -5,21 +5,6 @@ import UIKit
 // MARK: TabBarController
 // custom tab bar  for insetting images, and optional titles
 final class TabBarController: UITabBarController {
-
-    // helper method for setting icon images
-    public func setIconImages(titles: [String]) {
-        guard let items = self.tabBar.items else { return }
-        
-        for (index, element) in items.enumerated() {
-            
-            if let image = UIImage(named: titles[index]) {
-                element.image = image.scaled(toHeight: 24)
-            } else {
-                let img = UIImage(systemName: "heart.fill")
-            }
-            
-        }
-    }
     
     public func setTabIcons(_ icons: [Icons.IconType]) {
         guard let items = self.tabBar.items else { return }
@@ -27,7 +12,7 @@ final class TabBarController: UITabBarController {
         if items.count == icons.count {
             for (index, element) in items.enumerated() {
                 if let img = Icons.iconForType(icons[index]) {
-                    element.image = img.scaled(toHeight: 24, opaque: true)
+                    element.image = img.scaled(toHeight: 24)
                 }
             }
         }

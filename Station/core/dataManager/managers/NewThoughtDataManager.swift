@@ -45,12 +45,10 @@ class NewThoughtDataManager: DataManager {
     
     func filterOrbits(_ predicate: String) {
         if predicate != "" {
-            print("filtering in DM")
             isSearching = true
             filteredOrbits = orbits.filter({ (orbit) -> Bool in
                 orbit.title.lowercased().contains(predicate)
             })
-            print(filteredOrbits.count)
         } else { isSearching = false }
     }
 }

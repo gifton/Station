@@ -33,7 +33,7 @@ private extension ThoughtListController {
 }
 
 extension ThoughtListController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return 100 }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return 90 }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
@@ -43,7 +43,12 @@ extension ThoughtListController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 { return tableView.dequeueReusableHeader(cellWithClassName: ThoughtTableHead.self) }
+        if section == 0 {
+            let head = tableView.dequeueReusableHeader(cellWithClassName: ThoughtTableHead.self)
+            head.delegate = self
+            
+            return head
+        }
         else { return nil }
     }
 }
@@ -52,24 +57,36 @@ extension ThoughtListController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
     func numberOfSections(in tableView: UITableView) -> Int {
-        var out  = (dataManager as? ThoughtListDataManager)?.displayableThoughts.count  ?? 10
-        print("numbernof sectuibs: \(out)")
+        let out  = (dataManager as? ThoughtListDataManager)?.displayableThoughts.count  ?? 10
+        
         return out
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: ThoughtPreviewCell.self, for: indexPath)
         
-        cell.set(withThought: ThoughtPreview(title: "This is my new thought right hurr!", location: CLLocation()))
+        if let thought = (dataManager as? ThoughtListDataManager)?.displayableThoughts[indexPath.section] {
+            cell.set(withThought: ThoughtPreview(thought: thought))
+        }
         
         
         return cell
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        //  guard into header and searchbar, resign
+        if let head = (scrollView as? UITableView)?.headerView(forSection: 0) as? ThoughtTableHead {
+            head.searchBar.resignFirstResponder()
+        }
+    }
 }
 
 extension ThoughtListController: ThoughtTableHeadDelegate {
+    
     func showInfo() {
         print("showing  info")
+        (coordinator as? ThoughtsCoordinator)?.showInfoController()
     }
     
     func showSortOptions() {
@@ -78,5 +95,14 @@ extension ThoughtListController: ThoughtTableHeadDelegate {
     
     func filter(withPredicate predicate: String) {
         (dataManager as? ThoughtListDataManager)?.filterThoughts(predicate)
+        
+        tv.reloadData { }
     }
+    
+    var numberOfThoughts: Int {
+        get {
+            return (dataManager as? ThoughtListDataManager)?.displayableThoughts.count ?? 0
+        }
+    }
+    
 }

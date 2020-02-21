@@ -12,7 +12,7 @@ protocol NewThoughtCardDelegate {
 class NewThoughtCard: UIView {
     
     init(point: CGPoint) {
-        super.init(frame: CGRect(origin: point, size: CGSize(width: Device.width - (Styles.Padding.xLarge.rawValue * 2), height: 200)))
+        super.init(frame: CGRect(origin: point, size: CGSize(width: Device.width.subtractPadding(multiplier: 2), height: 200)))
         
         setView()
         
@@ -27,7 +27,7 @@ class NewThoughtCard: UIView {
     }
     
     var thoughtDelegate: NewThoughtCardDelegate?
-    private var topView = UIView(withColor: .white)
+    private var topView = UIView(withColor: Styles.Colors.lightGray)
     private var tapToStart = UILabel.bodyLabel("tap to start", .large)
     private var thoughtTextView = UITextView()
     private var icon: UIImageView = UIImageView(image: Icons.iconForType(.thought)?.tintImage(toColor: Styles.Colors.darkGray))
@@ -46,23 +46,25 @@ private extension NewThoughtCard {
     
     func setView() {
         
-        setShadow(color: .black, opacity: 0.615, offset: .init(0), radius: 6.0, viewCornerRadius: 8)
-        layer.cornerRadius = 8
-        backgroundColor = Styles.Colors.lightGray
+        setShadow(color: .black, opacity: 0.115, offset: .init(0, -1), radius: 6.0, viewCornerRadius: 8)
+        layer.cornerRadius = 10
+        backgroundColor = Styles.Colors.white
         
         addSubview(topView)
-        topView.frame = CGRect(origin: .zero, size: CGSize(width, 54))
+        topView.frame = CGRect(origin: .init(5), size: CGSize(width - 10, 54))
         topView.layer.cornerRadius = 8
         
         topView.addSubview(title)
         topView.addSubview(icon)
         title.sizeToFit()
-        title.left = topView.left + Styles.Padding.large.rawValue
-        title.top = topView.top + Styles.Padding.large.rawValue
+        title.textColor = Styles.Colors.darkGray
+        title.backgroundColor = .clear
+        title.left = topView.left.addPadding()
+        title.center.y = topView.center.y - 5
         
         icon.frame.size = CGSize(width: 35, height: 25)
-        icon.right = topView.right - Styles.Padding.large.rawValue
-        icon.top = topView.top + Styles.Padding.large.rawValue
+        icon.right = topView.right.subtractPadding()
+        icon.center.y = topView.center.y - 5
         
         addTapToStart()
         
@@ -72,6 +74,7 @@ private extension NewThoughtCard {
         
         addSubview(tapToStart)
         tapToStart.sizeToFit()
+        tapToStart.textColor = Styles.Colors.darkGray 
         tapToStart.center = CGPoint(width/2, 125)
         addTapGestureRecognizer(action: startThought)
         
