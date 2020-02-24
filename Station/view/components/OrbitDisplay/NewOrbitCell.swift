@@ -8,14 +8,16 @@ class CircularNewOrbitCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = Styles.Colors.primaryBlue
+        backgroundColor = Styles.Colors.primaryGreen
         layer.cornerRadius = height / 2
         
         let lbl = UILabel("+")
-        lbl.font = Styles.Font.body(ofSize: .medium)
+        lbl.font = Styles.Font.body(ofSize: .xLarge)
         lbl.textColor = Styles.Colors.offWhite
         lbl.sizeToFit()
-        lbl.frame.origin = .zero
+        lbl.frame.center = .init(width / 2, height / 2)
+        
+        addSubview(lbl)
         
     }
     

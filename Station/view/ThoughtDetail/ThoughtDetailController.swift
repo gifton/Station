@@ -63,6 +63,7 @@ private extension ThoughtDetailController{
         tv.frame =  CGRect(x: 0, y: header.bottom, width: Device.width, height: Device.height - (Device.tabBarheight + header.height))
         tv.delegate = self
         tv.dataSource = self
+        tv.separatorStyle = .none
         tv.backgroundView = .init(withColor: Styles.Colors.offWhite)
         tv.register(cellWithClass: ThoughtDetailOrbitCell.self)
         tv.registerHeaderFooter(cellWithClass: ThoughtDetailHead.self)
@@ -85,12 +86,9 @@ extension ThoughtDetailController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 125
-        }
         
         switch indexPath.row {
-        case 0: return 125
+        case 0: return 105
         case 1: return 170
         default: return 140
         }

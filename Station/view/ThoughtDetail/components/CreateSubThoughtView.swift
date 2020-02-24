@@ -12,17 +12,17 @@ class CreateSubThoughtView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let titleLabel = UILabel.mediumTitleLabel("create", .xXLarge)
-    var delegate: CreateSubThoughtDelegate
-    var camera: UIImageView!
-    var note: UIImageView!
-    var link: UIImageView!
+    private let titleLabel = UILabel.bodyLabel("create", .xXLarge)
+    private var delegate: CreateSubThoughtDelegate
+    private var camera: UIImageView!
+    private var note: UIImageView!
+    private var link: UIImageView!
 }
 
 private extension CreateSubThoughtView {
     func setView() {
         
-        backgroundColor = Styles.Colors.primaryBlue
+        backgroundColor = UIColor(hex: "121212")
         addSubview(titleLabel)
         titleLabel.sizeToFit()
         titleLabel.textColor = .white
@@ -41,7 +41,6 @@ private extension CreateSubThoughtView {
         camera.frame.origin = .init(Device.width  / 2)
         camera.center.y = titleLabel.center.y
         camera.contentMode = .scaleAspectFit
-        camera.setShadow(color: .black, opacity: 0.35, offset: .init(0), radius: .init(3), viewCornerRadius: 0)
         addSubview(camera)
         
         // link
@@ -50,7 +49,6 @@ private extension CreateSubThoughtView {
         link.frame.origin = .init(camera.right.addPadding(.xLarge))
         link.center.y = titleLabel.center.y
         link.contentMode = .scaleAspectFit
-        link.setShadow(color: .black, opacity: 0.35, offset: .init(0), radius: .init(3), viewCornerRadius: 0)
         addSubview(link)
         
         // note
@@ -59,7 +57,6 @@ private extension CreateSubThoughtView {
         note.frame.origin = .init(link.right.addPadding(.xLarge))
         note.center.y = titleLabel.center.y
         note.contentMode = .scaleAspectFit
-        note.setShadow(color: .black, opacity: 0.35, offset: .init(0), radius: .init(3), viewCornerRadius: 0)
         addSubview(note)
         
         camera.addTapGestureRecognizer(action: delegate.newPhoto)

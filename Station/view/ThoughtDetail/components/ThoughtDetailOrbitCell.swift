@@ -16,6 +16,8 @@ class ThoughtDetailOrbitCell: UITableViewCell {
             setView()
         }
     }
+    
+    var orbitSelector: OrbitSelector!
 }
 
 private extension ThoughtDetailOrbitCell {
@@ -26,6 +28,8 @@ private extension ThoughtDetailOrbitCell {
         titleLabel.top = 5
         addSubview(titleLabel)
         
+        orbitSelector = OrbitSelector(point: .init(0, titleLabel.bottom.addPadding(.small)), title: nil, delegate: self, numberOfRows: 1, withSearch: false)
+        addSubview(orbitSelector)
     }
     
     

@@ -17,17 +17,24 @@ protocol OrbitSelectorDelegate {
 
 class OrbitSelector: UIView {
     
-    init(point: CGPoint, title: String, delegate: OrbitSelectorDelegate, numberOfRows: Int = 2) {
-        self.title.text = title
+    init(point: CGPoint, title: String?, delegate: OrbitSelectorDelegate, numberOfRows: Int = 2, withSearch: Bool = true) {
+    
         self.delegate = delegate
         collectionHeight = (CGFloat(50).addPadding(.medium)) * CGFloat(numberOfRows)
+        isSearching = withSearch
         
         super.init(frame: CGRect(origin: point, size: CGSize(width: Device.width, height: collectionHeight + 95)))
+        if let title = title {
+            self.title?.text = title
+        } else {
+            self.title = nil
+            setAvalibility(true)
+        }
         
         setTitle()
-        setSearch()
+        if withSearch { setSearch() }
+        
         setCollection()
-        setAvalibility()
     }
     
     func setAvalibility(_ available: Bool = false) {
@@ -40,6 +47,8 @@ class OrbitSelector: UIView {
         
     }
     
+    var isSearching: Bool
+    
     func needReset() {
         if let collection = collection {
             collection.reloadData()
@@ -49,7 +58,7 @@ class OrbitSelector: UIView {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
-    private var title = UILabel.bodyLabel()
+    private var title: UILabel? = UILabel.bodyLabel()
     private var collection: UICollectionView?
     private var collectionHeight: CGFloat = 0
     private var delegate: OrbitSelectorDelegate
@@ -61,15 +70,19 @@ class OrbitSelector: UIView {
 private extension OrbitSelector {
     
     func setTitle() {
-        title.sizeToFit()
-        title.textColor = .black
-        title.left = Styles.Padding.large.rawValue
-        title.top = Styles.Padding.large.rawValue
-        addSubview(title)
+        if let title = title {
+            
+            title.sizeToFit()
+            title.textColor = .black
+            title.left = Styles.Padding.large.rawValue
+            title.top = Styles.Padding.large.rawValue
+            addSubview(title)
+        }
+        
     }
     
     func setSearch() {
-        searchbar.frame = CGRect(origin: .init(Styles.Padding.xSmall.rawValue, title.bottom.addPadding(.medium)), size: .init(Device.width.subtractPadding(.medium, multiplier: 2), 45))
+        searchbar.frame = CGRect(origin: .init(Styles.Padding.xSmall.rawValue, title?.bottom.addPadding(.medium) ?? 0), size: .init(Device.width.subtractPadding(.medium, multiplier: 2), 45))
         searchbar.placeholder = "Search for an Orbit"
         searchbar.autocapitalizationType = .none
         searchbar.backgroundImage = UIImage()
@@ -83,13 +96,18 @@ private extension OrbitSelector {
     func setCollection() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(175, 50)
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 0)
         
-        collection = UICollectionView(frame: CGRect(x: 0, y: searchbar.bottom + Styles.Padding.medium.rawValue, width: width, height: collectionHeight), collectionViewLayout: layout)
+        if isSearching {
+            collection = UICollectionView(frame: CGRect(x: 0, y: searchbar.bottom + Styles.Padding.medium.rawValue, width: width, height: collectionHeight), collectionViewLayout: layout)
+        } else {
+            collection = UICollectionView(frame: CGRect(x: 0, y:title?.bottom.addPadding(.medium) ?? 0, width: width, height: collectionHeight), collectionViewLayout: layout)
+        }
+        
         
         if let collection = collection {
-            collection.backgroundView = .init(withColor: .white)
+            collection.backgroundView = .init(withColor: .clear)
+            collection.backgroundColor  = .clear
             collection.showsHorizontalScrollIndicator = false
             collection.registerCell(OrbitCell.self)
             collection.registerCell(inlineNewOrbitCell.self)
@@ -106,6 +124,13 @@ private extension OrbitSelector {
 
 extension OrbitSelector: UICollectionViewDataSource {
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.row == 0 {
+            if !isSearching  { return .init(50, 50) }
+            return .init(175, 50)
+        } else { return .init(175, 50) }
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -115,7 +140,13 @@ extension OrbitSelector: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.row == 0 {
-            return collectionView.dequeueReusableCell(withClass: inlineNewOrbitCell.self, for: indexPath)
+            if isSearching {
+                return collectionView.dequeueReusableCell(withClass: inlineNewOrbitCell.self, for: indexPath)
+            }
+            else {
+                return collectionView.dequeueReusableCell(withClass: CircularNewOrbitCell.self, for: indexPath)
+            }
+            
         } else {
             let cell = collectionView.dequeueReusableCell(withClass: OrbitCell.self, for: indexPath)
             cell.set(withOrbit: delegate.orbits[indexPath.row - 1])

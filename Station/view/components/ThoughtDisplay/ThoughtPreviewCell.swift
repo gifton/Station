@@ -37,7 +37,9 @@ private extension ThoughtPreviewCell {
     func setView() {
         layer.cornerRadius = 10
         layer.masksToBounds = true
-        backgroundColor = Styles.Colors.offWhite
+        backgroundColor = Styles.Colors.lightGray
+        layer.borderColor = UIColor.black.withAlphaComponent(0.4).cgColor
+        layer.borderWidth = 0.5
         backgroundView?.layer.cornerRadius = 10
         backgroundView?.layer.masksToBounds = true
         

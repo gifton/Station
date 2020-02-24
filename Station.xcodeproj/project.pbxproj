@@ -280,9 +280,9 @@
 		60B7B368240443E20099BC59 /* ThoughtDetail */ = {
 			isa = PBXGroup;
 			children = (
-				60B7B373240476B80099BC59 /* components */,
 				60B7B362240443C60099BC59 /* ThoughtDetailController.swift */,
 				60B7B374240476D50099BC59 /* ThoughtDetailDelegates.swift */,
+				60B7B373240476B80099BC59 /* components */,
 			);
 			path = ThoughtDetail;
 			sourceTree = "<group>";
