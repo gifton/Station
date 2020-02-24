@@ -24,7 +24,6 @@ class ThoughtPreviewCell: UITableViewCell {
     
     func set(withThought thought: ThoughtPreview) {
         self.thought = thought
-        
         setView()
     }
 
@@ -38,7 +37,7 @@ private extension ThoughtPreviewCell {
     func setView() {
         layer.cornerRadius = 10
         layer.masksToBounds = true
-        backgroundView = .init(withColor: .white)
+        backgroundColor = Styles.Colors.offWhite
         backgroundView?.layer.cornerRadius = 10
         backgroundView?.layer.masksToBounds = true
         

@@ -23,6 +23,7 @@ public class Thought: NSManagedObject {
         }
         
     }
+    
 }
 
 // MARK: computed properties
@@ -34,8 +35,10 @@ extension Thought {
     }
     
     public var computedOrbits: [Orbit] {
-        if let orbits = orbits {
-            return orbits.map { $0 as! Orbit}
+        if let orbits = orbits as? Set<Orbit> {
+            return orbits.sorted { (o1, o2) -> Bool in
+                o1.createdAt > o2.createdAt
+            }
         }
         return []
     }
@@ -45,7 +48,7 @@ extension Thought {
 extension Thought {
     
     //build thought components
-    static func insert(in context: NSManagedObjectContext, title: String, location: CLLocation?) -> Thought {
+    static func insert(in context: NSManagedObjectContext, title: String, location: CLLocation?, orbits: [Orbit]?) -> Thought {
         
         //set new thought from context
         let thought: Thought = context.insertObject()
@@ -61,12 +64,31 @@ extension Thought {
             thought.longitude = loc.coordinate.longitude as NSNumber
         }
         
+        if let orbits = orbits {
+            thought.orbits = NSSet(array: orbits)
+        }
+        
+        
         print(thought.createdAt)
         return thought
     }
     
     static func insert(in context: NSManagedObjectContext, with preview: ThoughtPreview) -> Thought {
-        return Thought.insert(in: context, title: preview.title, location: preview.location)
+        return Thought.insert(in: context, title: preview.title, location: preview.location, orbits: preview.orbits)
+    }
+    
+    
+    public func addOrbit(_ orbit: Orbit) {
+        
+        // check if set is nill, set to empty list if so
+        if subThoughts == nil {
+            orbits = []
+        }
+        
+//        (subThoughts as? NSSet<Orbit>)?.
+        
+        subThoughts?.adding(orbit)
+        print("added orbit to thought")
     }
 }
 

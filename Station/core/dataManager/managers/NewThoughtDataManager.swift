@@ -60,13 +60,9 @@ extension NewThoughtDataManager: ThoughtDataAccessable {
     func createThought(fromTitle title: String, withLocation: CLLocation?, andOrbits orbits: [Orbit]?) {
         
         print("creating thought with  title:  \(title) and orbit count: \(orbits?.count ?? 0)")
-        let t = Thought.insert(in: moc, title: title, location: CLLocation())
+        let t = Thought.insert(in: moc, title: title, location: CLLocation(), orbits: orbits)
         orbits?.addThoughtRelationship(t)
-        
-        do {
-            try moc.save()
-            print("saved tought")
-        } catch let err { print(err)}
+        _ = moc.saveOrRollback()
         
     }
     
@@ -92,11 +88,7 @@ extension NewThoughtDataManager: OrbitDataAccessable {
     func createOrbit(withTitle title: String, andIcon icon: String) {
         
         _ = Orbit.insert(into: moc, with: icon, and: title)
-        
-        do {
-            try moc.save()
-            print("saved tought")
-        } catch let err { print(err)}
+        _ = moc.saveOrRollback()
         
         refresh()
         

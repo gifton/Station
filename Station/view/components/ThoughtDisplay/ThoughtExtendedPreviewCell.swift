@@ -6,7 +6,7 @@ class ThoughtExtendedPreviewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 10
-        backgroundColor = .white
+        backgroundView = .init(withColor: Styles.Colors.offWhite.withAlphaComponent(0.65))
     }
     
     required init?(coder: NSCoder) {

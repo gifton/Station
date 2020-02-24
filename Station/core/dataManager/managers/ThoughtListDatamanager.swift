@@ -5,12 +5,17 @@ import CoreLocation
 
 class ThoughtListDataManager: DataManager {
 
-    var delegate: DataManagerDelegate?
-    var isSearching = false
-    var moc: NSManagedObjectContext
+    public var delegate: DataManagerDelegate?
+    private var isSearching = false
+    internal var moc: NSManagedObjectContext
     
     required init(moc: NSManagedObjectContext) {
         self.moc = moc
+        thoughts = getThoughts()
+    }
+    
+    public func refresh() {
+        thoughts = []
         thoughts = getThoughts()
     }
     
@@ -24,6 +29,12 @@ class ThoughtListDataManager: DataManager {
         return thoughts
     }
     
+}
+
+// all DM accessing methods
+extension ThoughtListDataManager {
+    
+    // filter
     func filterThoughts(_ predicate: String) {
         if predicate != "" {
             isSearching = true
@@ -33,6 +44,7 @@ class ThoughtListDataManager: DataManager {
         } else { isSearching = false }
     }
     
+    // sort
     func sort(by option: SortOption) {
         switch option {
         case .dateAscending:
@@ -69,10 +81,7 @@ extension ThoughtListDataManager: ThoughtDataAccessable {
         request.sortDescriptors = [sortDescriptor]
         
         do {
-            
-            var out = try moc.fetch(request)
-            print(out.count)
-            return out
+            return try moc.fetch(request)
             
         } catch { return [] }
     }

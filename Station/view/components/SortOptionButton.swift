@@ -1,12 +1,6 @@
 
 import UIKit
 
-// confirmatino button is a simple generic full-width button that displays desired text with either light/dark/ monochrom color options
-
-protocol SortOptionDelegate {
-    func didSelect(_ option: SortOption)
-    var selectedOption: SortOption { get }
-}
 
 
 
@@ -15,6 +9,8 @@ enum SortOption: String {
     case dateDescending = "Date Descending"
     case subThoughtAscending = "Sub Thought count ascending"
     case subThoughtDescending = "Sub Thought count descending"
+    
+    static var all: [SortOption] { return [.dateAscending, .dateDescending, .subThoughtAscending, .subThoughtDescending]}
 }
 
 class SortOptionButton: UIButton {
@@ -26,39 +22,24 @@ class SortOptionButton: UIButton {
         
         layer.cornerRadius = 5
         layer.masksToBounds = true
-        
+        setButton()
         
         
     }
     
-    var delegate: SortOptionDelegate? {
-        didSet {
-            setButton()
-            
-            addTapGestureRecognizer {
-                self.delegate?.didSelect(self.option)
-                self.setButton()
-                
-            }
-            
-        }
-    }
     private var option: SortOption
     
+    public func selected() {
+        
+        backgroundColor = Styles.Colors.primaryBlue
+        setTitleColor(Styles.Colors.lightGray, for: .normal)
+    }
+    
     private func setButton() {
-        if let del = delegate {
-            if del.selectedOption == option {
-                print("is the same")
-                backgroundColor = Styles.Colors.primaryBlue
-                setTitleColor(Styles.Colors.lightGray, for: .normal)
-            } else {
-                print("isnt the same")
-                backgroundColor = Styles.Colors.lightGray
-                setTitleColor(Styles.Colors.primaryBlue, for: .normal)
-            }
-        } else {
-            print("couldnt get del")
-        }
+        
+        backgroundColor = Styles.Colors.lightGray
+        setTitleColor(Styles.Colors.primaryBlue, for: .normal)
+            
     }
     
     

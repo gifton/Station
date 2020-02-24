@@ -15,7 +15,8 @@ struct ThoughtPreview: DataPreview {
     init(thought: Thought) {
         title = thought.title
         date = thought.createdAt
-        
+        orbits = thought.computedOrbits
+        subThoughts = thought.computedSubThoughts
         location = thought.location
     }
     

@@ -15,7 +15,19 @@ class ThoughtListController: Controller {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        (dataManager as? ThoughtListDataManager)?.refresh()
+    }
+    
     private var tv: UITableView!
+    private var sortView: SortOptionListView?
+    var cover: UIView!
+    var selectedOption: SortOption = .dateDescending {
+        didSet (newVal) {
+            (dataManager as? ThoughtListDataManager)?.sort(by: newVal)
+            tv.reloadData()
+        }
+    }
 }
 
 
@@ -85,12 +97,7 @@ extension ThoughtListController: UITableViewDataSource {
 extension ThoughtListController: ThoughtTableHeadDelegate {
     
     func showInfo() {
-        print("showing  info")
         (coordinator as? ThoughtsCoordinator)?.showInfoController()
-    }
-    
-    func showSortOptions() {
-        print("showing options")
     }
     
     func filter(withPredicate predicate: String) {
@@ -105,4 +112,47 @@ extension ThoughtListController: ThoughtTableHeadDelegate {
         }
     }
     
+}
+
+
+extension ThoughtListController: SortOptionsListDelegate  {
+    
+    func hideSortOptions() {
+        if let sv = sortView {
+            UIView.animate(withDuration: 0.25) {
+                sv.frame.origin.y += sv.height
+            }
+            sortView = nil
+        }
+    }
+    
+    
+    func showSortOptions() {
+        
+        if let sv = sortView {
+            sv.frame.origin = .init(0, view.bottom)
+            view.insertSubview(sv, at: 1000)
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
+                sv.frame.origin.y -= sv.height
+            }) { (_) in
+                self.cover = UIView(withColor: UIColor.black.withAlphaComponent(0.65))
+                self.cover.frame.size = .init(Device.width, self.view.height - sv.height)
+                self.view.addSubview(self.cover)
+                self.cover.addTapGestureRecognizer {
+                    self.cover.removeFromSuperview()
+                    self.hideSortOptions()
+                }
+            }
+        } else { sortView = SortOptionListView(withDelegate: self); showSortOptions() }
+    }
+    
+    
+    func didSelect(option: SortOption) {
+        
+        selectedOption = option
+        hideSortOptions()
+        
+        cover.removeFromSuperview()
+        
+    }
 }

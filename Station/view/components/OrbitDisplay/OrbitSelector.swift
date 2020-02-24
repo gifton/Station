@@ -108,7 +108,7 @@ extension OrbitSelector: UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(delegate.orbits.count)
+        
         return delegate.orbits.count  + 1
     }
     

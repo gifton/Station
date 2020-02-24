@@ -12,17 +12,18 @@ extension NSManagedObjectContext {
             try save()
             return true
         } catch {
+            print("unable to save data... rolling back")
             rollback()
             return false
         }
     }
     
-    func performChanges(block: @escaping () -> ()) {
+    func performChanges(block: @escaping (Bool) -> ()) {
         perform {
-            block()
-            _ = self.saveOrRollback()
+            block(self.saveOrRollback())
         }
     }
+    
 }
 
 

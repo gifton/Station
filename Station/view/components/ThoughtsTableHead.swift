@@ -26,7 +26,6 @@ class ThoughtTableHead: UITableViewHeaderFooterView {
     
     public var delegate: ThoughtTableHeadDelegate? {
         didSet {
-            print("set delegate in table head")
             setTargets()
         }
     }
@@ -38,7 +37,7 @@ private extension ThoughtTableHead {
         // titleLabel
         titleLable = UILabel.labelWithImage("Thoughts", image: Icons.iconForType(.thought), location: .left)
         titleLable.sizeToFit()
-        titleLable.frame.origin = .init(Styles.Padding.xXLarge.rawValue)
+        titleLable.frame.origin = .init(Styles.Padding.xLarge.rawValue, Styles.Padding.xXLarge.rawValue)
         addSubview(titleLable)
         // searchBar
         searchBar = UISearchBar(frame: CGRect(origin: .init(Styles.Padding.large.rawValue, titleLable.bottom + Styles.Padding.medium.rawValue), size: .init(250, 45)))
@@ -53,7 +52,7 @@ private extension ThoughtTableHead {
         // infoButton
         infoButton = Icons.iv(withImageType: .info, size: .init(20))
         
-        infoButton.right = Device.width - Styles.Padding.xXLarge.rawValue
+        infoButton.right = Device.width.subtractPadding(.xLarge)
         infoButton.center.y = searchBar.center.y
         addSubview(infoButton)
         // sortButton
@@ -62,7 +61,7 @@ private extension ThoughtTableHead {
         sortButton.addBorders(edges: .bottom, color: Styles.Colors.primaryBlue)
         sortButton.sizeToFit()
         addSubview(sortButton)
-        sortButton.left = left + Styles.Padding.xXLarge.rawValue
+        sortButton.left = left.addPadding(.xLarge)
         sortButton.top = searchBar.bottom  + Styles.Padding.small.rawValue
         // countView
         countView = UILabel.bodyLabel(String(describing: delegate?.numberOfThoughts ?? 0), .medium)

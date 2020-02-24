@@ -38,6 +38,8 @@
 		6095B12523ED6D0B000B9BAC /* ThoughtDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12423ED6D0B000B9BAC /* ThoughtDisplay.swift */; };
 		6095B12723ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12623ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift */; };
 		6095B12923EE3A64000B9BAC /* DashboardHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12823EE3A64000B9BAC /* DashboardHead.swift */; };
+		60B7B35F24039E260099BC59 /* NSFetchRquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B7B35E24039E260099BC59 /* NSFetchRquest.swift */; };
+		60B7B3612403A8B30099BC59 /* OptionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B7B3602403A8B30099BC59 /* OptionsListView.swift */; };
 		60B9A3A423FD3D9A00BB4CFB /* ThoughtsTableHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A3A323FD3D9A00BB4CFB /* ThoughtsTableHead.swift */; };
 		60B9A3A623FDE03F00BB4CFB /* InfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A3A523FDE03F00BB4CFB /* InfoController.swift */; };
 		60B9A3A823FDE2E500BB4CFB /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A3A723FDE2E500BB4CFB /* CGFloat.swift */; };
@@ -127,6 +129,8 @@
 		6095B12423ED6D0B000B9BAC /* ThoughtDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDisplay.swift; sourceTree = "<group>"; };
 		6095B12623ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtExtendedPreviewCell.swift; sourceTree = "<group>"; };
 		6095B12823EE3A64000B9BAC /* DashboardHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHead.swift; sourceTree = "<group>"; };
+		60B7B35E24039E260099BC59 /* NSFetchRquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFetchRquest.swift; sourceTree = "<group>"; };
+		60B7B3602403A8B30099BC59 /* OptionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsListView.swift; sourceTree = "<group>"; };
 		60B9A3A323FD3D9A00BB4CFB /* ThoughtsTableHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsTableHead.swift; sourceTree = "<group>"; };
 		60B9A3A523FDE03F00BB4CFB /* InfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoController.swift; sourceTree = "<group>"; };
 		60B9A3A723FDE2E500BB4CFB /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 				60E2993F23F90B0B009B9A84 /* NewOrbitView.swift */,
 				60B9A3A323FD3D9A00BB4CFB /* ThoughtsTableHead.swift */,
 				60B9A3A523FDE03F00BB4CFB /* InfoController.swift */,
+				60B7B3602403A8B30099BC59 /* OptionsListView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -448,6 +453,7 @@
 				60FE0A1C23E35B27003FB238 /* Managed.swift */,
 				60FE0A2023E35B80003FB238 /* ManageedObject.swift */,
 				60FE0A1E23E35B40003FB238 /* PersistantService.swift */,
+				60B7B35E24039E260099BC59 /* NSFetchRquest.swift */,
 			);
 			path = coreData;
 			sourceTree = "<group>";
@@ -568,6 +574,7 @@
 				60FE09F523E34822003FB238 /* UIColor.swift in Sources */,
 				6095B12723ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift in Sources */,
 				60FE0A1123E34EAF003FB238 /* DataPreview.swift in Sources */,
+				60B7B35F24039E260099BC59 /* NSFetchRquest.swift in Sources */,
 				60FE09E823E2D6CE003FB238 /* dataManager.swift in Sources */,
 				60E2992C23F6F54D009B9A84 /* UIViewController.swift in Sources */,
 				60FE09CF23E2D5E1003FB238 /* ViewController.swift in Sources */,
@@ -599,6 +606,7 @@
 				6095B11A23EC1048000B9BAC /* Device.swift in Sources */,
 				60FE0A0D23E34909003FB238 /* String.swift in Sources */,
 				60E2993023F71FBA009B9A84 /* Icons.swift in Sources */,
+				60B7B3612403A8B30099BC59 /* OptionsListView.swift in Sources */,
 				60E2993423F7314A009B9A84 /* NewThoughtView.swift in Sources */,
 				606AD40323F53F8B00751B77 /* ThoughtsFlow.swift in Sources */,
 				60FE0A2123E35B80003FB238 /* ManageedObject.swift in Sources */,
