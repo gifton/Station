@@ -6,10 +6,10 @@ class SubThoughtPreview: DataPreview {
     var note: String? {
         didSet { type = .note }
     }
-    var image: UIImage?{
+    var image: UIImage? {
         didSet { type = .image }
     }
-    var link: String?{
+    var link: String? {
         didSet { type = .link }
     }
     

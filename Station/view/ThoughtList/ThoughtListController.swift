@@ -39,7 +39,7 @@ private extension ThoughtListController {
         tv.registerHeaderFooter(cellWithClass: ThoughtTableHead.self)
         tv.delegate = self
         tv.dataSource = self
-        
+        tv.sectionHeaderHeight = 5
         view.addSubview(tv)
     }
 }
@@ -63,9 +63,16 @@ extension ThoughtListController: UITableViewDelegate {
         }
         else { return nil }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let thought = (dataManager as? ThoughtListDataManager)?.displayableThoughts[indexPath.row] {
+            (coordinator as? ThoughtListCoordinator)?.showThought(thought)
+        }
+    }
 }
 
 extension ThoughtListController: UITableViewDataSource {
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -97,7 +104,7 @@ extension ThoughtListController: UITableViewDataSource {
 extension ThoughtListController: ThoughtTableHeadDelegate {
     
     func showInfo() {
-        (coordinator as? ThoughtsCoordinator)?.showInfoController()
+        (coordinator as? ThoughtListCoordinator)?.showInfoController()
     }
     
     func filter(withPredicate predicate: String) {

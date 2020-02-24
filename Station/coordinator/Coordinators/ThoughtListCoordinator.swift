@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-class ThoughtsCoordinator: Coordinator {
+class ThoughtListCoordinator: Coordinator {
     
     var flow: [Coordinator] = []
     var moc: NSManagedObjectContext?
@@ -39,26 +39,22 @@ class ThoughtsCoordinator: Coordinator {
     }
 }
 
-extension ThoughtsCoordinator: ThoughtDetailFlow {
+extension ThoughtListCoordinator: ThoughtDetailFlow {
     func showThought(_ thought: Thought) {
-        
-    }
-    
-    func showTHought(_ id: String) {
-//
+        let coordinator = ThoughtDetailCoordinator(withNavigationController: navigationController)
+        coordinator.thought = thought
+        coordinator.moc = moc
+        flow.append(coordinator)
+        coordinator.start()
     }
 }
 
 
-extension ThoughtsCoordinator {
+extension ThoughtListCoordinator {
     func showInfoController() {
         let infoController = InfoController(type: .thought)
         infoController.coordinator = self
         navigationController.showDetailViewController(infoController, sender: self)
-        
-    }
-    
-    func showSortOptions(completion: (SortOption) -> ()) {
         
     }
 }

@@ -38,7 +38,7 @@ final class TabBarCoordinator: Coordinator {
         
         let exploreCoordinator = ExploreCoordinator(withNavigationController: navBar())
         let newCoordinator = NewThoughtCoordinator(withNavigationController: navBar())
-        let quotesCoordinator = ThoughtsCoordinator(withNavigationController: navBar())
+        let quotesCoordinator = ThoughtListCoordinator(withNavigationController: navBar())
    
         exploreCoordinator.moc = moc
         newCoordinator.moc = moc

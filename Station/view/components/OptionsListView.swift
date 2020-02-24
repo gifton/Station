@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol SortOptionsListDelegate: UIViewController {
+protocol SortOptionsListDelegate: Controller {
     func didSelect(option: SortOption)
     var selectedOption: SortOption { get }
 }

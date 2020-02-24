@@ -8,7 +8,7 @@ final class Icons {
     }
     
     enum IconType {
-        case appIcon, thought, subThought, explore, close, new, info, appStore, email, arrow, camera, note, delete
+        case appIcon, thought, subThought, orbit, explore, close, new, info, appStore, email, arrow, camera, note, link, delete
     }
     
     static func iv(withImageType type: IconType, size: CGSize?) -> UIImageView {
@@ -35,8 +35,9 @@ final class Icons {
         case .email: icon =  UIImage(named: "email") // TODO: add icon
         case .arrow: icon =  UIImage(named: "arrow")
         case .camera: icon =  UIImage(systemName: "camera")
-        case .note: icon =  UIImage(systemName: "compose")
-        
+        case .note: icon =  UIImage(named: "note")
+        case .link: icon = UIImage(systemName: "safari")
+        case .orbit: icon = UIImage(named: "orbit")
         }
         
         return icon?.cropped(to: frame)

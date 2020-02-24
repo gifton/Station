@@ -54,7 +54,7 @@ extension UILabel {
     public static func  labelWithImage(_ text: String,  image: UIImage?, location: UIRectEdge)-> UILabel {
         let lbl = UILabel()
         lbl.font = Styles.Font.mediumTitle(ofSize: .xXLarge)
-        let fullString = NSMutableAttributedString(string: text)
+        let fullString = NSMutableAttributedString(string: "  " + text)
         let image1Attachment = NSTextAttachment()
         
         image1Attachment.image = image
@@ -184,7 +184,7 @@ extension UILabel {
         let lbl = UILabel(payload)
         lbl.font = Styles.Font.title(ofSize: fontSize)
         lbl.textColor = Styles.Colors.darkGray
-        lbl.sizeToFit()
+        
         
         return lbl
     }
