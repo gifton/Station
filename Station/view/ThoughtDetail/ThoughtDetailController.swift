@@ -72,8 +72,8 @@ private extension ThoughtDetailController{
     }
 }
 
+//MARK:  ScrollView content
 extension ThoughtDetailController: UITableViewDelegate {
-    
 }
 
 extension ThoughtDetailController: UITableViewDataSource {
@@ -111,6 +111,8 @@ extension ThoughtDetailController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 15
     }
+    
+    
 }
 
 extension ThoughtDetailController: CreateSubThoughtDelegate {

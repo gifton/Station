@@ -12,6 +12,8 @@ final class Styles {
     static let width  = UIScreen.main.bounds.size.width
     static let height = UIScreen.main.bounds.size.height
     static let frame  = UIScreen.main.bounds
+    static let createSubThoughtMaxHeight = CGFloat(225)
+    static let createSubThoughtMinimumHeight = CGFloat(88)
     
     struct Headersize {
         
@@ -20,6 +22,8 @@ final class Styles {
         static let staticMax: CGFloat = 190
         
     }
+    
+    
     
     // table view cells will have an additional padding to create spacing that collectionview has built in
     struct CellSizes {
