@@ -16,3 +16,11 @@ protocol ThoughtDetailOrbitCellDelegate: Controller {
     func joinNewOrbit()
     var orbits: [Orbit] { get }
 }
+
+
+protocol ThoughtDetailDelegate: Controller {
+    func newPhoto()
+    func newLink()
+    func newNote()
+    var thought: ThoughtPreview { get }
+}

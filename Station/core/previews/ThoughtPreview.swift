@@ -30,6 +30,12 @@ struct ThoughtPreview: DataPreview {
     static var zero: ThoughtPreview {
         return ThoughtPreview(title: "Awesome Photos on wesat", location: CLLocation())
     }
+    
+    var subThoughtsInTheLastWeek: Int {
+        return subThoughts.filter {
+            $0.createdAt >= Date(timeIntervalSinceNow: -7 * 24 * 60 * 60)
+        }.count
+    }
 }
 
 

@@ -18,6 +18,9 @@
 		606AD40723F6DFF900751B77 /* ThoughtDetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AD40623F6DFF900751B77 /* ThoughtDetailFlow.swift */; };
 		606AD40923F6E00500751B77 /* NewSubThoughtFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AD40823F6E00500751B77 /* NewSubThoughtFlow.swift */; };
 		606AD40B23F6E02100751B77 /* OrbitDetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AD40A23F6E02100751B77 /* OrbitDetailFlow.swift */; };
+		607F3A6E240511A30011ED02 /* ThoughtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F3A6D240511A30011ED02 /* ThoughtDetailView.swift */; };
+		607F3A70240526360011ED02 /* MicroOrbitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F3A6F240526360011ED02 /* MicroOrbitView.swift */; };
+		607F3A7224052FB50011ED02 /* SubThoughtIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F3A7124052FB50011ED02 /* SubThoughtIcon.swift */; };
 		6088D774240036C800090421 /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088D773240036C800090421 /* ExploreController.swift */; };
 		6088D7762400370400090421 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088D7752400370400090421 /* ExploreView.swift */; };
 		6088D7782400370D00090421 /* ExploreDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088D7772400370D00090421 /* ExploreDelegate.swift */; };
@@ -116,6 +119,9 @@
 		606AD40623F6DFF900751B77 /* ThoughtDetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDetailFlow.swift; sourceTree = "<group>"; };
 		606AD40823F6E00500751B77 /* NewSubThoughtFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSubThoughtFlow.swift; sourceTree = "<group>"; };
 		606AD40A23F6E02100751B77 /* OrbitDetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitDetailFlow.swift; sourceTree = "<group>"; };
+		607F3A6D240511A30011ED02 /* ThoughtDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDetailView.swift; sourceTree = "<group>"; };
+		607F3A6F240526360011ED02 /* MicroOrbitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroOrbitView.swift; sourceTree = "<group>"; };
+		607F3A7124052FB50011ED02 /* SubThoughtIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThoughtIcon.swift; sourceTree = "<group>"; };
 		6088D773240036C800090421 /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
 		6088D7752400370400090421 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		6088D7772400370D00090421 /* ExploreDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDelegate.swift; sourceTree = "<group>"; };
@@ -283,6 +289,9 @@
 				60B7B362240443C60099BC59 /* ThoughtDetailController.swift */,
 				60B7B374240476D50099BC59 /* ThoughtDetailDelegates.swift */,
 				60B7B373240476B80099BC59 /* components */,
+				607F3A6D240511A30011ED02 /* ThoughtDetailView.swift */,
+				607F3A6F240526360011ED02 /* MicroOrbitView.swift */,
+				607F3A7124052FB50011ED02 /* SubThoughtIcon.swift */,
 			);
 			path = ThoughtDetail;
 			sourceTree = "<group>";
@@ -639,6 +648,7 @@
 				60E2994423FA1C7B009B9A84 /* LocataionDataAccessable.swift in Sources */,
 				60B9A3A423FD3D9A00BB4CFB /* ThoughtsTableHead.swift in Sources */,
 				60B9A3A823FDE2E500BB4CFB /* CGFloat.swift in Sources */,
+				607F3A6E240511A30011ED02 /* ThoughtDetailView.swift in Sources */,
 				6095B11C23ECB1DA000B9BAC /* BasicStatsBar.swift in Sources */,
 				6095B12923EE3A64000B9BAC /* DashboardHead.swift in Sources */,
 				60FE09FB23E3485E003FB238 /* UICollectionView.swift in Sources */,
@@ -660,9 +670,11 @@
 				60FE09EE23E34664003FB238 /* Thought.swift in Sources */,
 				60E2993223F73145009B9A84 /* NewThoughtController.swift in Sources */,
 				60FE09F223E347BB003FB238 /* styles.swift in Sources */,
+				607F3A70240526360011ED02 /* MicroOrbitView.swift in Sources */,
 				60FE0A2D23E3C373003FB238 /* SettingsDataManager.swift in Sources */,
 				60FE09FF23E3488A003FB238 /* UIView.swift in Sources */,
 				6095B11123EBF772000B9BAC /* OrbitSelector.swift in Sources */,
+				607F3A7224052FB50011ED02 /* SubThoughtIcon.swift in Sources */,
 				6095B11823EBF873000B9BAC /* SortOptionButton.swift in Sources */,
 				60E2993E23F735FF009B9A84 /* SubThoughtDataAccessable.swift in Sources */,
 				60E2994D23FCAB90009B9A84 /* OrbitDetailCoordinator.swift in Sources */,

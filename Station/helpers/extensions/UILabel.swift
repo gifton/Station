@@ -41,12 +41,13 @@ extension UILabel {
 //        case .all: fatalError("unable to satisfy direction paramenter")
 //        case .bottom: image?.rotate(radians: .pi / 2)
 //        }
+        
         image1Attachment.image = image
         
         let image1String = NSAttributedString(attachment: image1Attachment)
         fullString.append(image1String)
         lbl.attributedText = fullString
-        
+        lbl.sizeToFit()
         
         return lbl
     }

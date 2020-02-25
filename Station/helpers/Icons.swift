@@ -36,7 +36,7 @@ final class Icons {
         case .arrow: icon =  UIImage(named: "arrow")
         case .camera: icon =  UIImage(systemName: "camera")
         case .note: icon =  UIImage(named: "note")
-        case .link: icon = UIImage(systemName: "safari")
+        case .link: icon = UIImage(systemName: "safari.fill")
         case .orbit: icon = UIImage(named: "orbit")
         }
         

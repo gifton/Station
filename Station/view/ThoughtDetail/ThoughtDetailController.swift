@@ -4,21 +4,22 @@ import UIKit
 class ThoughtDetailController: Controller {
     init() {
         super.init(nibName: nil, bundle: nil)
+        view.addSubview(ThoughtDetailView(withDelegate: self))
+        view.backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var header = UIView(withColor: Styles.Colors.offWhite)
+    var header = UIView(withColor: .white)
     var tv: UITableView!
     var createView: CreateSubThoughtView!
     override var coordinator: Coordinator? {
-        didSet {
-            setView()
+            didSet {
+                setHeader()
+            }
         }
-    }
-    
 }
 
 
@@ -47,105 +48,26 @@ private extension ThoughtDetailController{
         header.addSubview(icon)
         
         view.addSubview(header)
-        setCreateView()
         
-    }
-    
-    func setCreateView() {
-        createView = CreateSubThoughtView(withDelegate: self, point: .init(0, Device.height - Device.tabBarheight))
-        view.addSubview(createView)
-        setTable()
-    }
-    
-    func setTable() {
         
-        tv = UITableView()
-        tv.frame =  CGRect(x: 0, y: header.bottom, width: Device.width, height: Device.height - (Device.tabBarheight + header.height))
-        tv.delegate = self
-        tv.dataSource = self
-        tv.separatorStyle = .none
-        tv.backgroundView = .init(withColor: Styles.Colors.offWhite)
-        tv.register(cellWithClass: ThoughtDetailOrbitCell.self)
-        tv.registerHeaderFooter(cellWithClass: ThoughtDetailHead.self)
-        
-        view.addSubview(tv)
     }
 }
 
-//MARK:  ScrollView content
-extension ThoughtDetailController: UITableViewDelegate {
-}
-
-extension ThoughtDetailController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let head = tableView.dequeueReusableHeader(cellWithClassName: ThoughtDetailHead.self)
-        head.delegate = self
-        
-        return head
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        switch indexPath.row {
-        case 0: return 105
-        case 1: return 170
-        default: return 140
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 170
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withClass: ThoughtDetailOrbitCell.self, for: indexPath)
-            cell.delegate = self
-            
-            return cell
-        }
-        
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
-    }
-    
-    
-}
-
-extension ThoughtDetailController: CreateSubThoughtDelegate {
+extension ThoughtDetailController: ThoughtDetailDelegate {
     func newPhoto() {
-        print("photo")
-    }
-    
-    func newNote() {
-        print("note")
+        print("showing sub thought photo creator")
     }
     
     func newLink() {
-        print("link")
+        print("showing sub thought link creator")
     }
-}
-
-extension  ThoughtDetailController: ThoughtDetailHeadDelegate {
+    
+    func newNote() {
+        print("showing sub thought note creator")
+    }
+    
     var thought: ThoughtPreview {
-        return (dataManager as? ThoughtDetailDataManager)?.thought ?? .init(title: "Not available", location: nil)
-    }
-}
-
-extension ThoughtDetailController: ThoughtDetailOrbitCellDelegate {
-    func selectedOrbit(atIndex index: Int) {
-        (coordinator as? ThoughtDetailCoordinator)?.showOrbit(orbits[index])
-    }
-    
-    func joinNewOrbit() {
-        print("show list of orbits lol")
-    }
-    
-    var orbits: [Orbit] {
-        return thought.orbits
+        (dataManager as? ThoughtDetailDataManager)?.thought ?? ThoughtPreview.zero
     }
     
     
