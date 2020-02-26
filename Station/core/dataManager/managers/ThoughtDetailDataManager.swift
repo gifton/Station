@@ -27,8 +27,8 @@ class ThoughtDetailDataManager: DataManager {
 }
 
 extension ThoughtDetailDataManager: SubThoughtDataAccessable {
-    func createSubThought(ofType type: SubThoughtType, withPreview preview: SubThoughtPreview) {
-        print("creating subTHought: \(type)")
+    func createSubThought(withPreview preview: SubThoughtPreview) {
+        print("creating subTHought")
     }
     
     func addThoughtToOrbit(_ orbit: Orbit) {

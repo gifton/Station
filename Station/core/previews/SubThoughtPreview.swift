@@ -14,25 +14,17 @@ class SubThoughtPreview: DataPreview {
     }
     
     var thought: Thought
-
-    init(fromThought thought: Thought) {
-        self.thought = thought
-    }
     
-    convenience init(_ subThought: SubThought) {
-        self.init(fromThought: subThought.thought)
+    init(_ subThought: SubThought) {
         
         switch subThought.subThoughtType {
-        case .note:
-            note = subThought.note
-        case .link:
-            link = subThought.link
-        case .image:
-            if let img = subThought.rawImage {
-                image = UIImage(data: img)
-            }
+        case .note: note = subThought.note
+        case .link: link = subThought.link
+        case .image: if let img = subThought.rawImage { image = UIImage(data: img) }
         }
+        thought = subThought.thought
+        date = subThought.createdAt
     }
-    
+    var date: Date
     var type: SubThoughtType = .note
 }

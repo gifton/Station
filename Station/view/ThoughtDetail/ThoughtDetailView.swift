@@ -16,6 +16,7 @@ class ThoughtDetailView: UIScrollView {
         bottomView.frame = CGRect(x: 0, y: height, width: width, height: height)
         addSubview(bottomView)
         setContent()
+        setBottomView()
     }
     
     private var detailDelegate: ThoughtDetailDelegate
@@ -26,8 +27,8 @@ class ThoughtDetailView: UIScrollView {
     
     // oh my god this is so many objects
     // top page
-    private var thoughtTitle = UILabel.titleLabel()
-    private var iconList = UIView(withColor: Styles.Colors.primaryBlue)
+    private var thoughtTitle = UILabel()
+    private var iconList: MicroOrbitView!
     private var subThoughtCountWeek = UILabel.bodyLabel()
     private var subThoughtAllTime = UILabel.bodyLabel()
     private var thoughtDate = UILabel.bodyLabel()
@@ -52,15 +53,21 @@ private extension ThoughtDetailView {
     func setContent() {
         
         // iconlist
-        iconList.frame = CGRect(x: Styles.Padding.xLarge.rawValue, y: 100, width: width.subtractPadding(.xLarge, multiplier: 2), height: 36)
+        iconList = MicroOrbitView(withDelegate: self, point: .init(x: Styles.Padding.xLarge.rawValue, y: 60))
         addSubview(iconList)
         
         // thoughttitle
+        thoughtTitle.padding = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         thoughtTitle.text = detailDelegate.thought.title
-        thoughtTitle.width = width.subtractPadding(.xLarge) - 35
-        thoughtTitle.height = thoughtTitle.minimumHeight(forWidth: width.subtractPadding(.xLarge) - 35)
-        thoughtTitle.textColor = .black
-        thoughtTitle.numberOfLines = 0
+        thoughtTitle.setShadow(color: Styles.Colors.primaryGreen, opacity: 1.0, offset: .init(0), radius: 9, viewCornerRadius: 4)
+        thoughtTitle.textColor = Styles.Colors.white
+        thoughtTitle.font = Styles.Font.title(ofSize: .xXLarge)
+        thoughtTitle.width = width - (25 + 70)
+        thoughtTitle.height = 90
+        thoughtTitle.backgroundColor =  Styles.Colors.primaryGreen
+        thoughtTitle.layer.cornerRadius = 8
+//        thoughtTitle.layer.masksToBounds = true
+        thoughtTitle.numberOfLines = 2
         thoughtTitle.top = iconList.bottom.addPadding(.xXLarge, multiplier: 2)
         thoughtTitle.left = left.addPadding(.xLarge)
         addSubview(thoughtTitle)
@@ -86,7 +93,7 @@ private extension ThoughtDetailView {
         
         //continue the thought
         continueTheThought.sizeToFit()
-        continueTheThought.top = thoughtDate.bottom.addPadding(.xLarge, multiplier: 2)
+        continueTheThought.top = thoughtDate.bottom.addPadding(.xXLarge, multiplier: 2)
         continueTheThought.left = left.addPadding(.xLarge)
         addSubview(continueTheThought)
         
@@ -99,41 +106,76 @@ private extension ThoughtDetailView {
         subThoughtIndicator.frame = CGRect(x: 0, y: height - 70, width: width, height: 70)
         addSubview(subThoughtIndicator)
         
+        // directionLabel
         let dirLabel = UILabel.bodyLabel("Sub Thoughts ", .medium)
         dirLabel.textColor = Styles.Colors.white
         dirLabel.sizeToFit()
-        
         let dirImage = UIImageView(image: Icons.iconForType(.arrow)!
         .scaled(toHeight: 20.0)?
         .rotate(radians: -1 * (.pi / 2))
         .tintImage(toColor: .white))
-        
         
         let dirStack = UIStackView(arrangedSubviews: [dirLabel, dirImage], axis: .horizontal, spacing: 2, alignment: .center, distribution: .fillProportionally)
         dirStack.frame.size = .init(dirLabel.width + dirImage.width + 2, 25)
         dirStack.top = Styles.Padding.large.rawValue
         dirStack.center.x = width / 2
         subThoughtIndicator.addSubview(dirStack)
-    }
-    
-    // set frames styling  etc
-    func setTopView() {
         
+        setTopTargets()
     }
     
     // add delegate  targets
     func setTopTargets() {
-        
+        noteIcon.addTapGestureRecognizer(action: detailDelegate.newNote)
+        linkIcon.addTapGestureRecognizer(action: detailDelegate.newLink)
+        photoIcon.addTapGestureRecognizer(action: detailDelegate.newPhoto)
     }
 }
 
 // MARK: bottom  view setting
 private extension ThoughtDetailView {
     func setBottomView() {
-        
+        tv = UITableView(frame: .init(x: 0, y: (contentSize.height / 2), width: width, height: height), style: .insetGrouped)
+        tv.delegate = self
+        tv.dataSource = self
+        tv.backgroundView = .init(withColor: .blue)
+        addSubview(tv)
+        print(tv.frame)
     }
     
     func setBottomTargets() {
         
     }
+}
+
+
+extension ThoughtDetailView: MicroOrbitDelegate {
+    var orbits: [Orbit] {
+        detailDelegate.thought.orbits
+    }
+    
+    func didSelectOrbit(_ orbit: Orbit) {
+        print("showing orbit in view")
+    }
+    
+    func addNewOrbit() {
+        print("showiinig new orbit view")
+    }
+    
+    
+}
+
+extension ThoughtDetailView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return  50
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    
+}
+extension ThoughtDetailView: UITableViewDelegate {
+    
 }

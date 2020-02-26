@@ -1,4 +1,4 @@
 
 protocol SubThoughtDataAccessable: DataManager {
-    func createSubThought(ofType type: SubThoughtType, withPreview preview: SubThoughtPreview)
+    func createSubThought(withPreview preview: SubThoughtPreview)
 }

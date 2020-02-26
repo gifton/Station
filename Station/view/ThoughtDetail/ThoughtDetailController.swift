@@ -24,6 +24,7 @@ class ThoughtDetailController: Controller {
 
 
 private extension ThoughtDetailController{
+    
     func setView() {
         view.backgroundColor = .blue
         setHeader()
@@ -50,20 +51,37 @@ private extension ThoughtDetailController{
         view.addSubview(header)
         
         
+        
+        func refresh() {
+            
+        }
     }
 }
 
 extension ThoughtDetailController: ThoughtDetailDelegate {
     func newPhoto() {
-        print("showing sub thought photo creator")
+        if let c = (coordinator as? ThoughtDetailCoordinator), let dm  =  (dataManager as? ThoughtDetailDataManager) {
+            c.createSubThought(ofType: .image) {
+                print("new note")
+            }
+        }
+        
     }
     
     func newLink() {
-        print("showing sub thought link creator")
+        if let c = (coordinator as? ThoughtDetailCoordinator), let dm  =  (dataManager as? ThoughtDetailDataManager) {
+            c.createSubThought(ofType: .link) {
+                print("new note")
+            }
+        }
     }
     
     func newNote() {
-        print("showing sub thought note creator")
+        if let c = (coordinator as? ThoughtDetailCoordinator), let dm  =  (dataManager as? ThoughtDetailDataManager) {
+            c.createSubThought(ofType: .note) {
+                print("new note")
+            }
+        }
     }
     
     var thought: ThoughtPreview {

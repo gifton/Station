@@ -8,13 +8,15 @@ class ThoughtDetailCoordinator: Coordinator {
     var navigationController: UINavigationController
     var thought: Thought!
     var moc: NSManagedObjectContext?
+    private  var dataManager: DataManager?
     
     func start() {
         let vc = ThoughtDetailController()
         vc.coordinator = self
         vc.hidesBottomBarWhenPushed = true
         if let moc = moc, let thought = thought {
-            vc.dataManager = ThoughtDetailDataManager(moc: moc, thought: thought)
+            dataManager = ThoughtDetailDataManager(moc: moc, thought: thought)
+            vc.dataManager = dataManager
         }
         
         navigationController.pushViewController(vc, animated: true)
@@ -42,10 +44,14 @@ extension ThoughtDetailCoordinator: OrbitDetailFlow {
 }
 
 extension ThoughtDetailCoordinator: NewSubThoughtFlow {
-    func createSubThought(for thought: Thought, ofType type: SubThoughtType, completion: () -> ()) {
-        print("creating subthought")
+    func createSubThought(ofType type: SubThoughtType, completion: () -> ()) {
+        let controller = NewSubThoughtController(controllerForType: type, title: (dataManager as? ThoughtDetailDataManager)?.thought.title ?? "Not available")
+        navigationController.showDetailViewController(controller, sender: nil)
     }
     
+    func saveSubThought(_ sb: SubThoughtPreview) {
+        (dataManager as? ThoughtDetailDataManager)?.createSubThought(withPreview: sb)
+    }
     
 }
 

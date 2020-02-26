@@ -20,7 +20,7 @@ class SubThoughtIcon: UIView {
             label.text  = "link"
         case .image:
             img.image = Icons.iconForType(.camera)?.tintImage(toColor: .black)
-            label.text  = "photto"
+            label.text  = "photo"
         }
         
         img.frame.size = .init(20)
