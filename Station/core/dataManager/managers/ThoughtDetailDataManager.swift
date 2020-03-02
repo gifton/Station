@@ -1,6 +1,10 @@
 
 import CoreData
 
+// MARK: ThoughtDetail DM
+// handles display of Single thought
+// in charge of creation of new SubTHought declertions related to said Thought
+ 
 class ThoughtDetailDataManager: DataManager {
     var delegate: DataManagerDelegate?
     var moc: NSManagedObjectContext

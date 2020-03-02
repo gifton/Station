@@ -2,8 +2,10 @@
 import UIKit
 
 
-// UILabel is the easiest way to display immutable text on screen
+// MARK: UILabel helper methods
 extension UILabel {
+
+    // padding helper struct
     private struct AssociatedKeys {
         static var padding = UIEdgeInsets()
     }
@@ -52,6 +54,7 @@ extension UILabel {
         return lbl
     }
     
+    // add image to label on right or lft (exclusively) throw error on other edges
     public static func  labelWithImage(_ text: String,  image: UIImage?, location: UIRectEdge)-> UILabel {
         let lbl = UILabel()
         lbl.font = Styles.Font.mediumTitle(ofSize: .xXLarge)
@@ -113,6 +116,7 @@ extension UILabel {
         
     }
     
+    // find minimum heoght of label from desired text
     public func minimumHeight(forWidth desiredWidth: CGFloat) -> CGFloat {
         if desiredWidth == Device.width {
             return requiredHeight
@@ -162,6 +166,8 @@ extension UILabel {
         self.attributedText = attributedText
     }
     
+    // add drop shadow to text(not background)
+    // use on backgrounds
     func textDropShadow(_ color: UIColor = .black) {
         self.layer.masksToBounds = false
         self.layer.shadowRadius = 2.0
@@ -170,6 +176,7 @@ extension UILabel {
         self.layer.shadowColor = color.cgColor
     }
     
+    /// initializer with no argument title
     convenience init(_ payload: String?) {
         self.init()
         text = payload
@@ -190,6 +197,7 @@ extension UILabel {
         return lbl
     }
     
+    // underline label
     func underlineLabel() {
         let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.byWord.rawValue]
         let underlineAttributedString = NSAttributedString(string: text ?? "", attributes: underlineAttribute)

@@ -1,6 +1,7 @@
 
 import UIKit
 
+// coordinator handles movement from explore page to child views
 class OrbitDetailCoordinator: Coordinator {
     var flow: [Coordinator] = []
     

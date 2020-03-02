@@ -16,7 +16,7 @@ enum SortOption: String {
 class SortOptionButton: UIButton {
     init(point: CGPoint, option: SortOption) {
         self.option = option
-        super.init(frame: CGRect(origin: point, size: CGSize(Styles.width.subtractPadding(.xLarge, multiplier: 2), 42)))
+        super.init(frame: CGRect(origin: point, size: CGSize(Device.width.subtractPadding(.xLarge, multiplier: 2), 42)))
         
         setTitle(option.rawValue, for: .normal)
         

@@ -1,6 +1,7 @@
 
 import UIKit
 
+// TODO: define validity 
 class OrbitPreview: DataPreview {
     var title: String
     var createdAt: Date

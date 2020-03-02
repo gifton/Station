@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+
+// coordinator handles movement from explore page to child views
 class ExploreCoordinator: Coordinator {
     
     var flow: [Coordinator] = []

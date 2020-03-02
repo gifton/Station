@@ -15,7 +15,8 @@ protocol OrbitSelectorDelegate {
     func didSelectOrbit(atIndex index: Int)
 }
 
-class OrbitSelector: UIView {
+// MARK: Orbit selecter class
+final class OrbitSelector: UIView {
     
     init(point: CGPoint, title: String?, delegate: OrbitSelectorDelegate, numberOfRows: Int = 2, withSearch: Bool = true) {
     
@@ -49,6 +50,7 @@ class OrbitSelector: UIView {
     
     var isSearching: Bool
     
+    // call on npage reset, or new Object creation
     func needReset() {
         if let collection = collection {
             collection.reloadData()
@@ -58,6 +60,7 @@ class OrbitSelector: UIView {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // private vars
     private var title: UILabel? = UILabel.bodyLabel()
     private var collection: UICollectionView?
     private var collectionHeight: CGFloat = 0
@@ -66,7 +69,7 @@ class OrbitSelector: UIView {
     
 }
 
-
+// private builder methods
 private extension OrbitSelector {
     
     func setTitle() {
@@ -87,7 +90,6 @@ private extension OrbitSelector {
         searchbar.autocapitalizationType = .none
         searchbar.backgroundImage = UIImage()
         searchbar.barStyle = .default
-        searchbar.delegate = self
         searchbar.returnKeyType = .done
         searchbar.showsCancelButton = true
         addSubview(searchbar)
@@ -121,7 +123,7 @@ private extension OrbitSelector {
     }
 }
 
-
+// MARK: COllectionView DataSource / delegate conformance
 extension OrbitSelector: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -172,11 +174,6 @@ extension OrbitSelector: UICollectionViewDataSource {
     
     
 }
-
-extension OrbitSelector: UICollectionViewDelegateFlowLayout {
-    
-}
-
 extension OrbitSelector: UICollectionViewDelegate {
     
 }

@@ -3,6 +3,10 @@ import CoreData
 import UIKit
 import CoreLocation
 
+// MARK: NewThought DM 
+// displays all available orbits for search/filtering
+// hadles creation of new Thought && Orbit objects
+ 
 class NewThoughtDataManager: DataManager {
 
     

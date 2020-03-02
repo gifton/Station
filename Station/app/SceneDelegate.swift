@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let windowScene = (scene as? UIWindowScene) else { return }
             self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
             
-            
+            // set initial coordinator
             if let window = self.window {
                 window.windowScene = windowScene
                 window.backgroundColor = .black

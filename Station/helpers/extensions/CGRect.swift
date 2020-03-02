@@ -1,6 +1,7 @@
 
 import UIKit
 
+// MARK: CGRect helper methods
 extension CGRect {
     
     /// The top coordinate of the rect.

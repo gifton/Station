@@ -30,7 +30,7 @@ extension NewThoughtController: NewThoughtViewDelegate {
         if let coordinator = (coordinator as? NewThoughtCoordinator) {
             
             // call show orbit
-            coordinator.showOrbit({ (title, icon) in
+            coordinator.newOrbit({ (title, icon) in
                 print("orbit with title: \(title), and icon: \(icon) set in controller")
                 
                 // completion returns orbit title and icon

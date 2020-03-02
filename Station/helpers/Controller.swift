@@ -5,9 +5,9 @@ import CoreLocation
 
 // custom viewController wrapper
 // added functinoality for all viewControllers
-// controller has standard objects for collectionviews, tableViews, scrollViews, and datamanagers
+// controller has standard optional objects for dataManagers and coordinators
 // standard deinit code
-class Controller: UIViewController {
+final class Controller: UIViewController {
     
     
     override func viewDidLoad() {
@@ -28,20 +28,19 @@ class Controller: UIViewController {
     var dataManager: DataManager? {
         didSet(manager) {
             if let dm = manager {
-                print("data manager set in controller")
                 dm.delegate = self
             }
         }
     }
+
     
+    private var dataIsSet: Bool = false
     var coordinator: Coordinator?
     
     // deinit method
     func controllerWillDeInit() {
         dataManager = nil
-        
-        print("controller deinit'd:", self)
-        
+        coordinator = nil        
     }
     
     deinit {
@@ -49,7 +48,7 @@ class Controller: UIViewController {
     }
     
     // faliure
-    func faluire(to failure: Failure) {
+    private func faluire(to failure: Failure) {
         switch failure {
         case .toConnect: print("failure to connect to servers")
         default: print("failure: \(failure)")
@@ -58,8 +57,10 @@ class Controller: UIViewController {
     
 }
 
+
+// MARK: COntroller DataManagerDelegate conformance
 extension Controller: DataManagerDelegate {
-    func data<T>() -> T where T : DataPreview {
+    func data<T>() -> T where T: DataPreview {
         return ThoughtPreview.zero as! T
     }
     
@@ -67,20 +68,17 @@ extension Controller: DataManagerDelegate {
     func data(isSet success: Bool) {
         
         if success {
-            
-            print("data for controller: \(self) is set")
-            
-            
+            dataIsSet = true 
         } else {
-            
-            showMessage(title: "unable to prossess data", message: "ok")
-            
+            showMessage(title: "unable to prossess data", message: "refresh")   
         }
         
     }
     
+    // public facin location requestin method
     func requestLocation() -> CLLocation? {
         
+        // check to see if location data is readily available
         if UserDefaults.isLocationAvailable {
             print("user  is set wiith location")
             return CLLocation()
@@ -94,6 +92,8 @@ extension Controller: DataManagerDelegate {
         return loc
         
     }
+
+    // request location permissions
     private func reqLoc(completion: () -> ()) {
         
         var locationManager: CLLocationManager?
@@ -104,6 +104,8 @@ extension Controller: DataManagerDelegate {
     }
 }
 
+// location permissions delegated to Controller
+//MARKL Controller LocationManager ddelegate conformance
 extension Controller: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
@@ -116,6 +118,7 @@ extension Controller: CLLocationManagerDelegate {
 }
 
 
+// faluire based on UI/network/db retrieval enum
 enum Failure {
     
     case toConnect

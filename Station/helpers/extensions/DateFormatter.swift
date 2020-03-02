@@ -1,6 +1,7 @@
 
 import UIKit
 
+// MARK: dateFormatter helper methods
 extension DateFormatter {
     /**
      Formats a date as the time since that date (e.g., “Last week, yesterday, etc.”).

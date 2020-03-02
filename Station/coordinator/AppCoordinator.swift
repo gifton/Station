@@ -3,13 +3,13 @@ import UIKit
 import CoreData
 
 // App coordinator handles authentication, and window creation
-
 final class AppCoordinator: Coordinator {
+    
     
     var parentCoordinator: BaseCoordinator?
     var flow: [Coordinator] = []
     var navigationController: UINavigationController
-    var window: UIWindow
+    private var window: UIWindow
     var moc: NSManagedObjectContext?
     
     func start() {

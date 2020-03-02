@@ -2,13 +2,15 @@
 
 import UIKit
 
-
-class LongOrbitCell: UITableViewCell {
+// MARK: LongOrbitCell object
+// displays orbit cell of maximum length for device
+final class LongOrbitCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
     }
     
+    // private vars
     private var orbit: OrbitPreview?
     private var rightStack: UIStackView!
     private var leftStack: UIStackView!
@@ -17,6 +19,7 @@ class LongOrbitCell: UITableViewCell {
     private var icon: UILabel!
     private var title: UILabel!
     
+    // set data
     public func set(withOrbit orbit: OrbitPreview) {
         self.orbit = orbit
         
@@ -30,7 +33,12 @@ class LongOrbitCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setView() {
+}
+
+
+// MARK: Builder methods
+private extension LongOrbitCell {
+    func setView() {
         guard let orbit = orbit else { return }
         
         // create views
@@ -64,4 +72,3 @@ class LongOrbitCell: UITableViewCell {
         title.textColor = Styles.Colors.secondaryGray
     }
 }
-

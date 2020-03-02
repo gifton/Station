@@ -3,6 +3,15 @@ import UIKit
 import CoreData
 import CoreLocation
 
+// MARK: ThoughtList DM
+// Handles retrieval of User created Thoughts and appropriate related data
+// No creation methods
+// filtering by:
+    // date
+    // location
+    // keyword/predicate
+    // SubThought Count 
+    
 class ThoughtListDataManager: DataManager {
 
     public var delegate: DataManagerDelegate?

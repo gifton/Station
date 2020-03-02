@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+// coordinator handles movement from explore page to child views
 class NewThoughtCoordinator: Coordinator {
     
     var flow: [Coordinator] = []
@@ -43,8 +44,9 @@ class NewThoughtCoordinator: Coordinator {
     
 }
 
+// MARK: new OrbitFlow conformance
 extension NewThoughtCoordinator: NewOrbitFlow {
-    func showOrbit(_ completion: @escaping (String, String) -> ()) {
+    func newOrbit(_ completion: @escaping (String, String) -> ()) {
         
         let orbitController = NewOrbitController()
         orbitController.preferredContentSize = .init(Device.width, 500)

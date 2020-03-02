@@ -1,0 +1,18 @@
+import UIKit
+
+
+class ExploreViewHead: UIView {
+	init() {
+		super.init(frame: CGRect(x: 0, y: 0, width: Device.width, height: Device.height - Device.tabBarHeight))
+		backgroundColor: .blue
+		
+		
+	}
+	
+	var greetingTitle = UILabel.titleLabel()
+	var greetingIcon = UIImageView(image: Icons.exploreIcon)
+	var recentThoughts: ThoughtDisplay!
+	var downIndicator: UIView!
+	
+}
+

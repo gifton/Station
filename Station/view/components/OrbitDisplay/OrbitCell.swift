@@ -18,8 +18,12 @@ class OrbitCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var orbit: Orbit?
-    
+    // private var
+    private(set) var orbit: Orbit?
+
+    // UI Obects
+    let iconView = UILabel()
+    let title = UILabel.bodyLabel()
     public func set(withOrbit orbit: Orbit) {
         self.orbit = orbit
         setView()
@@ -32,6 +36,7 @@ class OrbitCell: UICollectionViewCell {
         
     }
     
+    // controller calls method on tap
     public func didGetSelected() {
         print("orbit selected in cell")
         if backgroundColor == .clear {
@@ -41,10 +46,10 @@ class OrbitCell: UICollectionViewCell {
         }
     }
     
-    let iconView = UILabel()
-    let title = UILabel.bodyLabel()
-    
-    private func setView() {        
+}
+
+private extension  OrbitCell {
+    func setView() {        
         
         addSubview(iconView)
         addSubview(title)
@@ -66,4 +71,5 @@ class OrbitCell: UICollectionViewCell {
         title.adjustsFontSizeToFitWidth = true
         title.textAlignment = .center
     }
+    
 }

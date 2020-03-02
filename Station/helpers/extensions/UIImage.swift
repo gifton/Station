@@ -1,7 +1,7 @@
 
 import UIKit
 
-//all UIImage extended methods
+//MARK: UIImage extended methods
 extension UIImage {
     
     // returns cropped image of size
@@ -83,7 +83,8 @@ extension UIImage {
         return newImage
     }
     
-    //set image with solid color
+    //set image with solid color (placeholder for testing)
+    // TODO: remove for prod
     public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
@@ -108,6 +109,7 @@ extension UIImage {
         return img
     }
     
+    // change images color (exclusive to PNG's)
     func tintImage(toColor color: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         color.setFill()
@@ -127,6 +129,7 @@ extension UIImage {
         return newImage!
     }
     
+    // add blur effect to images
     func blurred(radius: CGFloat) -> UIImage {
         
         let ciContext = CIContext(options: nil)

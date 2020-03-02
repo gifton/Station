@@ -8,6 +8,7 @@
 
 import UIKit
 
+// app delegate does not need to be edited as of swift 5
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

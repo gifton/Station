@@ -2,6 +2,7 @@
 import UIKit
 import CoreData
 
+// coordinator handles movement from explore page to child views
 class ThoughtDetailCoordinator: Coordinator {
     var flow: [Coordinator] = []
     var parentCoordinator: BaseCoordinator?

@@ -2,9 +2,12 @@
 
 import CoreData
 
+// orbit object relates different thoughts to a specific topic
+// user creates Orbits to classify specific thoughts 
 @objc(Orbit)
 public class Orbit: NSManagedObject {
     
+    // public vars
     @NSManaged public var title: String
     @NSManaged public var createdAt: Date
     @NSManaged public var icon: String
@@ -17,8 +20,8 @@ public class Orbit: NSManagedObject {
 
 
 // builder methods
-
 extension Orbit {
+    // create new orbit
     static func insert(into moc: NSManagedObjectContext, with icon: String, and title: String) -> Orbit {
         
         let orbit: Orbit = moc.insertObject()
@@ -31,10 +34,12 @@ extension Orbit {
         
     }
     
+    // return number of thoughts with orbit
     var count: Int {
         return relatedThoughts?.count ?? 0
     }
     
+    // return all thoughts with related orbit
     var relatedThoughts: [Thought]? {
         
         guard let thoughts = thoughts else { return nil }
@@ -57,14 +62,14 @@ extension Orbit {
 }
 
 
-
+// MARK: managed conformance
 extension Orbit: Managed {
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: #keyPath(createdAt), ascending: false)]
     }
 }
 
-
+// Mark: adding thought relation to orbit 
 extension Array where Element == Orbit {
     func addThoughtRelationship(_ thought: Thought) {
         forEach {
@@ -74,6 +79,7 @@ extension Array where Element == Orbit {
         }
     }
     
+    // return icons for list of orbits
     func getAllIcons() -> [String] {
         return map {
             $0.icon

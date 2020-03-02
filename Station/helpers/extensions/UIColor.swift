@@ -1,15 +1,11 @@
 
 import UIKit
 
-
-
-import UIKit
-
-
-// UIColor does not base its system off of hex, rather RGB(a)
-// allows input as hex values instead of standard UIcolor init
+// MARK: UIColor helper methods (converting hex)
 public extension UIColor {
     
+// UIColor does not base its system off of hex, rather RGB(a)
+// allows input as hex values instead of standard UIcolor init
     convenience init(hex: String) {
         // trim chars
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
@@ -58,15 +54,3 @@ public extension UIColor {
         return (red, green, blue, alpha)
     }
 }
-
-// display color between to preset colors for animation
-extension UIColor {
-    func animate(toColor color: UIColor, withProgress progress: CGFloat) -> UIColor {
-        return UIColor(red: rgba.red + (color.rgba.red - rgba.red) * progress,
-                       green: rgba.green + (color.rgba.green - rgba.green) * progress,
-                       blue: rgba.blue + (color.rgba.blue - rgba.blue) * progress, alpha: 1.0)
-    }
-}
-
-
-

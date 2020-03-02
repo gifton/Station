@@ -1,40 +1,26 @@
 
 import UIKit
 
-// WesatStyles handles all static content delivered
+// Styles handles all static content delivered
 //   - sizes
 //   - colors
 //   - fonts
 //   - padding
+//   - non-device relatable sizin (see Devices class)
 
-final class Styles {
-    
-    static let width  = UIScreen.main.bounds.size.width
-    static let height = UIScreen.main.bounds.size.height
-    static let frame  = UIScreen.main.bounds
-    static let createSubThoughtMaxHeight = CGFloat(225)
-    static let createSubThoughtMinimumHeight = CGFloat(88)
-    
-    struct Headersize {
-        
-        static let max: CGFloat = 225
-        static let min: CGFloat = 90
-        static let staticMax: CGFloat = 190
-        
-    }
-    
-    
+// MARK: Styles
+final class Styles {   
     
     // table view cells will have an additional padding to create spacing that collectionview has built in
     struct CellSizes {
         
-        static let project: CGFloat = 121 + (Padding.medium.rawValue * 2)
-        static let toDo: CGFloat = 75 + (Padding.small.rawValue * 2)
-        static let message: CGFloat = 70 + Padding.small.rawValue
+        static let project: CGFloat = 121.addPadding(.medium, multilplier: 2) 
+        static let toDo: CGFloat = CGFloat(75).addPadding(.small, multilplier: 2) 
+        static let message: CGFloat = CGFl0at(70).addPadding(.small)
         static let client: CGFloat = 90
         static let quote: CGFloat = 95
         static let noContent: CGFloat = 310
-        
+
     }
     
     // padding
@@ -62,6 +48,7 @@ final class Styles {
     }
 
     // font
+    // font is named "poppins", backup being system default
     struct Font {
         static func title(ofSize size: FontSize = FontSize.xXLarge) -> UIFont {
             if let font = UIFont(name: "Poppins-Bold", size: size.rawValue) { return font }

@@ -14,7 +14,7 @@ enum ConfirmationButtonWidth: Int {
 
 class ConfirmationButton: UIButton {
     init(point: CGPoint, color: ConfirmButtonColor = .light, text: String, width widthType: ConfirmationButtonWidth = .full) {
-        super.init(frame: CGRect(origin: point, size: CGSize((Styles.width / CGFloat(widthType.rawValue)).subtractPadding(multiplier: 2), 50)))
+        super.init(frame: CGRect(origin: point, size: CGSize((Device.width / CGFloat(widthType.rawValue)).subtractPadding(multiplier: 2), 50)))
         
         setTitle(text, for: .normal)
         

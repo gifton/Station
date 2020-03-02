@@ -1,4 +1,5 @@
 
+// protocol for handling creation of new orbits 
 protocol NewOrbitFlow: Coordinator {
-    func showOrbit(_ completion: @escaping (String, String) -> ())
+    func newOrbit(_ completion: @escaping (String, String) -> ())
 }

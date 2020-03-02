@@ -3,7 +3,7 @@
 import UIKit
 
 
-// CollectionCiews let us display lists using cells
+// MARK: CollectionCiew cell register/dequeing methods
 public extension UICollectionView {
     
     // register cell with optional bundle

@@ -2,6 +2,10 @@
 import UIKit
 import CoreData
 
+// MARK: Dashboard DM 
+// accesses recently created thoughts, and all user-created orbits 
+// creation methods present in object
+
 class DashboardDataManager: DataManager {
     
     func start(completion: (() -> ())?) {

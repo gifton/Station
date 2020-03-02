@@ -9,7 +9,7 @@ struct ThoughtPreview: DataPreview {
     var title:       String
     var date:        Date = Date()
     var location:    CLLocation?
-    var orbits: [Orbit] = []
+    private(set) var orbits: [Orbit] = []
     var subThoughts: [SubThought] = []
     
     init(thought: Thought) {
@@ -24,9 +24,9 @@ struct ThoughtPreview: DataPreview {
         self.title = title
         self.location = location
         
-        
     }
     
+    // return empty thought previw (error handleing)
     static var zero: ThoughtPreview {
         return ThoughtPreview(title: "Awesome Photos on wesat", location: CLLocation())
     }
@@ -35,6 +35,11 @@ struct ThoughtPreview: DataPreview {
         return subThoughts.filter {
             $0.createdAt >= Date(timeIntervalSinceNow: -7 * 24 * 60 * 60)
         }.count
+    }
+
+    public func addOrbit(_ orbit: Orbit) {
+        self.orbit.append(orbit)
+
     }
 }
 

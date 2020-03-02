@@ -1,7 +1,7 @@
 
 import UIKit
 
-
+// MARK: Strin helper methods
 extension String {
     
     // find string within string

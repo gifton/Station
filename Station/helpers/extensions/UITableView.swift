@@ -1,6 +1,6 @@
 import UIKit
 
-
+// MARk: TableView register/dequeuing methods
 public extension UITableView {
     
     // register cell

@@ -1,9 +1,10 @@
 
 import UIKit
 
-// let view be initialized  with color parameter only
+// MRK: UIView helper methods
 extension UIView {
     
+    // initializer based on color
     convenience init(withColor color: UIColor) {
         
         self.init()
@@ -115,6 +116,7 @@ extension UIView {
         static var tapGestureRecognizer = "GenericMethodAssociatedObjectKey_FireByTap"
     }
     
+    // empty action method used for tapGestures beyong buttons (including buttons)
     fileprivate typealias Action = (() -> Void)?
     
     // Set our computed property type to a closure
@@ -159,6 +161,7 @@ extension UIView {
         }
     }
     
+    // rotate image indefinitely
     func rotate() {
         let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotation.toValue = NSNumber(value: Double.pi)
@@ -211,38 +214,8 @@ extension UIView {
         default: print("unable to create layout based on parameters")
         }
     }
-    
-    func constrainSize(_ size: CGSize)  {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        heightAnchor.constraint(equalToConstant: size.height).isActive = true
-        
-        widthAnchor.constraint(equalToConstant: size.width).isActive = true
 
-    }
-    
-    func constrain(toEdge edge: NSLayoutConstraint.Attribute, withPadding padding: Styles.Padding = .large) {
-        guard let sv = superview else {
-            print("make sure you've added the view to its superview before calling pin()")
-            return
-        }
-        translatesAutoresizingMaskIntoConstraints = false
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        
-        switch edge {
-        case .leading:
-            leadingAnchor.constraint(equalTo: sv.leadingAnchor, constant: padding.rawValue).isActive = true
-        case .top:
-            topAnchor.constraint(equalTo: sv.topAnchor, constant: padding.rawValue).isActive = true
-        case .trailing:
-            trailingAnchor.constraint(equalTo: sv.trailingAnchor, constant: padding.rawValue).isActive = true
-        case .bottom:
-            bottomAnchor.constraint(equalTo: sv.bottomAnchor, constant: padding.rawValue).isActive = true
-        default:
-            fatalError("requested edge is not availabel for autmatic constraining")
-        }
-    }
-    
+    // add shadow to any view (does not work on text in UILabel, see UILabel helper methods for implementation)
     func setShadow(color: UIColor?, opacity: Float?, offset: CGSize?, radius: CGFloat, viewCornerRadius: CGFloat?) {
         //layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: viewCornerRadius ?? 0.0).CGPath
         layer.shadowColor = color?.cgColor ?? UIColor.black.cgColor

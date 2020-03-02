@@ -11,5 +11,14 @@ class ExploreView: UIScrollView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var header = UIView()
+    var topView: ExploreViewHeader!
+	var table: UITableView!
+	
+}
+private extenstion ExploreView {
+	func setTopView() {
+	
+	}
+	
+	func setTable() {  }
 }
