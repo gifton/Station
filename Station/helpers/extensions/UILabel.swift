@@ -188,7 +188,7 @@ extension UILabel {
 extension UILabel {
     
     // titlelabel
-    static func titleLabel(_ payload: String? = nil, _ fontSize: Styles.FontSize = .xXLarge) -> UILabel {
+    static func title(_ payload: String? = nil, _ fontSize: Styles.FontSize = .xXLarge) -> UILabel {
         let lbl = UILabel(payload)
         lbl.font = Styles.Font.title(ofSize: fontSize)
         lbl.textColor = Styles.Colors.darkGray
@@ -198,7 +198,7 @@ extension UILabel {
     }
     
     // underline label
-    func underlineLabel() {
+    func underline() {
         let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.byWord.rawValue]
         let underlineAttributedString = NSAttributedString(string: text ?? "", attributes: underlineAttribute)
         text = ""
@@ -206,7 +206,7 @@ extension UILabel {
     }
     
     // titlelabel
-    static func bodyLabel(_ payload: String? = nil, _ fontSize: Styles.FontSize = .medium) -> UILabel {
+    static func body(_ payload: String? = nil, _ fontSize: Styles.FontSize = .medium) -> UILabel {
         let lbl = UILabel(payload)
         lbl.font = Styles.Font.body(ofSize: fontSize)
         lbl.sizeToFit()
@@ -215,7 +215,7 @@ extension UILabel {
     }
     
     // mediumtitle
-    static func mediumTitleLabel(_ payload: String? = nil, _ fontSize: Styles.FontSize = .xLarge) -> UILabel {
+    static func mediumTitle(_ payload: String? = nil, _ fontSize: Styles.FontSize = .xLarge) -> UILabel {
         let lbl = UILabel(payload)
         lbl.font = Styles.Font.mediumTitle(ofSize: fontSize)
         lbl.sizeToFit()
@@ -224,7 +224,7 @@ extension UILabel {
     }
     
     // titlelabel
-    static func lightBodyLabel(_ payload: String? = nil, _ fontSize: Styles.FontSize = .medium) -> UILabel {
+    static func lightBody(_ payload: String? = nil, _ fontSize: Styles.FontSize = .medium) -> UILabel {
         let lbl = UILabel(payload)
         lbl.font = Styles.Font.lightBody(ofSize: fontSize)
         lbl.sizeToFit()

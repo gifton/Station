@@ -61,7 +61,7 @@ final class OrbitSelector: UIView {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     // private vars
-    private var title: UILabel? = UILabel.bodyLabel()
+    private var title: UILabel? = UILabel.body()
     private var collection: UICollectionView?
     private var collectionHeight: CGFloat = 0
     private var delegate: OrbitSelectorDelegate
@@ -131,6 +131,7 @@ extension OrbitSelector: UICollectionViewDataSource {
             if !isSearching  { return .init(50, 50) }
             return .init(175, 50)
         } else { return .init(175, 50) }
+        
     }
     
     

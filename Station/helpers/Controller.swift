@@ -7,7 +7,7 @@ import CoreLocation
 // added functinoality for all viewControllers
 // controller has standard optional objects for dataManagers and coordinators
 // standard deinit code
-final class Controller: UIViewController {
+class Controller: UIViewController {
     
     
     override func viewDidLoad() {

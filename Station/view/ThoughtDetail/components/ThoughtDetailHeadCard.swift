@@ -35,10 +35,10 @@ private extension ThoughtDetailHeadCard {
         styleLine.center.x = width / 2
         styleLine.layer.cornerRadius = 1
         
-        let titleLabel = UILabel.bodyLabel(title, .large)
+        let titleLabel = UILabel.body(title, .large)
         titleLabel.textColor = .white
 
-        let dateLabel = UILabel.titleLabel("", .medium)
+        let dateLabel = UILabel.title("", .medium)
         dateLabel.getStringFromDate(date: date, withStyle: .long)
         dateLabel.textColor = UIColor.white.withAlphaComponent(0.65)
         

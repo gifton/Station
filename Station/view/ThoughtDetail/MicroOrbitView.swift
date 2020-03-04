@@ -73,7 +73,7 @@ class MicroOrbitCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let lbl = UILabel.mediumTitleLabel("✅", .xXLarge)
+    let lbl = UILabel.mediumTitle("✅", .xXLarge)
     
     func setWithIcon(_ icon: String) {
         lbl.text = icon

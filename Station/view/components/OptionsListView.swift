@@ -28,8 +28,8 @@ private extension SortOptionListView {
     
     func setView() {
         print(delegate.selectedOption)
-        let title = UILabel.mediumTitleLabel("Sort", .large)
-        let icon = Icons.iv(withImageType: .close, size: .init(30))
+        let title = UILabel.mediumTitle("Sort", .large)
+        let icon = Icons.iv(withImageType: .close, size: .medium)
         
         addSubview(title)
         addSubview(icon)

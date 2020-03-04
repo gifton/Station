@@ -2,10 +2,14 @@
 import UIKit
 
 class ThoughtDetailController: Controller {
-    init() {
+    
+    init(dm: ThoughtDetailDataManager, coordinator: ThoughtDetailCoordinator) {
         super.init(nibName: nil, bundle: nil)
+        self.dataManager = dm
+        self.coordinator = coordinator
         view.addSubview(ThoughtDetailView(withDelegate: self))
         view.backgroundColor = .white
+        setHeader()
     }
     
     required init?(coder: NSCoder) {
@@ -15,11 +19,6 @@ class ThoughtDetailController: Controller {
     var header = UIView(withColor: .white)
     var tv: UITableView!
     var createView: CreateSubThoughtView!
-    override var coordinator: Coordinator? {
-            didSet {
-                setHeader()
-            }
-        }
 }
 
 
@@ -33,13 +32,13 @@ private extension ThoughtDetailController{
     func setHeader() {
         
         header.frame.size = .init(Device.width, 80)
-        let back = Icons.iv(withImageType: .arrow, size: .init(35))
+        let back = Icons.iv(withImageType: .arrow, size: .large)
         back.sizeToFit()
         back.frame.origin = .init(Styles.Padding.xLarge.rawValue)
         back.bottom = header.bottom.subtractPadding(.small)
         back.addTapGestureRecognizer(action: (coordinator as? ThoughtDetailCoordinator)?.navigateBack)
         
-        let icon = Icons.iv(withImageType: .thought, size: .init(40))
+        let icon = Icons.iv(withImageType: .thought, size: .xLarge)
         icon.tintColor = .black
         icon.sizeToFit()
         icon.right = header.right.subtractPadding(.xLarge)
@@ -50,17 +49,16 @@ private extension ThoughtDetailController{
         
         view.addSubview(header)
         
+    }
+    
+    func refresh() {
         
-        
-        func refresh() {
-            
-        }
     }
 }
 
 extension ThoughtDetailController: ThoughtDetailDelegate {
     func newPhoto() {
-        if let c = (coordinator as? ThoughtDetailCoordinator), let dm  =  (dataManager as? ThoughtDetailDataManager) {
+        if let c = (coordinator as? ThoughtDetailCoordinator), let dm = (dataManager as? ThoughtDetailDataManager) {
             c.createSubThought(ofType: .image) {
                 print("new note")
             }
@@ -69,7 +67,7 @@ extension ThoughtDetailController: ThoughtDetailDelegate {
     }
     
     func newLink() {
-        if let c = (coordinator as? ThoughtDetailCoordinator), let dm  =  (dataManager as? ThoughtDetailDataManager) {
+        if let c = (coordinator as? ThoughtDetailCoordinator), let dm = (dataManager as? ThoughtDetailDataManager) {
             c.createSubThought(ofType: .link) {
                 print("new note")
             }
@@ -77,7 +75,7 @@ extension ThoughtDetailController: ThoughtDetailDelegate {
     }
     
     func newNote() {
-        if let c = (coordinator as? ThoughtDetailCoordinator), let dm  =  (dataManager as? ThoughtDetailDataManager) {
+        if let c = (coordinator as? ThoughtDetailCoordinator), let dm = (dataManager as? ThoughtDetailDataManager) {
             c.createSubThought(ofType: .note) {
                 print("new note")
             }
@@ -85,7 +83,11 @@ extension ThoughtDetailController: ThoughtDetailDelegate {
     }
     
     var thought: ThoughtPreview {
-        (dataManager as? ThoughtDetailDataManager)?.thought ?? ThoughtPreview.zero
+        guard let dm = (dataManager as? ThoughtDetailDataManager) else {
+            print("unable to access thought")
+            return ThoughtPreview.zero
+        }
+        return dm.thought
     }
     
     

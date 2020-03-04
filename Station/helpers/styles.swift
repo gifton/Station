@@ -14,9 +14,9 @@ final class Styles {
     // table view cells will have an additional padding to create spacing that collectionview has built in
     struct CellSizes {
         
-        static let project: CGFloat = 121.addPadding(.medium, multilplier: 2) 
-        static let toDo: CGFloat = CGFloat(75).addPadding(.small, multilplier: 2) 
-        static let message: CGFloat = CGFl0at(70).addPadding(.small)
+        static let project: CGFloat = CGFloat(121).addPadding(.medium, multiplier: 2)
+        static let toDo: CGFloat = CGFloat(75).addPadding(.small, multiplier: 2)
+        static let message: CGFloat = CGFloat(70).addPadding(.small)
         static let client: CGFloat = 90
         static let quote: CGFloat = 95
         static let noContent: CGFloat = 310

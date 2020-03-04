@@ -9,7 +9,7 @@ class SubThoughtIcon: UIView {
         backgroundColor = Styles.Colors.offWhite
         layer.cornerRadius = 8
         layer.masksToBounds = true
-        let label = UILabel.bodyLabel("", .medium)
+        let label = UILabel.body("", .medium)
         let img = UIImageView()
         switch type {
         case .note:

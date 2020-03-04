@@ -15,10 +15,10 @@ class ThoughtExtendedPreviewCell: UICollectionViewCell {
     
     private var thought: ThoughtPreview?
     
-    private var orbits = UILabel.bodyLabel(nil, .xXLarge)
-    private var dateLabel = UILabel.bodyLabel(nil, .small)
-    private var subThoughts = UILabel.titleLabel(nil, .medium)
-    private var title = UILabel.bodyLabel(nil, .large)
+    private var orbits = UILabel.body(nil, .xXLarge)
+    private var dateLabel = UILabel.body(nil, .small)
+    private var subThoughts = UILabel.title(nil, .medium)
+    private var title = UILabel.body(nil, .large)
     
     
     public func set(withThought thought: ThoughtPreview) {

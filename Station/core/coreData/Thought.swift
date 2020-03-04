@@ -18,15 +18,6 @@ public class Thought: NSManagedObject {
     @NSManaged public var subThoughts: NSSet?
     @NSManaged public var orbits: NSSet?
     
-    var computedSubThoughts: [SubThought] {
-        guard let subThoughts = subThoughts else { return [] }
-        
-        return subThoughts.map {
-            $0 as! SubThought
-        }
-        
-    }
-    
 }
 
 // MARK: computed properties

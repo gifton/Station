@@ -12,26 +12,24 @@ class ThoughtDetailCoordinator: Coordinator {
     private  var dataManager: DataManager?
     
     func start() {
-        let vc = ThoughtDetailController()
-        vc.coordinator = self
-        vc.hidesBottomBarWhenPushed = true
+        var vc: Controller!
+        
         if let moc = moc, let thought = thought {
+            
             dataManager = ThoughtDetailDataManager(moc: moc, thought: thought)
-            vc.dataManager = dataManager
-        }
+            vc = ThoughtDetailController(dm: dataManager as! ThoughtDetailDataManager, coordinator: self)
+            vc.hidesBottomBarWhenPushed = true
+        } else { vc = Controller() }
         
         navigationController.pushViewController(vc, animated: true)
     }
     
     func navigateBack() {
-        
         navigationController.popViewController(animated: true)
-//        navigationController.tabBarController?.tabBar.isHidden = false
     }
     
     init(withNavigationController navigationController: UINavigationController){
-        self.navigationController = navigationController
-//        self.navigationController.tabBarController?.tabBar.isHidden = true
+        self.navigationController = navigationController    
     }
     
 }

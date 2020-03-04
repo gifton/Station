@@ -18,7 +18,7 @@ class ThoughtDetailHead: UITableViewHeaderFooterView {
     }
     
     var card: ThoughtDetailHeadCard!
-    var similarTHoughtsButton = UILabel.bodyLabel("See similar Thoughts", .medium)
+    var similarTHoughtsButton = UILabel.body("See similar Thoughts", .medium)
     
 }
 

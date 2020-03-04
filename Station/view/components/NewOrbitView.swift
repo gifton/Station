@@ -40,7 +40,7 @@ class NewOrbitController: UIViewController {
         view.backgroundColor = Styles.Colors.offWhite
         
         // set title
-        let titlelbl = UILabel.titleLabel("New Orbit", .large)
+        let titlelbl = UILabel.title("New Orbit", .large)
         view.addSubview(titlelbl)
         titlelbl.sizeToFit()
         titlelbl.center.x = view.center.x

@@ -28,10 +28,10 @@ class NewThoughtCard: UIView {
     
     var thoughtDelegate: NewThoughtCardDelegate?
     private var topView = UIView(withColor: Styles.Colors.lightGray)
-    private var tapToStart = UILabel.bodyLabel("tap to start", .large)
+    private var tapToStart = UILabel.body("tap to start", .large)
     private var thoughtTextView = UITextView()
     private var icon: UIImageView = UIImageView(image: Icons.iconForType(.thought)?.tintImage(toColor: Styles.Colors.darkGray))
-    private var title = UILabel.mediumTitleLabel("New Thought", .xLarge)
+    private var title = UILabel.mediumTitle("New Thought", .xLarge)
     
     func reset() {
         thoughtTextView.removeFromSuperview()

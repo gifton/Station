@@ -50,13 +50,13 @@ private extension ThoughtTableHead {
         searchBar.showsCancelButton = false
         addSubview(searchBar)
         // infoButton
-        infoButton = Icons.iv(withImageType: .info, size: .init(20))
+        infoButton = Icons.iv(withImageType: .info, size: .small)
         
         infoButton.right = Device.width.subtractPadding(.xLarge)
         infoButton.center.y = searchBar.center.y
         addSubview(infoButton)
         // sortButton
-        sortButton = UILabel.bodyLabel("Sort by: date", .large)
+        sortButton = UILabel.body("Sort by: date", .large)
         sortButton.textColor = Styles.Colors.primaryBlue
         sortButton.addBorders(edges: .bottom, color: Styles.Colors.primaryBlue)
         sortButton.sizeToFit()
@@ -64,7 +64,7 @@ private extension ThoughtTableHead {
         sortButton.left = left.addPadding(.xLarge)
         sortButton.top = searchBar.bottom  + Styles.Padding.small.rawValue
         // countView
-        countView = UILabel.bodyLabel(String(describing: delegate?.numberOfThoughts ?? 0), .medium)
+        countView = UILabel.body(String(describing: delegate?.numberOfThoughts ?? 0), .medium)
         countView.sizeToFit()
         countView.textColor = Styles.Colors.darkGray
         countView.top = infoButton.bottom + Styles.Padding.large.rawValue// TODO: make helper func  for adding padding

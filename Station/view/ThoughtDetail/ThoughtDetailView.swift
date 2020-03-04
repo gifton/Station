@@ -29,11 +29,11 @@ class ThoughtDetailView: UIScrollView {
     // top page
     private var thoughtTitle = UILabel()
     private var iconList: MicroOrbitView!
-    private var subThoughtCountWeek = UILabel.bodyLabel()
-    private var subThoughtAllTime = UILabel.bodyLabel()
-    private var thoughtDate = UILabel.bodyLabel()
-    private var subThoughtCountIcon = UILabel.mediumTitleLabel()
-    private var continueTheThought = UILabel.mediumTitleLabel("Continue the thought", .large)
+    private var subThoughtCountWeek = UILabel.body()
+    private var subThoughtAllTime = UILabel.body()
+    private var thoughtDate = UILabel.body()
+    private var subThoughtCountIcon = UILabel.mediumTitle()
+    private var continueTheThought = UILabel.mediumTitle("Continue the thought", .large)
     private var noteIcon = SubThoughtIcon(type: .note)
     private var linkIcon = SubThoughtIcon(type: .link)
     private var photoIcon = SubThoughtIcon(type: .image)
@@ -57,7 +57,7 @@ private extension ThoughtDetailView {
         addSubview(iconList)
         
         // thoughttitle
-        thoughtTitle.padding = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+        thoughtTitle.padding = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
         thoughtTitle.text = detailDelegate.thought.title
         thoughtTitle.setShadow(color: Styles.Colors.primaryGreen, opacity: 1.0, offset: .init(0), radius: 9, viewCornerRadius: 4)
         thoughtTitle.textColor = Styles.Colors.white
@@ -107,7 +107,7 @@ private extension ThoughtDetailView {
         addSubview(subThoughtIndicator)
         
         // directionLabel
-        let dirLabel = UILabel.bodyLabel("Sub Thoughts ", .medium)
+        let dirLabel = UILabel.body("Sub Thoughts ", .medium)
         dirLabel.textColor = Styles.Colors.white
         dirLabel.sizeToFit()
         let dirImage = UIImageView(image: Icons.iconForType(.arrow)!

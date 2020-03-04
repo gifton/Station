@@ -7,20 +7,20 @@ import UIKit
 final class Icons {
     
     enum IconSize  {
-        case xXsmall, xSmall, small, medium, large, xLarge, xXlarge, mmax
+        case xXsmall, xSmall, small, medium, large, xLarge, xXlarge, max
     }
     
     // icon types
     enum IconType {
-        case appIcon, thought, subThought, orbit, explore, close, new, info, appStore, email, arrow, camera, note, link, delete
+        case appIcon, thought, subThought, orbit, explore, close, new, info, appStore, email, arrow, camera, note, link, delete, planet
     }
     
     // imageView allows for propper size cropping of image
     // return image view with desired icon calling on iconForType(_) for content
-    static func iv(withImageType type: IconType, size: IconSize?) -> UIImageView {
+    static func iv(withImageType type: IconType, size: IconSize = .large) -> UIImageView {
         let iv =  UIImageView(frame: .init(origin: .zero, size: sizeFor(size)))
         iv.image = iconForType(type)
-        
+        iv.contentMode = .scaleAspectFit
         return iv
     }
     
@@ -45,6 +45,7 @@ final class Icons {
         case .note: icon =  UIImage(named: "note")
         case .link: icon = UIImage(systemName: "safari.fill")
         case .orbit: icon = UIImage(named: "orbit")
+        case .planet: icon = UIImage(named: "planet-icon")
         }
         
         return icon
@@ -53,11 +54,11 @@ final class Icons {
     // calculated icon sizes
     static func sizeFor(_ size: IconSize) -> CGSize {
         switch size {
-            case .xXsmal: return .init(10)
+            case .xXsmall: return .init(10)
             case .xSmall: return .init(15)
             case .small: return .init(20)
             case .medium: return .init(25)
-            case .large: return .init(40)
+            case .large: return .init(35)
             case .xLarge: return .init(50)
             case .xXlarge: return .init(100)
             case .max: return .init(Device.width / 2)

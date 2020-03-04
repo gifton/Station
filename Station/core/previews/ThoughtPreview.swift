@@ -37,9 +37,8 @@ struct ThoughtPreview: DataPreview {
         }.count
     }
 
-    public func addOrbit(_ orbit: Orbit) {
-        self.orbit.append(orbit)
-
+    public mutating func addOrbit(_ orbit: Orbit) {
+        orbits.append(orbit)
     }
 }
 

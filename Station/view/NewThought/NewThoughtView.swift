@@ -85,8 +85,12 @@ extension NewThoughtView: OrbitSelectorDelegate {
     }
     func didSelectOrbit(atIndex index: Int) {
         
+        // if orbit is not in list, append
         if !(selectedOrbits.contains(orbits[index])) {
             selectedOrbits.append(orbits[index])
+        } else  {
+            // remove from list because orbit is being selected a second time, or "deselcted"
+            selectedOrbits.remove(at: index)
         }
         
     }

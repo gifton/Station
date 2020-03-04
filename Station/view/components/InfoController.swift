@@ -30,9 +30,9 @@ class InfoController: Controller {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let titleLabel = UILabel.titleLabel("Station", .xXLarge)
-    let infoButton = Icons.iv(withImageType: .info, size: .init(35))
-    let typeLabel = UILabel.mediumTitleLabel()
+    let titleLabel = UILabel.title("Station", .xXLarge)
+    let infoButton = Icons.iv(withImageType: .info, size: .large)
+    let typeLabel = UILabel.mediumTitle()
 }
 
 

@@ -24,7 +24,7 @@ class ThoughtDisplay: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var title = UILabel.titleLabel()
+    var title = UILabel.title()
     var delegate: ThoughtDisplayDelegate?
     var collection: UICollectionView!
     var searchBar = UISearchBar()

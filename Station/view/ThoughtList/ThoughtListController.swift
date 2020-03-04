@@ -17,6 +17,7 @@ class ThoughtListController: Controller {
     
     override func viewWillAppear(_ animated: Bool) {
         (dataManager as? ThoughtListDataManager)?.refresh()
+        tv.reloadData()
     }
     
     private var tv: UITableView!
@@ -39,7 +40,8 @@ private extension ThoughtListController {
         tv.registerHeaderFooter(cellWithClass: ThoughtTableHead.self)
         tv.delegate = self
         tv.dataSource = self
-        tv.sectionHeaderHeight = 5
+        tv.sectionHeaderHeight = 0
+        tv.sectionFooterHeight = 5
         view.addSubview(tv)
     }
 }
@@ -54,6 +56,7 @@ extension ThoughtListController: UITableViewDelegate {
         return 0
     }
     
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let head = tableView.dequeueReusableHeader(cellWithClassName: ThoughtTableHead.self)
@@ -61,12 +64,19 @@ extension ThoughtListController: UITableViewDelegate {
             
             return head
         }
-        else { return nil }
+        else {
+            let view = UIView(frame: CGRect(origin: .init(0), size: CGSize(tableView.width, 5)))
+            view.backgroundColor = .red
+            return view
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let thought = (dataManager as? ThoughtListDataManager)?.displayableThoughts[indexPath.row] {
+        if let thought = (dataManager as? ThoughtListDataManager)?.displayableThoughts[indexPath.section] {
+            
+            print(thought.title + "has been selected")
             (coordinator as? ThoughtListCoordinator)?.showThought(thought)
+            
         }
     }
 }

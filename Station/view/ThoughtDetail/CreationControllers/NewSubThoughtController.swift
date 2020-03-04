@@ -31,8 +31,8 @@ class NewSubThoughtController: Controller {
 
 private extension NewSubThoughtController {
     func setView() {
-        let title = UILabel.bodyLabel(String(describing: subThoughtType), .medium)
-        let thoughtTitle = UILabel.titleLabel(self.thoughtTitle, .xLarge)
+        let title = UILabel.body(String(describing: subThoughtType), .medium)
+        let thoughtTitle = UILabel.title(self.thoughtTitle, .xLarge)
         
         title.sizeToFit()
         thoughtTitle.sizeToFit()

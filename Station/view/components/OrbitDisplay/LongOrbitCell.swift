@@ -43,9 +43,9 @@ private extension LongOrbitCell {
         
         // create views
         arrow = UIImageView(image: UIImage(systemName: "heart.fill"))
-        count = UILabel.bodyLabel(String(describing: 55), .large)
-        icon = UILabel.bodyLabel(orbit.icon, .large)
-        title = UILabel.bodyLabel(orbit.title, .large)
+        count = UILabel.body(String(describing: 55), .large)
+        icon = UILabel.body(orbit.icon, .large)
+        title = UILabel.body(orbit.title, .large)
         
         arrow.frame.size = .init(20)
         count.sizeToFit()

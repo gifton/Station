@@ -25,7 +25,7 @@ class BasicStatsBar: UIView {
         monthCount = info.monthCount
         
         if (title == true) {
-            titleLabel = UILabel.bodyLabel("Stats", .medium)
+            titleLabel = UILabel.body("Stats", .medium)
             super.init(frame: .init(origin: point, size: CGSize(width: 315, height: 85)))
         } else {
             super.init(frame: .init(origin: point, size: CGSize(width: 290, height: 85)))
@@ -44,10 +44,10 @@ class BasicStatsBar: UIView {
     var titleLabel: UILabel?
     var statType: BasicStatsType
     var icon = UIImageView(image: UIImage(color: Styles.Colors.darkGray))
-    var weekLabel = UILabel.lightBodyLabel()
-    var monthLabel = UILabel.lightBodyLabel()
-    var weekCountLabel = UILabel.titleLabel()
-    var monthCountLabel = UILabel.titleLabel()
+    var weekLabel = UILabel.lightBody()
+    var monthLabel = UILabel.lightBody()
+    var weekCountLabel = UILabel.title()
+    var monthCountLabel = UILabel.title()
     
 }
 

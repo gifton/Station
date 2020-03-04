@@ -12,9 +12,9 @@ class DashboardHead: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var welcomeLabel = UILabel.titleLabel(nil, .xXLarge)
+    private var welcomeLabel = UILabel.title(nil, .xXLarge)
     private var infoButton = UIImageView(image: UIImage(color: Styles.Colors.primaryBlue))
-    private var logo = UILabel.titleLabel("Station", .max)
+    private var logo = UILabel.title("Station", .max)
     private var dashboardImage = UIImageView(image: UIImage(color: Styles.Colors.primaryBlue))
 }
 
