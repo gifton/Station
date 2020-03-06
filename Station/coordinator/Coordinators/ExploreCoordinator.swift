@@ -21,7 +21,9 @@ class ExploreCoordinator: Coordinator {
         let vc = ExploreController()
         vc.coordinator = self
         if let moc = moc {
-//            let dm =
+            let dm = ExploreDataManager(moc: moc)
+            dm.start(completion: nil)
+            vc.dataManager = dm
         }
         
         navigationController.pushViewController(vc, animated: true)

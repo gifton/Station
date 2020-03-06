@@ -1,19 +1,18 @@
 
 import UIKit
 
-
-protocol ExploreHeadDelegate: Controller {
-    
-    var recentThoughts: [ThoughtPreview] { get }
-    func showThought(_  thought: ThoughtPreview)
-    func showInfoButton()
+protocol ExploreHeadDelegate {
+    func showInfo()
+    func showThought(atIndex index: Int)
     func scrollToBottom()
-    
+    var recentThoughts: [ThoughtPreview] { get }
+    var subThoughtCount: BasicStatInfo { get }
+    var thoughtCount: BasicStatInfo { get }
 }
 
 class ExploreViewHeader: UIView {
     init() {
-        super.init(frame: CGRect(origin: .zero, size: Device.frame.size))
+        super.init(frame: CGRect(origin: .zero, size: .init(Device.width,  Device.height - (Device.tabBarheight / 2))))
         setStaticContent()
         backgroundColor = .white
     }
@@ -22,11 +21,6 @@ class ExploreViewHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public var delegate: ExploreHeadDelegate? {
-        didSet {
-            setDisplays(); setTargets()
-        }
-    }
     
     private var station = UILabel.title("Station", .max)
     private var greeting = UILabel.mediumTitle()
@@ -36,19 +30,26 @@ class ExploreViewHeader: UIView {
     private var subThoughtIconBar: BasicStatsBar!
     private var thoughtIconBar: BasicStatsBar!
     private var showOrbitsLabel = UILabel.directionLabel("Orbits", direction: .right)
-    
+    public var delegate: ExploreHeadDelegate? {
+        didSet {
+            setDisplays()
+        }
+    }
 }
 
 
 private extension ExploreViewHeader {
 
     func setStaticContent() {
+        
+        // station
         station.sizeToFit()
         station.left = left.addPadding(.xLarge)
         station.top = 60
         station.textColor = Styles.Colors.black
         addSubview(station)
         
+        // greeting
         greeting.numberOfLines = 2
         greeting.text = String.timeSensativeGreeting()  + "\nGifton"
         greeting.textColor = Styles.Colors.darkGray
@@ -57,18 +58,49 @@ private extension ExploreViewHeader {
         greeting.left = left.addPadding(.xLarge)
         addSubview(greeting)
         
+        // greetingIcon
         greetingIcon.right = right.subtractPadding()
         greetingIcon.top = 40
-        
         addSubview(greetingIcon)
+        
+        //infoIcon
+        infoIcon.left = greeting.left
+        infoIcon.top = greeting.bottom.addPadding()
+        addSubview(infoIcon)
+             
+        // show OrbitsView
     }
     
     func setDisplays() {
         
-    }
-    
-    func setTargets() {
-        infoIcon.addTapGestureRecognizer(action: delegate?.showInfoButton)
+        //thoughtDisplay
+        thoughtDisplay = ThoughtDisplay(point: .init(0, greetingIcon.bottom), delegate: self)
+        addSubview(thoughtDisplay)
+        
+        // stats bars
+        if let del = delegate{
+            print("confirmed del")
+            thoughtIconBar = BasicStatsBar(point: .init(infoIcon.left, thoughtDisplay.bottom.addPadding(.xXLarge)), info: del.thoughtCount, withTitle: true)
+            subThoughtIconBar = BasicStatsBar(point: .init(infoIcon.left, thoughtIconBar.bottom.addPadding(.medium)), info: del.subThoughtCount, withTitle: false)
+            
+            
+            addSubview(subThoughtIconBar)
+            addSubview(thoughtIconBar)
+        }
         
     }
+    
+    func setTargets() { infoIcon.addTapGestureRecognizer(action: delegate?.showInfo) }
+}
+
+extension ExploreViewHeader: ThoughtDisplayDelegate {
+    
+    var thoughts: [ThoughtPreview] {
+        return delegate?.recentThoughts ?? []
+    }
+    func selectedThought(atIndex index: Int) {
+        delegate?.showThought(atIndex: index)
+        
+    }
+    
 }

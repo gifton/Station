@@ -4,14 +4,14 @@ import UIKit
 
 enum BasicStatsType: String {
     
-    case though = "Thoughts"
+    case thought = "Thoughts"
     case subThought = "Entries"
     case orbits = "Orbits"
     
 }
 
 struct BasicStatInfo {
-    var type: BasicStatsType
+    var statType: BasicStatsType
     var weekCount: Int
     var monthCount: Int
 }
@@ -20,7 +20,7 @@ struct BasicStatInfo {
 class BasicStatsBar: UIView {
     
     init(point: CGPoint, info: BasicStatInfo, withTitle title: Bool = false) {
-        self.statType = info.type
+        self.statType = info.statType
         weekCount = info.weekCount
         monthCount = info.monthCount
         
@@ -43,7 +43,7 @@ class BasicStatsBar: UIView {
     
     var titleLabel: UILabel?
     var statType: BasicStatsType
-    var icon = UIImageView(image: UIImage(color: Styles.Colors.darkGray))
+    var icon = UIImageView(image: Icons.iconForType(.thought))
     var weekLabel = UILabel.lightBody()
     var monthLabel = UILabel.lightBody()
     var weekCountLabel = UILabel.title()
@@ -65,7 +65,7 @@ private extension BasicStatsBar {
         }
         
         // set cell
-        let cell = UIView(frame: CGRect(x: 0, y: titleLabel?.bottom ?? 0, width: width, height: height - (titleLabel?.height ?? 0)))
+        let cell = UIView(frame: CGRect(x: 0, y: titleLabel?.bottom.addPadding(.small) ?? 0, width: width, height: height - (titleLabel?.height ?? 0)))
         cell.layer.cornerRadius = 18
         cell.layer.masksToBounds = true
         cell.layer.borderColor = Styles.Colors.darkGray.cgColor
@@ -78,6 +78,7 @@ private extension BasicStatsBar {
         icon.frame.size = CGSize(35, 25)
         icon.left = Styles.Padding.large.rawValue
         icon.center.y = cell.height / 2
+        icon.tintColor = Styles.Colors.primaryBlue
         
         weekLabel.text = "\(statType) this week"
         monthLabel.text = "\(statType) this month"

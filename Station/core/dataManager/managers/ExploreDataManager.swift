@@ -1,81 +1,50 @@
 
 import UIKit
 import CoreData
-
+import CoreLocation
 // MARK: Dashboard DM 
 // accesses recently created thoughts, and all user-created orbits 
 // creation methods present in object
 
-class DashboardDataManager: DataManager {
+class ExploreDataManager: DataManager {
     
     func start(completion: (() -> ())?) {
-        print("starting dashboard datamanager")
         
-//        getPreviews()
+        thoughts = getThoughts(batchSize: 10)
+        orbits = getOrbits(batchSize: 500)
+        completion?()
     }
     
-    var delegate: DataManagerDelegate?
-    var predicate: String?
-    var moc: NSManagedObjectContext
-    var thoughts = [Thought]()
-    var busy = false
+    internal var delegate: DataManagerDelegate?
+    private var predicate: String?
+    internal var moc: NSManagedObjectContext
+    private var thoughts = [Thought]()
+    public var orbits: [Orbit] = []
+    public var displayableThoughts: [ThoughtPreview] {
+        return thoughts.toPreview()
+    }
     
     required init(moc: NSManagedObjectContext) {
         self.moc = moc
+    }
+    
+    var subThoughtStats: BasicStatInfo {
+        return BasicStatInfo(statType: .subThought, weekCount: 25, monthCount: 130)
         
     }
     
+    var thoughtStats: BasicStatInfo {
+        return BasicStatInfo(statType: .thought, weekCount: 6, monthCount: 22)
+    }
+    
+    func refresh() {
+        thoughts = []
+        thoughts = getThoughts(batchSize: 10)
+        
+        orbits = []
+        orbits = getOrbits(batchSize: 500)
+    }
 }
-//
-//extension DashboardDataManager: ThoughtDataEccessable {
-//
-//    func getPreviews() {
-//        busy = true
-//        // set empty predicate list
-//        var predicates = [NSPredicate]()
-//        let request = NSFetchRequest<Thought>(entityName: "Thought")
-//        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-//        request.fetchBatchSize = 10
-//        request.shouldRefreshRefetchedObjects = true
-//        request.returnsObjectsAsFaults = false
-//        request.sortDescriptors = [sortDescriptor]
-//        if let pred = self.predicate {
-//
-//
-//            // split search terms
-//            let words = pred.lowercased().components(separatedBy: " ")
-//
-//            // create predicate for date, and title
-//            // TODO: implement search for entries as well
-//            for word in words {
-//                let thoughtTitlePredicate = NSPredicate(format: "%K CONTAINS[cd] %@", #keyPath(Thought.title), word)
-//                let thoughtDatePredicate = NSPredicate(format: "%K CONTAINS[cd] %@", #keyPath(Thought.createdAt), word)
-//                predicates.append(contentsOf: [thoughtTitlePredicate, thoughtDatePredicate])
-//            }
-//
-//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-//
-//
-//        }
-//
-//        searchForThoughts(request)
-//
-//    }
-//
-//    func refresh() {
-//        getPreviews()
-//    }
-//
-//    func searchForThoughts(_ request: NSFetchRequest<Thought>) {
-//        do {
-//            let thoughts = try moc.fetch(request)
-//            previews = thoughts.toPreview()
-//
-//        } catch let err {
-//            print(err)
-//        }
-//
-//        busy = false
-//    }
-//}
-//
+
+extension ExploreDataManager: ThoughtDataAccessable { }
+extension ExploreDataManager: OrbitDataAccessable { }

@@ -39,7 +39,6 @@ class OrbitCell: UICollectionViewCell {
     
     // controller calls method on tap
     public func didGetSelected() {
-        print("orbit selected in cell")
         if backgroundColor == .clear {
             backgroundColor = Styles.Colors.accentBlue
         } else {

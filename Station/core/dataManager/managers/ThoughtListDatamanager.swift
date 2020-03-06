@@ -20,12 +20,12 @@ class ThoughtListDataManager: DataManager {
     
     required init(moc: NSManagedObjectContext) {
         self.moc = moc
-        thoughts = getThoughts()
+        thoughts = getThoughts(batchSize: 500)
     }
     
     public func refresh() {
         thoughts = []
-        thoughts = getThoughts()
+        thoughts = getThoughts(batchSize: 500)
     }
     
     private var thoughts: [Thought] = []
@@ -77,25 +77,4 @@ extension ThoughtListDataManager {
     }
 }
 
-extension ThoughtListDataManager: ThoughtDataAccessable {
-    
-    func getThoughts() -> [Thought] {
-        
-        let request = Thought.sortedFetchRequest
-        request.fetchBatchSize = 100
-        request.shouldRefreshRefetchedObjects = true
-        request.returnsObjectsAsFaults = false
-        
-        let sortDescriptor = NSSortDescriptor(key: "createdAt", ascending: false)
-        request.sortDescriptors = [sortDescriptor]
-        
-        do {
-            return try moc.fetch(request)
-            
-        } catch { return [] }
-    }
-    
-    func createThought(fromTitle title: String, withLocation: CLLocation?, andOrbits orbits: [Orbit]?) { }
-    
-    
-}
+extension ThoughtListDataManager: ThoughtDataAccessable { }

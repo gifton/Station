@@ -199,10 +199,11 @@ extension UILabel {
     
     // underline label
     func underline() {
-        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.byWord.rawValue]
-        let underlineAttributedString = NSAttributedString(string: text ?? "", attributes: underlineAttribute)
+        let attributedString = NSMutableAttributedString(string: text ?? "")
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length))
+        
         text = ""
-        attributedText = underlineAttributedString
+        attributedText = attributedString
     }
     
     // titlelabel

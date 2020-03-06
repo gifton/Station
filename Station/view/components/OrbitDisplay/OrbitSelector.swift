@@ -43,7 +43,7 @@ final class OrbitSelector: UIView {
         if available {
             layer.opacity = 1.0
         } else {
-            layer.opacity = 0.4
+            layer.opacity = 0.3
         }
         
     }
@@ -123,15 +123,19 @@ private extension OrbitSelector {
     }
 }
 
+extension OrbitSelector: UICollectionViewDelegateFlowLayout {}
 // MARK: COllectionView DataSource / delegate conformance
 extension OrbitSelector: UICollectionViewDataSource {
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var rect: CGSize!
         if indexPath.row == 0 {
             if !isSearching  { return .init(50, 50) }
-            return .init(175, 50)
-        } else { return .init(175, 50) }
+            rect = .init(175, 50)
+        } else { rect = .init(175, 50) }
         
+        return rect
     }
     
     

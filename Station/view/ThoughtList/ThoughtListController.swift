@@ -42,6 +42,7 @@ private extension ThoughtListController {
         tv.dataSource = self
         tv.sectionHeaderHeight = 0
         tv.sectionFooterHeight = 5
+        tv.backgroundView = .init(withColor: .white)
         view.addSubview(tv)
     }
 }

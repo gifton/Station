@@ -61,7 +61,7 @@ private extension NewThoughtView {
             saveButton.isEnabled = true
             orbitView.setAvalibility(true)
         } else {
-            saveButton.alpha = 0.4
+            saveButton.alpha = 0.3
             saveButton.isEnabled = false
         }
     }

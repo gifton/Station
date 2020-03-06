@@ -7,6 +7,7 @@ class ThoughtExtendedPreviewCell: UICollectionViewCell {
         super.init(frame: frame)
         layer.cornerRadius = 10
         backgroundView = .init(withColor: Styles.Colors.offWhite.withAlphaComponent(0.65))
+        backgroundView?.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +42,7 @@ private extension ThoughtExtendedPreviewCell {
         subThoughts.text = "29 Sub Thoughts"
         
         // orbits
-        orbits.text = "🧘🏽‍♂️ 🛤 🍕 🎄"
+        orbits.text = thought.orbits.icons().joined(separator: " ")
         orbits.sizeToFit()
         orbits.preferredMaxLayoutWidth = 150
         orbits.left = left.addPadding(.xLarge)
@@ -57,7 +58,7 @@ private extension ThoughtExtendedPreviewCell {
         title.top = Styles.Padding.medium.rawValue
         title.layer.cornerRadius = 10
         title.layer.masksToBounds = true
-        title.backgroundColor = Styles.Colors.offWhite
+        title.backgroundColor = Styles.Colors.white
         title.textColor = Styles.Colors.darkGray
         title.padding = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 5)
         

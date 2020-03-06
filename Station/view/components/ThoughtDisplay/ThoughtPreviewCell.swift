@@ -36,7 +36,6 @@ class ThoughtPreviewCell: UITableViewCell {
 private extension ThoughtPreviewCell {
     func setView() {
         backgroundColor = Styles.Colors.lightGray
-        
         guard let thought = thought else { return }
         
         addSubview(titleLabel)
@@ -52,27 +51,17 @@ private extension ThoughtPreviewCell {
         orbits.text = thought.orbits.icons().joined(separator: " ")
         orbits.sizeToFit()
         orbits.preferredMaxLayoutWidth = 200.0
-        orbits.left = Styles.Padding.xLarge.rawValue
+        orbits.right = right.subtractPadding(.xLarge)
         orbits.bottom = height.subtractPadding()
         orbits.textDropShadow()
         
-        
-        orbits.layer.cornerRadius = 4
-        orbits.layer.masksToBounds = true
-        
         // subthought count
         subThoughtCount.text = "19 Sub Thoughts"
-        subThoughtCount.padding = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         subThoughtCount.sizeToFit()
-        subThoughtCount.height += 15
-        subThoughtCount.width += 10
-        subThoughtCount.right = right.subtractPadding(.xLarge)
-        subThoughtCount.bottom = height.subtractPadding(.medium)
-        subThoughtCount.backgroundColor = Styles.Colors.secondaryGray
-        subThoughtCount.layer.cornerRadius = 6
-        subThoughtCount.layer.masksToBounds = true
-        subThoughtCount.textColor = Styles.Colors.offWhite
-        
+        subThoughtCount.textColor = Styles.Colors.primaryGreen
+        subThoughtCount.underline()
+        subThoughtCount.left = Styles.Padding.xLarge.rawValue
+        subThoughtCount.bottom = height.subtractPadding(.xLarge)
         
     }
 }

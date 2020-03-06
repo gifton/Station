@@ -11,7 +11,7 @@ final class LongOrbitCell: UITableViewCell {
     }
     
     // private vars
-    private var orbit: OrbitPreview?
+    private var orbit: Orbit?
     private var rightStack: UIStackView!
     private var leftStack: UIStackView!
     private var arrow: UIImageView!
@@ -20,7 +20,7 @@ final class LongOrbitCell: UITableViewCell {
     private var title: UILabel!
     
     // set data
-    public func set(withOrbit orbit: OrbitPreview) {
+    public func set(withOrbit orbit: Orbit) {
         self.orbit = orbit
         
         layer.cornerRadius = 8
