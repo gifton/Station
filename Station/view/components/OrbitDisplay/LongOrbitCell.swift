@@ -59,12 +59,12 @@ private extension LongOrbitCell {
         addSubview(rightStack)
         addSubview(leftStack)
         
-        rightStack.frame.size = .init(count.width + arrow.width + 10,max(count.height, arrow.height))
-        rightStack.right = right - Styles.Padding.large.rawValue
-        rightStack.centerY = height / 2
+        rightStack.frame.size = .init(count.width + arrow.width + 10, max(count.height, arrow.height))
+        rightStack.center.y = height/2
+        rightStack.right = right.subtractPadding()
         leftStack.frame.size = .init(title.width + 25 + 10, max(icon.height, title.height))
         leftStack.left = 25
-        leftStack.centerY = height / 2
+        leftStack.center.y = height/2
         
         
         // style views

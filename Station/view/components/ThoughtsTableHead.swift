@@ -18,7 +18,7 @@ class ThoughtTableHead: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public var searchBar: UISearchBar!
+    public var  searchBar: UISearchBar!
     private var titleLable: UILabel!
     private var countView: UILabel!
     private var infoButton: UIImageView!
@@ -27,6 +27,7 @@ class ThoughtTableHead: UITableViewHeaderFooterView {
     public var delegate: ThoughtTableHeadDelegate? {
         didSet {
             setTargets()
+            setCountView()
         }
     }
 }
@@ -63,10 +64,14 @@ private extension ThoughtTableHead {
         addSubview(sortButton)
         sortButton.left = left.addPadding(.xLarge)
         sortButton.top = searchBar.bottom  + Styles.Padding.small.rawValue
+        
+    }
+    
+    func setCountView() {
         // countView
         countView = UILabel.body(String(describing: delegate?.numberOfThoughts ?? 0), .medium)
         countView.sizeToFit()
-        countView.textColor = Styles.Colors.darkGray
+        countView.textColor = Styles.Colors.black
         countView.top = infoButton.bottom + Styles.Padding.large.rawValue// TODO: make helper func  for adding padding
         countView.center.x = infoButton.center.x
         addSubview(countView)

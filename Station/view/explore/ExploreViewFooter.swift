@@ -33,6 +33,7 @@ private extension ExploreViewFooter {
         tv.register(cellWithClass: LongOrbitCell.self)
         tv.delegate = self
         tv.dataSource = self
+        tv.separatorStyle = .none
         addSubview(tv)
         
     }

@@ -48,7 +48,7 @@ extension ExploreController: ExploreDelegate {
     }
     
     func showInfoButton() {
-        print("Showing info")
+        (coordinator as? ExploreCoordinator)?.showInfoController()
     }
     
     

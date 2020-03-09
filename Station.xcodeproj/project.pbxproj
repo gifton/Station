@@ -263,6 +263,7 @@
 		6095B10B23EBF402000B9BAC /* components */ = {
 			isa = PBXGroup;
 			children = (
+				60B9A3A523FDE03F00BB4CFB /* InfoController.swift */,
 				6095B12323ED6CE6000B9BAC /* ThoughtDisplay */,
 				6095B10C23EBF419000B9BAC /* ConfirmationButton.swift */,
 				6095B11723EBF873000B9BAC /* SortOptionButton.swift */,
@@ -272,7 +273,6 @@
 				60452DE723F538E20087C791 /* TabBarController.swift */,
 				60E2993F23F90B0B009B9A84 /* NewOrbitView.swift */,
 				60B9A3A323FD3D9A00BB4CFB /* ThoughtsTableHead.swift */,
-				60B9A3A523FDE03F00BB4CFB /* InfoController.swift */,
 				60B7B3602403A8B30099BC59 /* OptionsListView.swift */,
 			);
 			path = components;

@@ -1,9 +1,8 @@
 
 import UIKit
 
-protocol NewSubThoughtDelegate: Controller {
+protocol NewSubThoughtDelegate: ThoughtDetailCoordinator {
     func createPreview(_ preview: SubThoughtPreview)
-    
 }
 
 class NewSubThoughtController: Controller {
@@ -15,13 +14,17 @@ class NewSubThoughtController: Controller {
         setView()
     }
     
-    public var saveButton = ConfirmationButton(point: .init(Styles.Padding.xLarge.rawValue, 500), color: .regular, text: "Save", width: .full)
+    public var  saveButton = ConfirmationButton(point: .init(Styles.Padding.xLarge.rawValue, 500), color: .regular, text: "Save", width: .full)
     private var thoughtTitle: String
     private var subThoughtType: SubThoughtType
     private var thoughtTextView = UITextView()
     private var linkTextView = UITextView()
     private var pasteFromClipboard = ConfirmationButton(point: .zero, color: .light, text: "paste from clipoard", width: .half)
+    private var preview: SubThoughtPreview?
+    
     public var completion: (() -> (SubThoughtPreview))?
+    weak public var delegate: NewSubThoughtDelegate?
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -31,19 +34,20 @@ class NewSubThoughtController: Controller {
 
 private extension NewSubThoughtController {
     func setView() {
+        // type title
         let title = UILabel.body(String(describing: subThoughtType), .medium)
-        let thoughtTitle = UILabel.title(self.thoughtTitle, .xLarge)
-        
         title.sizeToFit()
+        let icon = Icons.iv(withImageType: .subThought, size: .small)
+        icon.tintColor = .black
+        let stack = UIStackView(arrangedSubviews: [icon,  title], axis: .horizontal, spacing: 5, alignment: .leading, distribution: .fillProportionally)
+        stack.frame = CGRect(origin: .init(Styles.Padding.xLarge.rawValue), size: .init(title.width + 5 + icon.width, max(icon.height,title.height)))
+        
+        let thoughtTitle = UILabel.title(self.thoughtTitle, .xLarge)
         thoughtTitle.sizeToFit()
-        
-        title.left = Styles.Padding.large.rawValue
-        title.top = Styles.Padding.xXLarge.rawValue
-        
         thoughtTitle.left = title.left
-        thoughtTitle.top = title.bottom.addPadding()
+        thoughtTitle.top = stack.bottom.addPadding()
         
-        view.addSubview(title)
+        view.addSubview(stack)
         view.addSubview(thoughtTitle)
         
         switch subThoughtType {
@@ -53,6 +57,14 @@ private extension NewSubThoughtController {
         }
         
         saveButton.bottom = view.bottom.subtractPadding(.xLarge, multiplier: 4)
+        saveButton.alpha = 0.3
+        
+        saveButton.addTapGestureRecognizer {
+            self.preview = SubThoughtPreview(text: self.thoughtTextView.text, thought: nil)
+            if let preview = self.preview {
+                self.delegate?.createPreview(preview)
+            }
+        }
         view.addSubview(saveButton)
     }
     
@@ -75,6 +87,7 @@ private extension NewSubThoughtController {
         linkTextView.returnKeyType = .done
         linkTextView.delegate = self
         view.addSubview(linkTextView)
+        
     }
     
     func setNoteView() {
@@ -90,9 +103,21 @@ private extension NewSubThoughtController {
         thoughtTextView.keyboardDismissMode = .onDrag
         thoughtTextView.returnKeyType = .done
         thoughtTextView.delegate = self
+        
         view.addSubview(thoughtTextView)
         
     }
 }
 
-extension NewSubThoughtController: UITextViewDelegate { }
+extension NewSubThoughtController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        saveButton.alpha = 1.0
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text != "" {
+            saveButton.alpha = 1.0
+        } else {
+            saveButton.alpha = 0.3
+        }
+    }
+}

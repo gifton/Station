@@ -2,7 +2,8 @@
 import UIKit
 import CoreLocation
 
-
+// view that displaysall the thoughts available for user
+// MARK: THoguhtListController
 class ThoughtListController: Controller {
     
     init() {
@@ -15,14 +16,18 @@ class ThoughtListController: Controller {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // refresh view on appear
     override func viewWillAppear(_ animated: Bool) {
         (dataManager as? ThoughtListDataManager)?.refresh()
         tv.reloadData()
     }
     
+    // private vars
     private var tv: UITableView!
     private var sortView: SortOptionListView?
-    var cover: UIView!
+    // cover is shown when displaying sort options, indicate to user that content is unreachable during sort
+    private var cover: UIView!
+    
     var selectedOption: SortOption = .dateDescending {
         didSet (newVal) {
             (dataManager as? ThoughtListDataManager)?.sort(by: newVal)
@@ -43,7 +48,9 @@ private extension ThoughtListController {
         tv.sectionHeaderHeight = 0
         tv.sectionFooterHeight = 5
         tv.backgroundView = .init(withColor: .white)
+        
         view.addSubview(tv)
+        
     }
 }
 
@@ -75,11 +82,11 @@ extension ThoughtListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let thought = (dataManager as? ThoughtListDataManager)?.displayableThoughts[indexPath.section] {
             
-            print(thought.title + "has been selected")
             (coordinator as? ThoughtListCoordinator)?.showThought(thought)
             
         }
     }
+    
 }
 
 extension ThoughtListController: UITableViewDataSource {

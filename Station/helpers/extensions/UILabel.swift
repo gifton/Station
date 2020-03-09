@@ -37,12 +37,16 @@ extension UILabel {
         let lbl = UILabel()
         let fullString = NSMutableAttributedString(string: desiredText)
         let image1Attachment = NSTextAttachment()
-        let image = UIImage(systemName: "heart.fill")
-        // TODO: write rotation method
-//        switch direction {
-//        case .all: fatalError("unable to satisfy direction paramenter")
-//        case .bottom: image?.rotate(radians: .pi / 2)
-//        }
+        var image = Icons.iconForType(.arrow)
+        
+        switch direction {
+        case .bottom: image = image?.rotate(radians: -(.pi / 2))
+        case .right: image = image?.rotate(radians: .pi )
+        case .left: image = image?.rotate(radians: .pi)
+        case .top: image = image?.rotate(radians: .pi / 2)
+            
+        default: fatalError("unable to satisfy direction paramenter")
+        }
         
         image1Attachment.image = image
         
@@ -106,7 +110,7 @@ extension UILabel {
     }
     
     // API date format is a string  with SWAPI conformance
-    // method  takes string,  and  outputs an optional date
+    // method  takes string, and  outputs an optional date
     func setDateFromStringFormat(_ payload: String, length: DateFormatter.Style) {
         
         let df = DateFormatter()

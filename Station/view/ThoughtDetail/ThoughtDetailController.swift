@@ -57,27 +57,27 @@ private extension ThoughtDetailController{
 }
 
 extension ThoughtDetailController: ThoughtDetailDelegate {
-    func newPhoto() {
-        if let c = (coordinator as? ThoughtDetailCoordinator), let dm = (dataManager as? ThoughtDetailDataManager) {
+    func newPhoto(completion: () -> ()) {
+        if let c = (coordinator as? ThoughtDetailCoordinator) {
             c.createSubThought(ofType: .image) {
-                print("new note")
+                completion()
             }
         }
         
     }
     
-    func newLink() {
-        if let c = (coordinator as? ThoughtDetailCoordinator), let dm = (dataManager as? ThoughtDetailDataManager) {
+    func newLink(completion: () -> ()) {
+        if let c = (coordinator as? ThoughtDetailCoordinator) {
             c.createSubThought(ofType: .link) {
-                print("new note")
+                completion()
             }
         }
     }
     
-    func newNote() {
-        if let c = (coordinator as? ThoughtDetailCoordinator), let dm = (dataManager as? ThoughtDetailDataManager) {
+    func newNote(completion: () -> ()) {
+        if let c = (coordinator as? ThoughtDetailCoordinator) {
             c.createSubThought(ofType: .note) {
-                print("new note")
+                completion()
             }
         }
     }

@@ -19,8 +19,8 @@ protocol ThoughtDetailOrbitCellDelegate: Controller {
 
 
 protocol ThoughtDetailDelegate: Controller {
-    func newPhoto()
-    func newLink()
-    func newNote()
+    func newPhoto(completion: () -> ())
+    func newLink(completion: () -> ())
+    func newNote(completion: () -> ())
     var thought: ThoughtPreview { get }
 }

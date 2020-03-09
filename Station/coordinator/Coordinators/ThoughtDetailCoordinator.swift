@@ -10,9 +10,9 @@ class ThoughtDetailCoordinator: Coordinator {
     var thought: Thought!
     var moc: NSManagedObjectContext?
     private  var dataManager: DataManager?
-    
+    private var vc: Controller!
     func start() {
-        var vc: Controller!
+        
         
         if let moc = moc, let thought = thought {
             
@@ -46,11 +46,13 @@ extension ThoughtDetailCoordinator: NewSubThoughtFlow {
     func createSubThought(ofType type: SubThoughtType, completion: () -> ()) {
         let controller = NewSubThoughtController(controllerForType: type, title: (dataManager as? ThoughtDetailDataManager)?.thought.title ?? "Not available")
         navigationController.showDetailViewController(controller, sender: nil)
+        controller.delegate = self
     }
-    
-    func saveSubThought(_ sb: SubThoughtPreview) {
-        (dataManager as? ThoughtDetailDataManager)?.createSubThought(withPreview: sb)
-    }
-    
 }
 
+extension ThoughtDetailCoordinator: NewSubThoughtDelegate {
+    func createPreview(_ preview: SubThoughtPreview) {
+        (dataManager as? ThoughtDetailDataManager)?.createSubThought(withPreview: preview)
+        navigationController.dismiss(animated: true, completion: nil)
+    }
+}

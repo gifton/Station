@@ -28,11 +28,25 @@ class ThoughtDetailDataManager: DataManager {
     public var thoughtOrbits: [Orbit] =  []
     public var thought: ThoughtPreview!
     
+    public func createDemoSubThought()   {
+        _ = SubThought.insertWithNote(into: moc, with: "Man I love testing", for: rawThought)
+        if moc.saveOrRollback() {
+            print("saved sb")
+        } else {
+            print("couldnt save sb")
+        }
+    }
 }
 
 extension ThoughtDetailDataManager: SubThoughtDataAccessable {
     func createSubThought(withPreview preview: SubThoughtPreview) {
-        print("creating subTHought")
+        _ = SubThought.insertWithNote(into: moc, with: preview.note ?? "", for: rawThought)
+        if moc.saveOrRollback() {
+            print("saved sb")
+        } else {
+            print("couldnt save sb")
+        }
+        
     }
     
     func addThoughtToOrbit(_ orbit: Orbit) {

@@ -41,7 +41,9 @@ class ThoughtDetailView: UIScrollView {
     // bottom page
     private var tv: UITableView!
     
-    
+    public func needsRefresh() {
+        tv.reloadData()
+    }
 }
 
 
@@ -56,20 +58,24 @@ private extension ThoughtDetailView {
         iconList = MicroOrbitView(withDelegate: self, point: .init(x: Styles.Padding.xLarge.rawValue, y: 60))
         addSubview(iconList)
         
-        // thoughttitle
+        // thoughtitle
         thoughtTitle.padding = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
         thoughtTitle.text = detailDelegate.thought.title
-        thoughtTitle.setShadow(color: Styles.Colors.primaryGreen, opacity: 1.0, offset: .init(0), radius: 9, viewCornerRadius: 4)
         thoughtTitle.textColor = Styles.Colors.white
         thoughtTitle.font = Styles.Font.title(ofSize: .xXLarge)
         thoughtTitle.width = width - (25 + 70)
         thoughtTitle.height = 90
-        thoughtTitle.backgroundColor =  Styles.Colors.primaryGreen
-        thoughtTitle.layer.cornerRadius = 8
-//        thoughtTitle.layer.masksToBounds = true
         thoughtTitle.numberOfLines = 2
         thoughtTitle.top = iconList.bottom.addPadding(.xXLarge, multiplier: 2)
         thoughtTitle.left = left.addPadding(.xLarge)
+        
+        let thoughtMask = UIView(frame: thoughtTitle.frame)
+        thoughtMask.backgroundColor = Styles.Colors.primaryBlue
+        thoughtMask.layer.cornerRadius = 8
+        thoughtMask.layer.borderColor = UIColor.black.cgColor
+        thoughtMask.layer.borderWidth = 1
+        thoughtMask.setShadow(color: Styles.Colors.primaryBlue, opacity: 1.0, offset: nil, radius: 5, viewCornerRadius: 8)
+        addSubview(thoughtMask)
         addSubview(thoughtTitle)
         
         // subThoughtCounts
@@ -120,15 +126,28 @@ private extension ThoughtDetailView {
         dirStack.top = Styles.Padding.large.rawValue
         dirStack.center.x = width / 2
         subThoughtIndicator.addSubview(dirStack)
+        subThoughtIndicator.addTapGestureRecognizer { self.setContentOffset(.init(0, Device.height - Device.tabBarheight), animated: true) }
         
         setTopTargets()
     }
     
     // add delegate  targets
     func setTopTargets() {
-        noteIcon.addTapGestureRecognizer(action: detailDelegate.newNote)
-        linkIcon.addTapGestureRecognizer(action: detailDelegate.newLink)
-        photoIcon.addTapGestureRecognizer(action: detailDelegate.newPhoto)
+        noteIcon.addTapGestureRecognizer {
+            self.detailDelegate.newNote {
+                self.tv.reloadData()
+            }
+        }
+        linkIcon.addTapGestureRecognizer {
+            self.detailDelegate.newLink {
+                self.tv.reloadData()
+            }
+        }
+        photoIcon.addTapGestureRecognizer {
+            self.detailDelegate.newPhoto {
+                self.tv.reloadData()
+            }
+        }
     }
 }
 
@@ -138,14 +157,9 @@ private extension ThoughtDetailView {
         tv = UITableView(frame: .init(x: 0, y: (contentSize.height / 2), width: width, height: height), style: .insetGrouped)
         tv.delegate = self
         tv.dataSource = self
-        tv.backgroundView = .init(withColor: .blue)
+        tv.backgroundView = .init(withColor: .white)
         addSubview(tv)
-        print(tv.frame)
-    }
-    
-    func setBottomTargets() {
-        
-    }
+    }  
 }
 
 
@@ -167,11 +181,13 @@ extension ThoughtDetailView: MicroOrbitDelegate {
 
 extension ThoughtDetailView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  50
+        return detailDelegate.thought.subThoughts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = UITableViewCell()
+        cell.backgroundView = .init(withColor: .blue)
+        return cell
     }
     
     

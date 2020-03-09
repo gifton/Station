@@ -22,7 +22,11 @@ class ThoughtDisplay: UIView {
     
     var direction: UICollectionView.ScrollDirection = .horizontal
     var title: UILabel? = UILabel.title()
-    var delegate: ThoughtDisplayDelegate?
+    var delegate: ThoughtDisplayDelegate? {
+        didSet {
+            collection.reloadData()
+        }
+    }
     var collection: UICollectionView!
     var searchBar = UISearchBar()
 
@@ -51,6 +55,7 @@ private extension ThoughtDisplay {
         collection.isScrollEnabled = true
         collection.delegate = self
         collection.dataSource = self
+        collection.showsHorizontalScrollIndicator = false
         
         addSubview(collection)
     }
@@ -59,12 +64,14 @@ private extension ThoughtDisplay {
 extension ThoughtDisplay: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return delegate?.thoughts.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: ThoughtExtendedPreviewCell.self, for: indexPath)
-        cell.set(withThought: ThoughtPreview(title: "This is giftons thought preview for testing", location: nil))
+        if let del = delegate {
+            cell.set(withThought: del.thoughts[indexPath.row])
+        }
         
         return cell
     }

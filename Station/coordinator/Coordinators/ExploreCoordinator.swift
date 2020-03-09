@@ -40,4 +40,11 @@ class ExploreCoordinator: Coordinator {
         navigationController = nav
     }
     
+    func showInfoController() {
+        let infoController = InfoController(type: .general)
+        infoController.coordinator = self
+        navigationController.showDetailViewController(infoController, sender: self)
+        
+    }
+    
 }

@@ -18,7 +18,9 @@ extension ThoughtDataAccessable {
         request.sortDescriptors = [sortDescriptor]
         
         do {
-            return try moc.fetch(request)
+            let out = try moc.fetch(request)
+            
+            return out
             
         } catch { return [] }
     }

@@ -51,8 +51,8 @@ class BasicStatsBar: UIView {
     
 }
 
-
 private extension BasicStatsBar {
+    
     func setView() {
         
         // set title
@@ -68,8 +68,8 @@ private extension BasicStatsBar {
         let cell = UIView(frame: CGRect(x: 0, y: titleLabel?.bottom.addPadding(.small) ?? 0, width: width, height: height - (titleLabel?.height ?? 0)))
         cell.layer.cornerRadius = 18
         cell.layer.masksToBounds = true
-        cell.layer.borderColor = Styles.Colors.darkGray.cgColor
-        cell.layer.borderWidth = 0.5
+        cell.layer.borderColor = Styles.Colors.lightGray.cgColor
+        cell.layer.borderWidth = 2
         
         addSubview(cell)
         
@@ -112,6 +112,5 @@ private extension BasicStatsBar {
         
         addSubview(countStack)
         
-        print(countStack.frame)
     }
 }

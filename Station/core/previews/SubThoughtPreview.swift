@@ -14,18 +14,38 @@ class SubThoughtPreview: DataPreview {
         didSet { type = .link }
     }
     
-    var thought: Thought
+    var thought: Thought?
     
-    init(_ subThought: SubThought) {
-        
-        switch subThought.subThoughtType {
-        case .note: note = subThought.note
-        case .link: link = subThought.link
-        case .image: if let img = subThought.rawImage { image = UIImage(data: img) }
-        }
-        thought = subThought.thought
-        date = subThought.createdAt
+//    convenience init(_ subThought: SubThought) {
+//
+//        switch subThought.subThoughtType {
+//        case .note: note = subThought.note
+//        case .link: link = subThought.link
+//        case .image: if let img = subThought.rawImage { image = UIImage(data: img) }
+//        }
+//
+//        thought = subThought.thought
+//        date = subThought.createdAt
+//    }
+    
+    init(text: String, thought: Thought?) {
+        self.note = text
+        self.thought = thought
+        date = Date()
     }
+    
+    init(img: UIImage, thought: Thought?) {
+        self.image = img
+        self.thought = thought
+        date = Date()
+    }
+    
+    init(link: String, thought: Thought?) {
+        self.link = link
+        self.thought = thought
+        date = Date()
+    }
+    
     var date: Date
     var type: SubThoughtType = .note
 }

@@ -21,6 +21,7 @@ final class Icons {
         let iv =  UIImageView(frame: .init(origin: .zero, size: sizeFor(size)))
         iv.image = iconForType(type)
         iv.contentMode = .scaleAspectFit
+        iv.tintColor = .black
         return iv
     }
     
