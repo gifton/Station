@@ -6,7 +6,7 @@ class NewThoughtView: UIView {
     init() {
         super.init(frame: Device.frame)
         
-        backgroundColor = Styles.Colors.offWhite
+        backgroundColor = Colors.softBG
         setView()
     }
     
@@ -19,7 +19,7 @@ class NewThoughtView: UIView {
     private let saveButton = ConfirmationButton(point: .zero, color: .regular, text: "Save", width: .full)
     private var orbitView: OrbitSelector!
     private var card: NewThoughtCard!
-    
+    private var newOrbit: NewOrbitView!
     private var selectedOrbits: [Orbit] = []
     
     public func needsReset() {
@@ -37,11 +37,18 @@ private extension NewThoughtView {
         card.thoughtDelegate = self
         
         addSubview(card)
+        
+        newOrbit = NewOrbitView(point: .init(card.left, card.bottom.addPadding()), delegate: self)
+        addSubview(newOrbit)
+        
+        
+        
         // set orbits display
-        orbitView = OrbitSelector(point: .init(Styles.Padding.medium.rawValue, card.bottom + Styles.Padding.large.rawValue), title: "Add Orbits", delegate: self, numberOfRows: 3)
+        orbitView = OrbitSelector(point: .init(Styles.Padding.medium.rawValue, newOrbit.bottom.addPadding()), title: "Add Orbits", delegate: self, numberOfRows: 3)
         addSubview(orbitView)
         // set save button
         saveButton.frame.origin = .init(Styles.Padding.medium.rawValue, bottom - 50 - 100 )
+        saveButton.layer.cornerRadius = 20
         saveButton.addTapGestureRecognizer(action: didPressSave)
         thoughtHasContent(false)
         
@@ -101,5 +108,11 @@ extension NewThoughtView: OrbitSelectorDelegate {
     }
     var orbits: [Orbit] {
         return thoughtDelegate?.orbits ?? []
+    }
+}
+
+extension NewThoughtView: NewOrbitViewDelegate {
+    func savePreview(_ preview: OrbitPreview) {
+        print("saving orbit")
     }
 }

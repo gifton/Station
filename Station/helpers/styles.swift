@@ -79,7 +79,8 @@ final class Styles {
         static let offWhite      = UIColor(hex: "F4F4F5")
         static let yellow        = UIColor(hex: "FFC260")
         static let primaryRed    = UIColor(hex: "EF5350")
-        static let primaryBlue   = UIColor(hex: "475AF0")
+//        static let primaryBlue   = UIColor(hex: "475AF0")
+        static let primaryBlue   = UIColor(named: "primary-blue")!
         static let secondaryBlue = UIColor(hex: "84A3FB")
         static let accentBlue    = UIColor(hex: "A1BAFF")
         static let primaryGreen     = UIColor(hex: "4DB6AC")

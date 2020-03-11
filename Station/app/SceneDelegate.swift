@@ -72,7 +72,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let defaults = UserDefaults()
         
         
-        return DashboardController()
+        return ExploreController()
     }
 
 }

@@ -50,7 +50,7 @@ private extension ThoughtDisplay {
         
         collection = UICollectionView(frame: CGRect(x: 0, y: title?.bottom.addPadding(.small) ?? 0, width: width, height: 155), collectionViewLayout: layout)
         collection.registerCell(ThoughtExtendedPreviewCell.self)
-        collection.backgroundView = .init(withColor: .white)
+        collection.backgroundView = .init(withColor: Colors.hardBG)
         collection.showsVerticalScrollIndicator = false
         collection.isScrollEnabled = true
         collection.delegate = self

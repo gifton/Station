@@ -5,7 +5,7 @@ import UIKit
 class OrbitPreview: DataPreview {
     var title: String
     var createdAt: Date
-    var subThoughts: [SubThought]?
+    var relatedThoughts: [Thought]?
     var icon: String
     
     init(title: String, icon: String) {
@@ -17,5 +17,6 @@ class OrbitPreview: DataPreview {
     
     convenience init(_ orbit: Orbit) {
         self.init(title: orbit.title, icon: orbit.icon)
+        relatedThoughts = orbit.relatedThoughts
     }
 }

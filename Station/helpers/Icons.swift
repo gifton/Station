@@ -12,7 +12,7 @@ final class Icons {
     
     // icon types
     enum IconType {
-        case appIcon, thought, subThought, orbit, explore, close, new, info, appStore, email, arrow, camera, note, link, delete, planet
+        case appIcon, thought, subThought, orbit, explore, close, new, info, appStore, email, arrow, camera, note, link, delete, planet, sort
     }
     
     // imageView allows for propper size cropping of image
@@ -47,6 +47,7 @@ final class Icons {
         case .link: icon = UIImage(systemName: "safari.fill")
         case .orbit: icon = UIImage(named: "orbit")
         case .planet: icon = UIImage(named: "planet-icon")
+        case .sort: icon = UIImage(named: "sort")
         }
         
         return icon

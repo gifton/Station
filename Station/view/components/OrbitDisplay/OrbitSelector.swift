@@ -41,9 +41,9 @@ final class OrbitSelector: UIView {
     func setAvalibility(_ available: Bool = false) {
         
         if available {
-            layer.opacity = 1.0
+            collection?.layer.opacity = 1.0
         } else {
-            layer.opacity = 0.3
+            collection?.layer.opacity = 0.3
         }
         
     }
@@ -76,7 +76,7 @@ private extension OrbitSelector {
         if let title = title {
             
             title.sizeToFit()
-            title.textColor = .black
+            title.textColor = Colors.primaryText
             title.left = Styles.Padding.large.rawValue
             title.top = Styles.Padding.large.rawValue
             addSubview(title)
@@ -129,52 +129,30 @@ extension OrbitSelector: UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var rect: CGSize!
-        if indexPath.row == 0 {
-            if !isSearching  { return .init(50, 50) }
-            rect = .init(175, 50)
-        } else { rect = .init(175, 50) }
         
-        return rect
+        return .init(175, 50)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return delegate.orbits.count  + 1
+        return delegate.orbits.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if indexPath.row == 0 {
-            if isSearching {
-                return collectionView.dequeueReusableCell(withClass: inlineNewOrbitCell.self, for: indexPath)
-            }
-            else {
-                return collectionView.dequeueReusableCell(withClass: CircularNewOrbitCell.self, for: indexPath)
-            }
-            
-        } else {
-            let cell = collectionView.dequeueReusableCell(withClass: OrbitCell.self, for: indexPath)
-            cell.set(withOrbit: delegate.orbits[indexPath.row - 1])
-            return cell
-        }
+        let cell = collectionView.dequeueReusableCell(withClass: OrbitCell.self, for: indexPath)
+        cell.set(withOrbit: delegate.orbits[indexPath.row])
+        return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.row == 0 {
-            
-            delegate.createNewOrbit()
-            
-        } else {
-            
-            let cell = collectionView.cellForItem(at: indexPath)
-            (cell as? OrbitCell)?.didGetSelected()
-            delegate.didSelectOrbit(atIndex: indexPath.row - 1)
-            
-        }
+        let cell = collectionView.cellForItem(at: indexPath)
+        (cell as? OrbitCell)?.didGetSelected()
+        delegate.didSelectOrbit(atIndex: indexPath.row)
+        
     }
     
     

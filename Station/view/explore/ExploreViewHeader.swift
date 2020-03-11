@@ -14,7 +14,7 @@ class ExploreViewHeader: UIView {
     init() {
         super.init(frame: CGRect(origin: .zero, size: .init(Device.width,  Device.height - (Device.tabBarheight / 2))))
         setStaticContent()
-        backgroundColor = .white
+        backgroundColor = Colors.hardBG
     }
     
     required init?(coder: NSCoder) {
@@ -49,13 +49,13 @@ private extension ExploreViewHeader {
         station.sizeToFit()
         station.left = left.addPadding(.xLarge)
         station.top = 60
-        station.textColor = Styles.Colors.black
+        station.textColor = Colors.primaryText
         addSubview(station)
         
         // greeting
         greeting.numberOfLines = 2
         greeting.text = String.timeSensativeGreeting()  + "\nGifton"
-        greeting.textColor = Styles.Colors.darkGray
+        greeting.textColor = Colors.secondaryText
         greeting.sizeToFit()
         greeting.top = station.bottom.addPadding(.small)
         greeting.left = left.addPadding(.xLarge)

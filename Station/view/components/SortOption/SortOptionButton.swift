@@ -35,6 +35,15 @@ class SortOptionButton: UIButton {
         setTitleColor(Styles.Colors.lightGray, for: .normal)
     }
     
+    public func animate() {
+        UIView.animate(withDuration: 0.15, animations: {
+            self.backgroundColor = Styles.Colors.darkBlue
+        }) { (_) in
+            self.selected()
+        }
+    
+    }
+    
     private func setButton() {
         
         backgroundColor = Styles.Colors.lightGray

@@ -4,6 +4,7 @@ import UIKit
 protocol SortOptionsListDelegate: Controller {
     func didSelect(option: SortOption)
     var selectedOption: SortOption { get }
+    func setSort(option: SortOption)
 }
 
 
@@ -27,9 +28,9 @@ final class SortOptionListView: UIView {
 private extension SortOptionListView {
     
     func setView() {
-        print(delegate.selectedOption)
+        
         let title = UILabel.mediumTitle("Sort", .large)
-        let icon = Icons.iv(withImageType: .close, size: .medium)
+        let icon = Icons.iv(withImageType: .sort, size: .medium)
         
         addSubview(title)
         addSubview(icon)
@@ -44,7 +45,12 @@ private extension SortOptionListView {
         for option in SortOption.all {
             
             let btn = SortOptionButton(point: .init(Styles.Padding.xLarge.rawValue, startY), option: option)
-            btn.addTapGestureRecognizer { self.delegate.didSelect(option: option) }
+            btn.addTapGestureRecognizer {
+                self.didSelect(option: option) { (animate) in
+                    if animate { btn.animate() }
+                }
+                
+            }
             
             if option == delegate.selectedOption {
                 btn.selected()
@@ -55,6 +61,19 @@ private extension SortOptionListView {
             
         }
         
+        
+        
+    }
+    
+    func didSelect(option:  SortOption, completion: (Bool) -> ()) {
+        if !(delegate.selectedOption == option) {
+            delegate.didSelect(option: option)
+            completion(false)
+        } else {
+            
+            completion(true)
+            
+        }
         
         
     }

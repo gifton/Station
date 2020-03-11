@@ -46,13 +46,13 @@ private extension NewThoughtCard {
     
     func setView() {
         
-        setShadow(color: .black, opacity: 0.115, offset: .init(0, -1), radius: 6.0, viewCornerRadius: 8)
-        layer.cornerRadius = 10
-        backgroundColor = Styles.Colors.white
+        setShadow(color: .black, opacity: 0.115, offset: .init(0, -1), radius: 6.0, viewCornerRadius: 20)
+        layer.cornerRadius = 20
+        backgroundColor = Colors.hardBG
         
         addSubview(topView)
         topView.frame = CGRect(origin: .init(5), size: CGSize(width - 10, 54))
-        topView.layer.cornerRadius = 8
+        topView.layer.cornerRadius = 20
         
         topView.addSubview(title)
         topView.addSubview(icon)
@@ -87,6 +87,7 @@ private extension NewThoughtCard {
         thoughtTextView.frame = CGRect(x: 0, y: topView.bottom, width: width, height: height - topView.height)
         thoughtTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         thoughtTextView.backgroundColor = .clear
+        thoughtTextView.textColor = Colors.primaryText
         thoughtTextView.autocapitalizationType = .sentences
         thoughtTextView.isEditable = true
         thoughtTextView.keyboardDismissMode = .onDrag

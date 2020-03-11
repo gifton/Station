@@ -8,6 +8,10 @@ protocol ThoughtTableHeadDelegate {
     var numberOfThoughts: Int { get }
 }
 
+protocol ThoughtTableHeadController: UITableViewHeaderFooterView {
+    func updateSortOption(_ option: SortOption)
+}
+
 class ThoughtTableHead: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -17,7 +21,6 @@ class ThoughtTableHead: UITableViewHeaderFooterView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     public var  searchBar: UISearchBar!
     private var titleLable: UILabel!
     private var countView: UILabel!
@@ -36,9 +39,11 @@ class ThoughtTableHead: UITableViewHeaderFooterView {
 private extension ThoughtTableHead {
     func setView() {
         // titleLabel
-        titleLable = UILabel.labelWithImage("Thoughts", image: Icons.iconForType(.thought), location: .left)
+        let img = Icons.iconForType(.thought)
+        
+        titleLable = UILabel.labelWithImage("Thoughts", image: img?.tintImage(toColor: Colors.primaryText), location: .left)
         titleLable.sizeToFit()
-        titleLable.frame.origin = .init(Styles.Padding.xLarge.rawValue, Styles.Padding.xXLarge.rawValue)
+        titleLable.frame.origin = .init(30, Styles.Padding.xXLarge.rawValue)
         addSubview(titleLable)
         // searchBar
         searchBar = UISearchBar(frame: CGRect(origin: .init(Styles.Padding.large.rawValue, titleLable.bottom + Styles.Padding.medium.rawValue), size: .init(250, 45)))
@@ -57,9 +62,9 @@ private extension ThoughtTableHead {
         infoButton.center.y = searchBar.center.y
         addSubview(infoButton)
         // sortButton
-        sortButton = UILabel.body("Sort by: date", .large)
-        sortButton.textColor = Styles.Colors.primaryBlue
-        sortButton.addBorders(edges: .bottom, color: Styles.Colors.primaryBlue)
+        sortButton = UILabel.body("Sort by: \(SortOption.dateDescending.rawValue)", .large)
+        sortButton.textColor = Colors.primaryBlue
+        sortButton.addBorders(edges: .bottom, color: Colors.primaryBlue)
         sortButton.sizeToFit()
         addSubview(sortButton)
         sortButton.left = left.addPadding(.xLarge)
@@ -89,4 +94,13 @@ extension ThoughtTableHead: UISearchBarDelegate {
         print(searchText)
         delegate?.filter(withPredicate: searchText)
     }
+}
+
+extension ThoughtTableHead: ThoughtTableHeadController {
+    func updateSortOption(_ option: SortOption) {
+        sortButton.text = "sort by: \(option.rawValue)"
+        sortButton.sizeToFit()
+    }
+    
+    
 }

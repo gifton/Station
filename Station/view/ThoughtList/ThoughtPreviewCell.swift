@@ -35,7 +35,9 @@ class ThoughtPreviewCell: UITableViewCell {
 
 private extension ThoughtPreviewCell {
     func setView() {
-        backgroundColor = Styles.Colors.lightGray
+        backgroundColor = Colors.softBG.withAlphaComponent(0.4)
+        layer.borderWidth = 2
+        layer.borderColor = Styles.Colors.lightGray.cgColor
         guard let thought = thought else { return }
         
         addSubview(titleLabel)
@@ -56,7 +58,7 @@ private extension ThoughtPreviewCell {
         orbits.textDropShadow()
         
         // subthought count
-        subThoughtCount.text = "19 Sub Thoughts"
+        subThoughtCount.text = "\(thought.subThoughts.count) Sub Thoughts"
         subThoughtCount.sizeToFit()
         subThoughtCount.textColor = Styles.Colors.primaryGreen
         subThoughtCount.underline()

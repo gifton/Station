@@ -61,7 +61,7 @@ final class TabBarCoordinator: Coordinator {
 
     
     func navBar() -> UINavigationController {
-        let nav = UINavigationController()
+        let nav = SwipeNavigationController(nibName: nil, bundle: nil)
         nav.isToolbarHidden = true
         nav.isNavigationBarHidden = true
         

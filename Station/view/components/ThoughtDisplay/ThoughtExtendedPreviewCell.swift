@@ -6,7 +6,7 @@ class ThoughtExtendedPreviewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 10
-        backgroundView = .init(withColor: Styles.Colors.offWhite.withAlphaComponent(0.65))
+        backgroundView = .init(withColor: Colors.softBG)
         backgroundView?.layer.cornerRadius = 10
     }
     
@@ -25,6 +25,10 @@ class ThoughtExtendedPreviewCell: UICollectionViewCell {
     public func set(withThought thought: ThoughtPreview) {
         self.thought = thought
         setView()
+    }
+    
+    deinit {
+        orbits.text = ""
     }
 }
 
@@ -58,8 +62,8 @@ private extension ThoughtExtendedPreviewCell {
         title.top = Styles.Padding.medium.rawValue
         title.layer.cornerRadius = 10
         title.layer.masksToBounds = true
-        title.backgroundColor = Styles.Colors.white
-        title.textColor = Styles.Colors.darkGray
+        title.backgroundColor = Colors.hardBG
+        title.textColor = Colors.secondaryText
         title.padding = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 5)
         
         // date
@@ -76,4 +80,6 @@ private extension ThoughtExtendedPreviewCell {
         subThoughts.left = Styles.Padding.xLarge.rawValue
         
     }
+    
+    
 }

@@ -9,7 +9,7 @@ class ExploreView: UIScrollView {
         self.delegate = self
         backgroundColor = .blue
         contentSize = .init(width, height * 2)
-        backgroundColor = Styles.Colors.white
+        backgroundColor = Colors.hardBG
         isPagingEnabled = true
         showsVerticalScrollIndicator = false
         setTopView()

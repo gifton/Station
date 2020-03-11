@@ -42,12 +42,11 @@ private extension LongOrbitCell {
         guard let orbit = orbit else { return }
         
         // create views
-        arrow = UIImageView(image: UIImage(systemName: "heart.fill"))
+        arrow = Icons.iv(withImageType: .arrow, size: .small)
         count = UILabel.body(String(describing: 55), .large)
         icon = UILabel.body(orbit.icon, .large)
         title = UILabel.body(orbit.title, .large)
         
-        arrow.frame.size = .init(20)
         count.sizeToFit()
         icon.sizeToFit()
         title.sizeToFit()

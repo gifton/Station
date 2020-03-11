@@ -5,7 +5,7 @@ import UIKit
 class ExploreController: Controller {
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.hardBG
         view.addSubview(ExploreView(delegate: self))
     }
     

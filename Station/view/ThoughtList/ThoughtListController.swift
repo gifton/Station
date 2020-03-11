@@ -8,7 +8,7 @@ class ThoughtListController: Controller {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = Styles.Colors.offWhite
+        view.backgroundColor = Colors.softBG
         setView()
     }
     
@@ -25,15 +25,10 @@ class ThoughtListController: Controller {
     // private vars
     private var tv: UITableView!
     private var sortView: SortOptionListView?
+    private var headController: ThoughtTableHeadController?
     // cover is shown when displaying sort options, indicate to user that content is unreachable during sort
     private var cover: UIView!
-    
-    var selectedOption: SortOption = .dateDescending {
-        didSet (newVal) {
-            (dataManager as? ThoughtListDataManager)?.sort(by: newVal)
-            tv.reloadData()
-        }
-    }
+    var selectedOption: SortOption = .dateDescending
 }
 
 
@@ -47,7 +42,7 @@ private extension ThoughtListController {
         tv.dataSource = self
         tv.sectionHeaderHeight = 0
         tv.sectionFooterHeight = 5
-        tv.backgroundView = .init(withColor: .white)
+        tv.backgroundView = .init(withColor: Colors.hardBG)
         
         view.addSubview(tv)
         
@@ -69,12 +64,11 @@ extension ThoughtListController: UITableViewDelegate {
         if section == 0 {
             let head = tableView.dequeueReusableHeader(cellWithClassName: ThoughtTableHead.self)
             head.delegate = self
-            
+            headController = head
             return head
         }
         else {
             let view = UIView(frame: CGRect(origin: .init(0), size: CGSize(tableView.width, 5)))
-            view.backgroundColor = .red
             return view
         }
     }
@@ -142,6 +136,7 @@ extension ThoughtListController: ThoughtTableHeadDelegate {
 
 extension ThoughtListController: SortOptionsListDelegate  {
     
+    
     func hideSortOptions() {
         if let sv = sortView {
             UIView.animate(withDuration: 0.25) {
@@ -149,6 +144,15 @@ extension ThoughtListController: SortOptionsListDelegate  {
             }
             sortView = nil
         }
+    }
+    
+    func setSort(option: SortOption) {
+        if let head = (tv.tableHeaderView as? ThoughtTableHead) {
+            head.updateSortOption(option)
+            print("set")
+        }
+        
+        print("didnt set")
     }
     
     
@@ -175,8 +179,12 @@ extension ThoughtListController: SortOptionsListDelegate  {
     func didSelect(option: SortOption) {
         
         selectedOption = option
-        hideSortOptions()
+        (dataManager as? ThoughtListDataManager)?.sort(by: option)
+        tv.reloadData()
+        headController?.updateSortOption(option)
+        tv.reloadData()
         
+        hideSortOptions()
         cover.removeFromSuperview()
         
     }

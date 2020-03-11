@@ -72,8 +72,6 @@ private extension ThoughtDetailView {
         let thoughtMask = UIView(frame: thoughtTitle.frame)
         thoughtMask.backgroundColor = Styles.Colors.primaryBlue
         thoughtMask.layer.cornerRadius = 8
-        thoughtMask.layer.borderColor = UIColor.black.cgColor
-        thoughtMask.layer.borderWidth = 1
         thoughtMask.setShadow(color: Styles.Colors.primaryBlue, opacity: 1.0, offset: nil, radius: 5, viewCornerRadius: 8)
         addSubview(thoughtMask)
         addSubview(thoughtTitle)
