@@ -28,6 +28,34 @@ class SubThoughtPreview: DataPreview {
 //        date = subThought.createdAt
 //    }
     
+    static func fromCoreObject(_ sb: SubThought) -> SubThoughtPreview {
+        var preview: SubThoughtPreview!
+        switch sb.subThoughtType {
+        case .image:
+            if let data = sb.rawImage, let img = UIImage(data: data) {
+                preview = SubThoughtPreview(img: img, thought: sb.thought)
+            } else {
+                preview = SubThoughtPreview(img: UIImage(), thought: sb.thought)
+            }
+        case .note:
+            if let note = sb.note {
+                preview = SubThoughtPreview(text: note, thought: sb.thought)
+            } else {
+                preview = SubThoughtPreview(text: "", thought: sb.thought)
+            }
+        case .link:
+            if let link = sb.link {
+                preview = SubThoughtPreview(link: link, thought: sb.thought)
+            } else {
+                preview = SubThoughtPreview(link: "", thought: sb.thought)
+            }
+        }
+        
+        preview.date = sb.createdAt
+        preview.type = sb.subThoughtType
+        return preview
+    }
+    
     init(text: String, thought: Thought?) {
         self.note = text
         self.thought = thought

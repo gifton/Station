@@ -156,6 +156,7 @@ private extension ThoughtDetailView {
         tv.delegate = self
         tv.dataSource = self
         tv.backgroundView = .init(withColor: .white)
+        tv.register(cellWithClass: SubThoughtCell.self)
         addSubview(tv)
     }  
 }
@@ -167,11 +168,11 @@ extension ThoughtDetailView: MicroOrbitDelegate {
     }
     
     func didSelectOrbit(_ orbit: Orbit) {
-        print("showing orbit in view")
+        detailDelegate.selectedOrbit(orbit)
     }
     
     func addNewOrbit() {
-        print("showiinig new orbit view")
+        detailDelegate.setNewOrbit()
     }
     
     
@@ -183,13 +184,27 @@ extension ThoughtDetailView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundView = .init(withColor: .blue)
+        let cell = tableView.dequeueReusableCell(withClass: SubThoughtCell.self, for: indexPath)
+        cell.set(withPreview: SubThoughtPreview.fromCoreObject(detailDelegate.thought.subThoughts[indexPath.row]))
         return cell
     }
     
     
 }
 extension ThoughtDetailView: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let sb = detailDelegate.thought.subThoughts[indexPath.row]
+        switch sb.subThoughtType {
+        case .note:
+            if let note = sb.note {
+                let height = note.minimumHeightForDisplay( font: Styles.Font.body(), width: Device.width.subtractPadding(.xXLarge, multiplier: 2) )
+                
+                return height + 60
+            }
+            
+            return 100
+        case .image: return 150
+        case .link: return 90
+        }
+    }
 }

@@ -57,6 +57,14 @@ private extension ThoughtDetailController{
 }
 
 extension ThoughtDetailController: ThoughtDetailDelegate {
+    func selectedOrbit(_ orbit: Orbit) {
+        (coordinator as? ThoughtDetailCoordinator)?.showOrbit(orbit)
+    }
+    
+    func setNewOrbit() {
+        print("showing orbit from controller")
+    }
+    
     func newPhoto(completion: () -> ()) {
         if let c = (coordinator as? ThoughtDetailCoordinator) {
             c.createSubThought(ofType: .image) {

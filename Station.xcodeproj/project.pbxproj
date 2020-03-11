@@ -10,6 +10,7 @@
 		60074513240E362100D57CC7 /* ExploreViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60074512240E362100D57CC7 /* ExploreViewHeader.swift */; };
 		603BD94323F6E97700C94334 /* SubThoughtDetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603BD94223F6E97700C94334 /* SubThoughtDetailFlow.swift */; };
 		603BD94623F6ECA000C94334 /* ThoughtListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603BD94523F6ECA000C94334 /* ThoughtListCoordinator.swift */; };
+		60404AFB2418AA93004E5620 /* SubThoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60404AFA2418AA93004E5620 /* SubThoughtCell.swift */; };
 		60452DE823F538E20087C791 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60452DE723F538E20087C791 /* TabBarController.swift */; };
 		606AD3FD23F53B6B00751B77 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AD3FC23F53B6B00751B77 /* TabBarCoordinator.swift */; };
 		606AD3FF23F53D5E00751B77 /* NewThoughtFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AD3FE23F53D5E00751B77 /* NewThoughtFlow.swift */; };
@@ -116,6 +117,7 @@
 		60074512240E362100D57CC7 /* ExploreViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewHeader.swift; sourceTree = "<group>"; };
 		603BD94223F6E97700C94334 /* SubThoughtDetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThoughtDetailFlow.swift; sourceTree = "<group>"; };
 		603BD94523F6ECA000C94334 /* ThoughtListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtListCoordinator.swift; sourceTree = "<group>"; };
+		60404AFA2418AA93004E5620 /* SubThoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThoughtCell.swift; sourceTree = "<group>"; };
 		60452DE723F538E20087C791 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		606AD3FC23F53B6B00751B77 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarCoordinator.swift; path = Station/coordinator/Coordinators/TabBarCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		606AD3FE23F53D5E00751B77 /* NewThoughtFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewThoughtFlow.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				60B7B36D240450130099BC59 /* ThoughtDetailHead.swift */,
 				60B7B36F2404519B0099BC59 /* CreateSubThoughtView.swift */,
 				60B7B37124046F480099BC59 /* ThoughtDetailOrbitCell.swift */,
+				60404AFA2418AA93004E5620 /* SubThoughtCell.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				60B7B36C24044F590099BC59 /* ThoughtDetailHeadCard.swift in Sources */,
 				60B7B35F24039E260099BC59 /* NSFetchRquest.swift in Sources */,
 				60FE09E823E2D6CE003FB238 /* dataManager.swift in Sources */,
+				60404AFB2418AA93004E5620 /* SubThoughtCell.swift in Sources */,
 				60E2992C23F6F54D009B9A84 /* UIViewController.swift in Sources */,
 				60FE09CF23E2D5E1003FB238 /* ViewController.swift in Sources */,
 				60FE0A0723E348E9003FB238 /* DateFormatter.swift in Sources */,

@@ -17,16 +17,17 @@ final class Icons {
     
     // imageView allows for propper size cropping of image
     // return image view with desired icon calling on iconForType(_) for content
-    static func iv(withImageType type: IconType, size: IconSize = .large) -> UIImageView {
+    static func iv(withImageType type: IconType, size: IconSize = .large, color: UIColor = .black) -> UIImageView {
         let iv =  UIImageView(frame: .init(origin: .zero, size: sizeFor(size)))
-        iv.image = iconForType(type)
+        iv.image = iconForType(type, color: color)
         iv.contentMode = .scaleAspectFit
-        iv.tintColor = .black
+        iv.tintColor = color
+        
         return iv
     }
     
     // return image from selected icon and size
-    static func iconForType(_ type: IconType) -> UIImage? {
+    static func iconForType(_ type: IconType, color: UIColor = .black) -> UIImage? {
         
         var icon: UIImage? = UIImage()
         
@@ -50,7 +51,7 @@ final class Icons {
         case .sort: icon = UIImage(named: "sort")
         }
         
-        return icon
+        return icon?.tintImage(toColor: color)
     }
 
     // calculated icon sizes

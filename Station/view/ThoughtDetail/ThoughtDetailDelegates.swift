@@ -22,5 +22,8 @@ protocol ThoughtDetailDelegate: Controller {
     func newPhoto(completion: () -> ())
     func newLink(completion: () -> ())
     func newNote(completion: () -> ())
+    func selectedOrbit(_ orbit: Orbit)
+    func setNewOrbit()
     var thought: ThoughtPreview { get }
+    
 }
