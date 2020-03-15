@@ -84,7 +84,7 @@ private  extension InfoController {
         missionStatement.numberOfLines = 0
         missionStatement.width = view.width.subtractPadding(.xLarge, multiplier: 2)
         missionStatement.sizeToFit()
-        missionStatement.textColor = Styles.Colors.darkGray
+        missionStatement.textColor = Colors.darkGray
         missionStatement.top = missionStatementTitle.bottom.addPadding(.medium)
         missionStatement.left = view.left.addPadding(.xLarge)
         view.addSubview(missionStatement)
@@ -123,7 +123,7 @@ private  extension InfoController {
         view.addSubview(stack)
         
         thoughtTitle.sizeToFit()
-        thoughtTitle.textColor = Styles.Colors.primaryBlue
+        thoughtTitle.textColor = Colors.primaryBlue
         thoughtTitle.top = description.bottom.addPadding(.xXLarge)
         thoughtTitle.left = description.left
         view.addSubview(thoughtTitle)
@@ -136,7 +136,7 @@ private  extension InfoController {
         view.addSubview(thoughtDescription)
         
         subThoughtTitle.sizeToFit()
-        subThoughtTitle.textColor = Styles.Colors.primaryBlue
+        subThoughtTitle.textColor = Colors.primaryBlue
         subThoughtTitle.left = description.left
         subThoughtTitle.top = thoughtDescription.bottom.addPadding()
         view.addSubview(subThoughtTitle)
@@ -149,7 +149,7 @@ private  extension InfoController {
         view.addSubview(subThoughtDescription)
         
         orbitTitle.sizeToFit()
-        orbitTitle.textColor = Styles.Colors.primaryBlue
+        orbitTitle.textColor = Colors.primaryBlue
         orbitTitle.left = description.left
         orbitTitle.top = subThoughtDescription.bottom.addPadding()
         view.addSubview(orbitTitle)
@@ -165,7 +165,7 @@ private  extension InfoController {
     
     func buildOrbitInfo() {
         orbitTitle.sizeToFit()
-        orbitTitle.textColor = Styles.Colors.primaryBlue
+        orbitTitle.textColor = Colors.primaryBlue
         orbitTitle.left = missionStatement.left
         orbitTitle.top = missionStatement.bottom.addPadding()
         view.addSubview(orbitTitle)
@@ -180,7 +180,7 @@ private  extension InfoController {
     
     func buildSubThoughtInfo() {
         subThoughtTitle.sizeToFit()
-        subThoughtTitle.textColor = Styles.Colors.primaryBlue
+        subThoughtTitle.textColor = Colors.primaryBlue
         subThoughtTitle.left = missionStatement.left
         subThoughtTitle.top = missionStatement.bottom.addPadding()
         view.addSubview(subThoughtTitle)
@@ -195,7 +195,7 @@ private  extension InfoController {
     
     func buildThoughtInfo() {
         thoughtTitle.sizeToFit()
-        thoughtTitle.textColor = Styles.Colors.primaryBlue
+        thoughtTitle.textColor = Colors.primaryBlue
         thoughtTitle.top = missionStatement.bottom.addPadding(.xXLarge)
         thoughtTitle.left = missionStatement.left
         view.addSubview(thoughtTitle)

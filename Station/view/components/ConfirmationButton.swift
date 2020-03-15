@@ -20,14 +20,14 @@ class ConfirmationButton: UIButton {
         
         switch color {
         case .regular:
-            backgroundColor = Styles.Colors.primaryBlue
-            setTitleColor(Styles.Colors.offWhite, for: .normal)
+            backgroundColor = Colors.primaryBlue
+            setTitleColor(Colors.offWhite, for: .normal)
         case .light:
-            backgroundColor = Styles.Colors.lightGray
-            setTitleColor(Styles.Colors.black.withAlphaComponent(0.8), for: .normal)
+            backgroundColor = Colors.lightGray
+            setTitleColor(Colors.black.withAlphaComponent(0.8), for: .normal)
         case .monoChrome:
             backgroundColor = .black
-            setTitleColor(Styles.Colors.offWhite, for: .normal)
+            setTitleColor(Colors.offWhite, for: .normal)
         }
         
         layer.cornerRadius = 5

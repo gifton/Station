@@ -4,7 +4,7 @@ import UIKit
 class ThoughtDetailOrbitCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundView = .init(withColor: Styles.Colors.offWhite)
+        backgroundView = .init(withColor: Colors.offWhite)
     }
     
     required init?(coder: NSCoder) {

@@ -20,10 +20,10 @@ final class TabBarCoordinator: Coordinator {
         
         self.navigationController = nav
         self.tabController = TabBarController()
-        tabController.tabBar.tintColor = Styles.Colors.primaryBlue
+        tabController.tabBar.tintColor = Colors.primaryBlue
         tabController.tabBar.isTranslucent = false
         tabController.tabBar.alpha = 1.0
-
+        
     }
     
     func navigateBack() {

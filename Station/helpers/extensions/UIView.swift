@@ -192,6 +192,18 @@ extension UIView {
         }
         return nil
     }
+    
+    // apple-standard blurred background to view
+    func blurBackground(type: UIBlurEffect.Style, cornerRadius: CGFloat = 10) {
+        let blurEffect = UIBlurEffect(style: type)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.layer.cornerRadius = cornerRadius
+        blurEffectView.layer.masksToBounds = true
+//        blurEffectView.alpha = 0.65
+        self.insertSubview(blurEffectView, at: 0)
+    }
 }
 
 

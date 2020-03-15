@@ -40,9 +40,9 @@ private extension SubThoughtCell {
         if let preview = preview {
             
             switch preview.type {
-            case .link: typeIcon = Icons.iv(withImageType: .link, size: .small)
-            case .image: typeIcon = Icons.iv(withImageType: .camera, size: .small)
-            case .note: typeIcon = Icons.iv(withImageType: .note, size: .small)
+            case .link: typeIcon = Icons.iv(withImageType: .link, size: .small, color: .black)
+            case .image: typeIcon = Icons.iv(withImageType: .camera, size: .small, color: .black)
+            case .note: typeIcon = Icons.iv(withImageType: .note, size: .small, color: .black)
             }
             
             typeIcon.left = left.addPadding()

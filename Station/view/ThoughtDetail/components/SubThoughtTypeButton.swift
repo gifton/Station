@@ -2,11 +2,11 @@
 import UIKit
 
 
-class SubThoughtIcon: UIView {
+class SubThoughtTypeButton: UIView {
     init(type: SubThoughtType) {
         super.init(frame: CGRect(origin: .zero, size: .init(95)))
         
-        backgroundColor = Styles.Colors.offWhite
+        backgroundColor = Colors.offWhite
         layer.cornerRadius = 8
         layer.masksToBounds = true
         let label = UILabel.body("", .medium)

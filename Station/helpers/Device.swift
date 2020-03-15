@@ -15,6 +15,6 @@ final class Device {
     static let width  = UIScreen.main.bounds.size.width
     static let height = UIScreen.main.bounds.size.height
     static let frame  = UIScreen.main.bounds
-    static let tabBarheight = CGFloat(88)
+    static let tabBarheight = CGFloat(50)
 
 }

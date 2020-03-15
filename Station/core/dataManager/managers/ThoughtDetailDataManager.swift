@@ -28,6 +28,10 @@ class ThoughtDetailDataManager: DataManager {
     public var thoughtOrbits: [Orbit] =  []
     public var thought: ThoughtPreview!
     
+    func refresh() {
+        print("refreshing!")
+    }
+    
     public func createDemoSubThought()   {
         _ = SubThought.insertWithNote(into: moc, with: "Man I love testing", for: rawThought)
         if moc.saveOrRollback() {

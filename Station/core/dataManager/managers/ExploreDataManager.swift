@@ -28,6 +28,10 @@ class ExploreDataManager: DataManager {
         self.moc = moc
     }
     
+    func thoughtForIndex(_  index: Int) -> Thought {
+        return thoughts[index]
+    }
+    
     var subThoughtStats: BasicStatInfo {
         return BasicStatInfo(statType: .subThought, weekCount: 25, monthCount: 130)
         

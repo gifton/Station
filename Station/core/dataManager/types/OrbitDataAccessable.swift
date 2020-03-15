@@ -25,5 +25,7 @@ extension OrbitDataAccessable {
         _ = Orbit.insert(into: moc, with: icon, and: title)
         _ = moc.saveOrRollback()
         
+        refresh()
+        
     }
 }

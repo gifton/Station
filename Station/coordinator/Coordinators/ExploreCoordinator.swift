@@ -48,3 +48,20 @@ class ExploreCoordinator: Coordinator {
     }
     
 }
+
+extension ExploreCoordinator: OrbitDetailFlow {
+    func showOrbit(_ orbit: Orbit) {
+        print("showing orbit")
+    }
+}
+
+extension ExploreCoordinator: ThoughtDetailFlow {
+    func showThought(_ thought: Thought) {
+        print("showing thought in coordinator")
+        let coordinator = ThoughtDetailCoordinator(withNavigationController: navigationController)
+        coordinator.thought = thought
+        coordinator.moc = moc
+        flow.append(coordinator)
+        coordinator.start()
+    }
+}

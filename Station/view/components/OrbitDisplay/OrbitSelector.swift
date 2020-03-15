@@ -52,9 +52,13 @@ final class OrbitSelector: UIView {
     
     // call on npage reset, or new Object creation
     func needReset() {
+        refresh()
+        setAvalibility()
+    }
+    
+    func refresh() {
         if let collection = collection {
             collection.reloadData()
-            setAvalibility()
         }
     }
     

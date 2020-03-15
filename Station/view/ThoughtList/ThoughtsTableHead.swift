@@ -76,7 +76,7 @@ private extension ThoughtTableHead {
         // countView
         countView = UILabel.body(String(describing: delegate?.numberOfThoughts ?? 0), .medium)
         countView.sizeToFit()
-        countView.textColor = Styles.Colors.black
+        countView.textColor = Colors.primaryText
         countView.top = infoButton.bottom + Styles.Padding.large.rawValue// TODO: make helper func  for adding padding
         countView.center.x = infoButton.center.x
         addSubview(countView)

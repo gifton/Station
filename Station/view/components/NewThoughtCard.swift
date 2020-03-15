@@ -27,10 +27,10 @@ class NewThoughtCard: UIView {
     }
     
     var thoughtDelegate: NewThoughtCardDelegate?
-    private var topView = UIView(withColor: Styles.Colors.lightGray)
+    private var topView = UIView(withColor: Colors.lightGray)
     private var tapToStart = UILabel.body("tap to start", .large)
     private var thoughtTextView = UITextView()
-    private var icon: UIImageView = UIImageView(image: Icons.iconForType(.thought)?.tintImage(toColor: Styles.Colors.darkGray))
+    private var icon: UIImageView = UIImageView(image: Icons.iconForType(.thought)?.tintImage(toColor: Colors.darkGray))
     private var title = UILabel.mediumTitle("New Thought", .xLarge)
     
     func reset() {
@@ -57,7 +57,7 @@ private extension NewThoughtCard {
         topView.addSubview(title)
         topView.addSubview(icon)
         title.sizeToFit()
-        title.textColor = Styles.Colors.darkGray
+        title.textColor = Colors.darkGray
         title.backgroundColor = .clear
         title.left = topView.left.addPadding()
         title.center.y = topView.center.y - 5
@@ -74,7 +74,7 @@ private extension NewThoughtCard {
         
         addSubview(tapToStart)
         tapToStart.sizeToFit()
-        tapToStart.textColor = Styles.Colors.darkGray 
+        tapToStart.textColor = Colors.darkGray 
         tapToStart.center = CGPoint(width/2, 125)
         addTapGestureRecognizer(action: startThought)
         

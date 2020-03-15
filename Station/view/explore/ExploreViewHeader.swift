@@ -12,7 +12,7 @@ protocol ExploreHeadDelegate {
 
 class ExploreViewHeader: UIView {
     init() {
-        super.init(frame: CGRect(origin: .zero, size: .init(Device.width,  Device.height - (Device.tabBarheight / 2))))
+        super.init(frame: CGRect(origin: .zero, size: .init(Device.width,  Device.height - Device.tabBarheight)))
         setStaticContent()
         backgroundColor = Colors.hardBG
     }
@@ -104,7 +104,7 @@ private extension ExploreViewHeader {
         // show OrbitsView
         // directionLabel
         let dirLabel = UILabel.body("Sub Thoughts ", .medium)
-        dirLabel.textColor = Styles.Colors.black
+        dirLabel.textColor = Colors.black
         dirLabel.sizeToFit()
         let dirImage = UIImageView(image: Icons.iconForType(.arrow)!
         .scaled(toHeight: 20.0)?

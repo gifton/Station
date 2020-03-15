@@ -24,10 +24,10 @@ private extension ThoughtDetailHeadCard {
     func setView() {
         
         layer.cornerRadius = 10
-        backgroundColor = Styles.Colors.primaryGreen
+        backgroundColor = Colors.primaryGreen
         setShadow(color: backgroundColor!, opacity: 1.0, offset: .init(0), radius: 9, viewCornerRadius: 4)
         
-        let styleLine = UIView(withColor: Styles.Colors.secondaryGreen)
+        let styleLine = UIView(withColor: Colors.secondaryGreen)
         addSubview(styleLine)
         styleLine.frame.size = .init(250, 2)
         styleLine.frame.origin = .zero

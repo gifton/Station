@@ -26,7 +26,7 @@ class ThoughtDetailHead: UITableViewHeaderFooterView {
 private extension ThoughtDetailHead {
     
     func setView() {
-        backgroundView = .init(withColor: Styles.Colors.offWhite)
+        backgroundView = .init(withColor: Colors.offWhite)
         layer.cornerRadius = 10
         layer.masksToBounds = true
         
@@ -38,7 +38,7 @@ private extension ThoughtDetailHead {
         similarTHoughtsButton.sizeToFit()
         similarTHoughtsButton.top = card.bottom.addPadding()
         similarTHoughtsButton.center.x = Device.width / 2
-        similarTHoughtsButton.textColor =  Styles.Colors.accentBlue
+        similarTHoughtsButton.textColor =  Colors.accentBlue
         
     }
     

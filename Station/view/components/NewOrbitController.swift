@@ -37,7 +37,7 @@ class NewOrbitController: UIViewController {
     }
     
     private func setView() {
-        view.backgroundColor = Styles.Colors.offWhite
+        view.backgroundColor = Colors.offWhite
         
         // set title
         let titlelbl = UILabel.title("New Orbit", .large)
@@ -48,7 +48,7 @@ class NewOrbitController: UIViewController {
         
         // set title view
         view.addSubview(titleView)
-        titleView.backgroundColor = Styles.Colors.lightGray
+        titleView.backgroundColor = Colors.lightGray
         titleView.layer.cornerRadius = 13.5
         titleView.layer.masksToBounds = true
         titleView.placeholder = "Orbit name"
@@ -60,7 +60,7 @@ class NewOrbitController: UIViewController {
         
         // set icon title
         iconView.frame.size = .init(100)
-        iconView.backgroundColor = Styles.Colors.lightGray
+        iconView.backgroundColor = Colors.lightGray
         iconView.layer.cornerRadius = 13.5
         iconView.layer.masksToBounds = true
         iconView.isScrollEnabled = false

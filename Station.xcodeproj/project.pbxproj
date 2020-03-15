@@ -22,7 +22,7 @@
 		606AD40B23F6E02100751B77 /* OrbitDetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AD40A23F6E02100751B77 /* OrbitDetailFlow.swift */; };
 		607F3A6E240511A30011ED02 /* ThoughtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F3A6D240511A30011ED02 /* ThoughtDetailView.swift */; };
 		607F3A70240526360011ED02 /* MicroOrbitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F3A6F240526360011ED02 /* MicroOrbitView.swift */; };
-		607F3A7224052FB50011ED02 /* SubThoughtIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F3A7124052FB50011ED02 /* SubThoughtIcon.swift */; };
+		607F3A7224052FB50011ED02 /* SubThoughtTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F3A7124052FB50011ED02 /* SubThoughtTypeButton.swift */; };
 		607F3A742405D4750011ED02 /* NewSubThoughtController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607F3A732405D4750011ED02 /* NewSubThoughtController.swift */; };
 		6088D774240036C800090421 /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088D773240036C800090421 /* ExploreController.swift */; };
 		6088D7762400370400090421 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088D7752400370400090421 /* ExploreView.swift */; };
@@ -44,6 +44,7 @@
 		6095B12223ED6092000B9BAC /* ThoughtPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12123ED6092000B9BAC /* ThoughtPreviewCell.swift */; };
 		6095B12523ED6D0B000B9BAC /* ThoughtDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12423ED6D0B000B9BAC /* ThoughtDisplay.swift */; };
 		6095B12723ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B12623ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift */; };
+		609CF44E241ABA4A009B1A5C /* EmptyThoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609CF44D241ABA4A009B1A5C /* EmptyThoughtCell.swift */; };
 		60B0D30F2416EDAB0026EB0A /* SwipeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B0D30E2416EDAB0026EB0A /* SwipeNavigationController.swift */; };
 		60B0D3122416EF930026EB0A /* NewOrbitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B0D3112416EF930026EB0A /* NewOrbitView.swift */; };
 		60B0D31424180FDC0026EB0A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60B0D31324180FDC0026EB0A /* Colors.xcassets */; };
@@ -129,7 +130,7 @@
 		606AD40A23F6E02100751B77 /* OrbitDetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitDetailFlow.swift; sourceTree = "<group>"; };
 		607F3A6D240511A30011ED02 /* ThoughtDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDetailView.swift; sourceTree = "<group>"; };
 		607F3A6F240526360011ED02 /* MicroOrbitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroOrbitView.swift; sourceTree = "<group>"; };
-		607F3A7124052FB50011ED02 /* SubThoughtIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThoughtIcon.swift; sourceTree = "<group>"; };
+		607F3A7124052FB50011ED02 /* SubThoughtTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThoughtTypeButton.swift; sourceTree = "<group>"; };
 		607F3A732405D4750011ED02 /* NewSubThoughtController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSubThoughtController.swift; sourceTree = "<group>"; };
 		6088D773240036C800090421 /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
 		6088D7752400370400090421 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 		6095B12123ED6092000B9BAC /* ThoughtPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtPreviewCell.swift; sourceTree = "<group>"; };
 		6095B12423ED6D0B000B9BAC /* ThoughtDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtDisplay.swift; sourceTree = "<group>"; };
 		6095B12623ED6D17000B9BAC /* ThoughtExtendedPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtExtendedPreviewCell.swift; sourceTree = "<group>"; };
+		609CF44D241ABA4A009B1A5C /* EmptyThoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyThoughtCell.swift; sourceTree = "<group>"; };
 		60B0D30E2416EDAB0026EB0A /* SwipeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeNavigationController.swift; sourceTree = "<group>"; };
 		60B0D3112416EF930026EB0A /* NewOrbitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrbitView.swift; sourceTree = "<group>"; };
 		60B0D31324180FDC0026EB0A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -246,14 +248,6 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
-		607F3A752405D47F0011ED02 /* CreationControllers */ = {
-			isa = PBXGroup;
-			children = (
-				607F3A732405D4750011ED02 /* NewSubThoughtController.swift */,
-			);
-			path = CreationControllers;
-			sourceTree = "<group>";
-		};
 		6088D772240036B900090421 /* explore */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +274,7 @@
 				60452DE723F538E20087C791 /* TabBarController.swift */,
 				60E2993F23F90B0B009B9A84 /* NewOrbitController.swift */,
 				60B0D30E2416EDAB0026EB0A /* SwipeNavigationController.swift */,
+				609CF44D241ABA4A009B1A5C /* EmptyThoughtCell.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -310,10 +305,7 @@
 				60B7B362240443C60099BC59 /* ThoughtDetailController.swift */,
 				60B7B374240476D50099BC59 /* ThoughtDetailDelegates.swift */,
 				607F3A6D240511A30011ED02 /* ThoughtDetailView.swift */,
-				607F3A6F240526360011ED02 /* MicroOrbitView.swift */,
-				607F3A7124052FB50011ED02 /* SubThoughtIcon.swift */,
 				60B7B373240476B80099BC59 /* components */,
-				607F3A752405D47F0011ED02 /* CreationControllers */,
 			);
 			path = ThoughtDetail;
 			sourceTree = "<group>";
@@ -321,6 +313,9 @@
 		60B7B373240476B80099BC59 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				607F3A732405D4750011ED02 /* NewSubThoughtController.swift */,
+				607F3A7124052FB50011ED02 /* SubThoughtTypeButton.swift */,
+				607F3A6F240526360011ED02 /* MicroOrbitView.swift */,
 				60B7B36B24044F590099BC59 /* ThoughtDetailHeadCard.swift */,
 				60B7B36D240450130099BC59 /* ThoughtDetailHead.swift */,
 				60B7B36F2404519B0099BC59 /* CreateSubThoughtView.swift */,
@@ -701,9 +696,10 @@
 				60FE09F223E347BB003FB238 /* styles.swift in Sources */,
 				607F3A70240526360011ED02 /* MicroOrbitView.swift in Sources */,
 				60FE0A2D23E3C373003FB238 /* SettingsDataManager.swift in Sources */,
+				609CF44E241ABA4A009B1A5C /* EmptyThoughtCell.swift in Sources */,
 				60FE09FF23E3488A003FB238 /* UIView.swift in Sources */,
 				6095B11123EBF772000B9BAC /* OrbitSelector.swift in Sources */,
-				607F3A7224052FB50011ED02 /* SubThoughtIcon.swift in Sources */,
+				607F3A7224052FB50011ED02 /* SubThoughtTypeButton.swift in Sources */,
 				6095B11823EBF873000B9BAC /* SortOptionButton.swift in Sources */,
 				60074513240E362100D57CC7 /* ExploreViewHeader.swift in Sources */,
 				60E2993E23F735FF009B9A84 /* SubThoughtDataAccessable.swift in Sources */,

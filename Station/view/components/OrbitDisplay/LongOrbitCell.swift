@@ -24,7 +24,7 @@ final class LongOrbitCell: UITableViewCell {
         self.orbit = orbit
         
         layer.cornerRadius = 8
-        layer.borderColor = Styles.Colors.lightGray.cgColor
+        layer.borderColor = Colors.lightGray.cgColor
         layer.borderWidth = 1
         setView()
     }
@@ -43,6 +43,7 @@ private extension LongOrbitCell {
         
         // create views
         arrow = Icons.iv(withImageType: .arrow, size: .small)
+        arrow.image = arrow.image?.rotate(radians: -(.pi))
         count = UILabel.body(String(describing: 55), .large)
         icon = UILabel.body(orbit.icon, .large)
         title = UILabel.body(orbit.title, .large)
@@ -58,7 +59,7 @@ private extension LongOrbitCell {
         addSubview(rightStack)
         addSubview(leftStack)
         
-        rightStack.frame.size = .init(count.width + arrow.width + 10, max(count.height, arrow.height))
+        rightStack.frame.size = .init(count.width + arrow.width + 20, max(count.height, arrow.height))
         rightStack.center.y = height/2
         rightStack.right = right.subtractPadding()
         leftStack.frame.size = .init(title.width + 25 + 10, max(icon.height, title.height))
@@ -67,7 +68,7 @@ private extension LongOrbitCell {
         
         
         // style views
-        count.textColor = Styles.Colors.primaryBlue
-        title.textColor = Styles.Colors.secondaryGray
+        count.textColor = Colors.primaryBlue
+        title.textColor = Colors.secondaryGray
     }
 }

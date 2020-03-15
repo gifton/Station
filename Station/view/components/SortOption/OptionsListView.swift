@@ -12,8 +12,9 @@ final class SortOptionListView: UIView {
     
     init(withDelegate delegate: SortOptionsListDelegate) {
         self.delegate = delegate
-        super.init(frame: .init(origin: .zero, size: .init(Device.width, 300)))
+        super.init(frame: .init(origin: .init(Styles.Padding.xLarge.rawValue, Device.height - Device.tabBarheight - 280), size: .init(Device.width.subtractPadding(.xLarge, multiplier: 2), 260)))
         
+        layer.cornerRadius = 20
         backgroundColor = .white
         setView()
     }
@@ -36,11 +37,18 @@ private extension SortOptionListView {
         addSubview(icon)
         
         title.sizeToFit()
-        title.frame.origin = .init(Styles.Padding.large.rawValue)
-        icon.top = Styles.Padding.large.rawValue
-        icon.right = right.subtractPadding(.large)
+        title.backgroundColor = .red
+        
+        let stack = UIStackView(arrangedSubviews: [icon, title], axis: .horizontal, spacing: 5)
+        stack.frame.center.x = width / 2
+        stack.top = CGFloat(0).addPadding()
+        stack.frame.size = .init(title.width + icon.width + 5, max(title.height, icon.height))
+        
+        addSubview(stack)
+        
+        print(stack.frame)
     
-        var startY = title.bottom.addPadding(.xXLarge)
+        var startY = title.bottom.addPadding(.xLarge)
         
         for option in SortOption.all {
             

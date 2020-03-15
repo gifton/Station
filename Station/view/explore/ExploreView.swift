@@ -5,10 +5,11 @@ class ExploreView: UIScrollView {
     
     init(delegate: ExploreDelegate) {
         exploreDelegate = delegate
-        super.init(frame: CGRect(x: 0, y: 0, width: Device.width, height: Device.height))
+        super.init(frame: CGRect(x: 0, y: 0, width: Device.width, height: Device.height - Device.tabBarheight))
         self.delegate = self
         backgroundColor = .blue
-        contentSize = .init(width, height * 2)
+        contentSize = .init(width, ((Device.height - Device.tabBarheight) * 2))
+        print(contentSize, frame)
         backgroundColor = Colors.hardBG
         isPagingEnabled = true
         showsVerticalScrollIndicator = false
@@ -39,6 +40,7 @@ private extension ExploreView {
         
         bottomView = ExploreViewFooter()
         bottomView.delegate = exploreDelegate
+        bottomView.frame.origin = .init(0,  topView.bottom)
         addSubview(bottomView)
         
     }

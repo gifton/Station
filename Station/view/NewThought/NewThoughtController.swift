@@ -16,12 +16,20 @@ class NewThoughtController: Controller {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        (dataManager as? NewThoughtDataManager)?.refresh()
         (view as? NewThoughtView)?.needsReset()
     }
 }
 
 
 extension NewThoughtController: NewThoughtViewDelegate {
+    func save(withTitle title: String, andIcon icon: String) {
+        if let dm = self.dataManager as? NewThoughtDataManager {
+            dm.createOrbit(withTitle: title, andIcon: icon)
+            (view as? NewThoughtView)?.needsReset()
+        }
+    }
+    
     
     // showing new orbit
     func newOrbit() {

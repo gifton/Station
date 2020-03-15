@@ -14,7 +14,7 @@ class NewSubThoughtController: Controller {
         setView()
     }
     
-    public var  saveButton = ConfirmationButton(point: .init(Styles.Padding.xLarge.rawValue, 500), color: .regular, text: "Save", width: .full)
+    public var saveButton = ConfirmationButton(point: .init(Styles.Padding.xLarge.rawValue, 500), color: .regular, text: "Save", width: .full)
     private var thoughtTitle: String
     private var subThoughtType: SubThoughtType
     private var thoughtTextView = UITextView()
@@ -79,7 +79,7 @@ private extension NewSubThoughtController {
         linkTextView.layer.cornerRadius = 8
         linkTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width.subtractPadding(.xLarge, multiplier: 2), height: 45)
         linkTextView.textContainerInset = UIEdgeInsets(top: 15, left: 20, bottom: 20, right: 20)
-        linkTextView.backgroundColor = Styles.Colors.white
+        linkTextView.backgroundColor = Colors.white
         linkTextView.text = "Start typing..."
         linkTextView.autocapitalizationType = .sentences
         linkTextView.isEditable = true
@@ -94,9 +94,9 @@ private extension NewSubThoughtController {
         
         thoughtTextView.font =  Styles.Font.body(ofSize: .large)
         thoughtTextView.layer.cornerRadius = 10
-        thoughtTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width.subtractPadding(.xLarge, multiplier: 2), height: 200)
+        thoughtTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width.subtractPadding(.xLarge, multiplier: 2), height: saveButton.top.subtractPadding() - 150)
         thoughtTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        thoughtTextView.backgroundColor = Styles.Colors.white
+        thoughtTextView.backgroundColor = Colors.white
         thoughtTextView.text = "Start typing..."
         thoughtTextView.autocapitalizationType = .sentences
         thoughtTextView.isEditable = true

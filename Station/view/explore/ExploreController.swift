@@ -5,8 +5,10 @@ import UIKit
 class ExploreController: Controller {
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = Colors.hardBG
-        view.addSubview(ExploreView(delegate: self))
+        let exp = ExploreView(delegate: self)
+        exp.frame = CGRect(x: 0, y: 0, width: Device.width, height: Device.height - Device.tabBarheight)
+        view = exp
+        
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -41,10 +43,16 @@ extension ExploreController: ExploreDelegate {
     
     func showOrbit(atIndex index: Int) {
         print("selected index: \(index)")
+        
+        
     }
     
     func showThought(atIndex index: Int) {
-        print("selected index: \(index)")
+        
+        if let thought = dm?.thoughtForIndex(index) {
+            
+            (coordinator as? ExploreCoordinator)?.showThought(thought)
+        }
     }
     
     func showInfoButton() {

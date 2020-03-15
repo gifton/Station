@@ -22,7 +22,7 @@ class CreateSubThoughtView: UIView {
 private extension CreateSubThoughtView {
     func setView() {
         
-        backgroundColor = Styles.Colors.secondaryGray
+        backgroundColor = Colors.secondaryGray
         addSubview(titleLabel)
         titleLabel.sizeToFit()
         titleLabel.textColor = .white

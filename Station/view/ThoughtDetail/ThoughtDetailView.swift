@@ -12,7 +12,7 @@ class ThoughtDetailView: UIScrollView {
         isPagingEnabled = true
         showsVerticalScrollIndicator = false
         
-        let bottomView = UIView(withColor: Styles.Colors.offWhite)
+        let bottomView = UIView(withColor: Colors.offWhite)
         bottomView.frame = CGRect(x: 0, y: height, width: width, height: height)
         addSubview(bottomView)
         setContent()
@@ -34,9 +34,9 @@ class ThoughtDetailView: UIScrollView {
     private var thoughtDate = UILabel.body()
     private var subThoughtCountIcon = UILabel.mediumTitle()
     private var continueTheThought = UILabel.mediumTitle("Continue the thought", .large)
-    private var noteIcon = SubThoughtIcon(type: .note)
-    private var linkIcon = SubThoughtIcon(type: .link)
-    private var photoIcon = SubThoughtIcon(type: .image)
+    private var noteIcon = SubThoughtTypeButton(type: .note)
+    private var linkIcon = SubThoughtTypeButton(type: .link)
+    private var photoIcon = SubThoughtTypeButton(type: .image)
     private var subThoughtIndicator = UIView()
     // bottom page
     private var tv: UITableView!
@@ -54,33 +54,29 @@ private extension ThoughtDetailView {
     // add delegate content to objects
     func setContent() {
         
-        // iconlist
-        iconList = MicroOrbitView(withDelegate: self, point: .init(x: Styles.Padding.xLarge.rawValue, y: 60))
-        addSubview(iconList)
-        
         // thoughtitle
         thoughtTitle.padding = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
         thoughtTitle.text = detailDelegate.thought.title
-        thoughtTitle.textColor = Styles.Colors.white
+        thoughtTitle.textColor = Colors.white
         thoughtTitle.font = Styles.Font.title(ofSize: .xXLarge)
         thoughtTitle.width = width - (25 + 70)
         thoughtTitle.height = 90
         thoughtTitle.numberOfLines = 2
-        thoughtTitle.top = iconList.bottom.addPadding(.xXLarge, multiplier: 2)
+        thoughtTitle.top = safeAreaInsets.bottom.addPadding(.xXLarge, multiplier: 2)
         thoughtTitle.left = left.addPadding(.xLarge)
         
         let thoughtMask = UIView(frame: thoughtTitle.frame)
-        thoughtMask.backgroundColor = Styles.Colors.primaryBlue
+        thoughtMask.backgroundColor = Colors.primaryBlue
         thoughtMask.layer.cornerRadius = 8
-        thoughtMask.setShadow(color: Styles.Colors.primaryBlue, opacity: 1.0, offset: nil, radius: 5, viewCornerRadius: 8)
+        thoughtMask.setShadow(color: Colors.primaryBlue, opacity: 1.0, offset: nil, radius: 5, viewCornerRadius: 8)
         addSubview(thoughtMask)
         addSubview(thoughtTitle)
         
         // subThoughtCounts
         subThoughtCountWeek.text = String(describing: detailDelegate.thought.subThoughtsInTheLastWeek) + " Sub Thoughts this week"
         subThoughtAllTime.text = String(describing: detailDelegate.thought.subThoughts.count) + " Total Sub Thought"
-        subThoughtCountWeek.textColor = Styles.Colors.secondaryGray
-        subThoughtAllTime.textColor = Styles.Colors.secondaryGray
+        subThoughtCountWeek.textColor = Colors.secondaryGray
+        subThoughtAllTime.textColor = Colors.secondaryGray
         subThoughtAllTime.sizeToFit()
         subThoughtCountWeek.sizeToFit()
         let stack = UIStackView(arrangedSubviews: [subThoughtCountWeek, subThoughtAllTime], axis: .vertical, spacing: 5, alignment: .leading, distribution: .fill)
@@ -106,13 +102,18 @@ private extension ThoughtDetailView {
         iconStack.frame = CGRect(x: continueTheThought.left, y: continueTheThought.bottom.addPadding(.small), width: (noteIcon.width.addPadding(.medium)) * 3, height: 95)
         addSubview(iconStack)
         
-        subThoughtIndicator.backgroundColor = Styles.Colors.primaryBlue
+        // iconlist
+        iconList = MicroOrbitView(withDelegate: self, point: .init(x: Styles.Padding.xLarge.rawValue, y: iconStack.bottom.addPadding(.xLarge, multiplier: 2)))
+        addSubview(iconList)
+        
+        
+        subThoughtIndicator.backgroundColor = Colors.primaryBlue
         subThoughtIndicator.frame = CGRect(x: 0, y: height - 70, width: width, height: 70)
         addSubview(subThoughtIndicator)
         
         // directionLabel
         let dirLabel = UILabel.body("Sub Thoughts ", .medium)
-        dirLabel.textColor = Styles.Colors.white
+        dirLabel.textColor = Colors.white
         dirLabel.sizeToFit()
         let dirImage = UIImageView(image: Icons.iconForType(.arrow)!
         .scaled(toHeight: 20.0)?
@@ -200,9 +201,8 @@ extension ThoughtDetailView: UITableViewDelegate {
                 let height = note.minimumHeightForDisplay( font: Styles.Font.body(), width: Device.width.subtractPadding(.xXLarge, multiplier: 2) )
                 
                 return height + 60
-            }
+            }; return 100
             
-            return 100
         case .image: return 150
         case .link: return 90
         }

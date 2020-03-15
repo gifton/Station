@@ -13,7 +13,7 @@ class Controller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
-        view.backgroundColor = Styles.Colors.offWhite
+        view.backgroundColor = Colors.offWhite
     }
     
     // MARK: - Message Error

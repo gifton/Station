@@ -9,7 +9,7 @@ class OrbitCell: UICollectionViewCell {
         super.init(frame: frame)
         
 //        backgroundColor = .clear
-        layer.borderColor = Styles.Colors.lightGray.cgColor
+        layer.borderColor = Colors.lightGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 8
         layer.masksToBounds = true
@@ -40,7 +40,7 @@ class OrbitCell: UICollectionViewCell {
     // controller calls method on tap
     public func didGetSelected() {
         if backgroundColor == .clear {
-            backgroundColor = Styles.Colors.accentBlue
+            backgroundColor = Colors.accentBlue
         } else {
             backgroundColor = .clear
         }
@@ -57,7 +57,7 @@ private extension  OrbitCell {
         iconView.frame = CGRect(x: Styles.Padding.small.rawValue, y: Styles.Padding.small.rawValue, width: 40, height: 40)
         iconView.padding = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
         iconView.adjustsFontSizeToFitWidth = true
-        iconView.backgroundColor = Styles.Colors.lightGray
+        iconView.backgroundColor = Colors.lightGray
         iconView.textAlignment = .center
         iconView.layer.cornerRadius = 4
         iconView.layer.masksToBounds = true

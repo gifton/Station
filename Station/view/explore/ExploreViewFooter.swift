@@ -3,8 +3,8 @@ import UIKit
 
 class ExploreViewFooter: UIView {
     init() {
-        super.init(frame: CGRect(origin: .init(0, Device.height), size: Device.frame.size))
-        backgroundColor = Styles.Colors.offWhite
+        super.init(frame: CGRect(origin: .zero, size: .init(Device.width, Device.height - Device.tabBarheight)))
+        backgroundColor = Colors.primaryGreen
         setView()
     }
     

@@ -23,6 +23,7 @@ class ThoughtListController: Controller {
     }
     
     // private vars
+    private var isEmpty: Bool = true
     private var tv: UITableView!
     private var sortView: SortOptionListView?
     private var headController: ThoughtTableHeadController?
@@ -46,6 +47,19 @@ private extension ThoughtListController {
         
         view.addSubview(tv)
         
+        if let nums = (dataManager as? ThoughtListDataManager)?.displayableThoughts.count {
+            if nums == 0 {
+                print("is empty)")
+                setEmpty()
+            }
+        }
+        
+    }
+    
+    func setEmpty() {
+        let v = UIView(frame: tv.frame)
+        v.backgroundColor = .red
+        tv.backgroundView = v
     }
 }
 
@@ -88,12 +102,16 @@ extension ThoughtListController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
     func numberOfSections(in tableView: UITableView) -> Int {
-        let out  = (dataManager as? ThoughtListDataManager)?.displayableThoughts.count  ?? 10
+        if let out = (dataManager as? ThoughtListDataManager)?.displayableThoughts.count {
+            if out == 0 { isEmpty = true; return 0 }
+            else { return out }
+        }
         
-        return out
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withClass: ThoughtPreviewCell.self, for: indexPath)
         
         if let thought = (dataManager as? ThoughtListDataManager)?.displayableThoughts[indexPath.section] {
@@ -159,18 +177,20 @@ extension ThoughtListController: SortOptionsListDelegate  {
     func showSortOptions() {
         
         if let sv = sortView {
-            sv.frame.origin = .init(0, view.bottom)
-            view.insertSubview(sv, at: 1000)
+            self.cover = UIView()
+            self.cover.frame = self.view.bounds
+            self.cover.blurBackground(type: .extraLight, cornerRadius: 0)
+            self.view.addSubview(self.cover)
+            self.cover.addTapGestureRecognizer {
+                self.cover.removeFromSuperview()
+                self.hideSortOptions()
+            }
+            
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-                sv.frame.origin.y -= sv.height
+                self.cover.backgroundColor = UIColor.black.withAlphaComponent(0.65)
             }) { (_) in
-                self.cover = UIView(withColor: UIColor.black.withAlphaComponent(0.65))
-                self.cover.frame.size = .init(Device.width, self.view.height - sv.height)
-                self.view.addSubview(self.cover)
-                self.cover.addTapGestureRecognizer {
-                    self.cover.removeFromSuperview()
-                    self.hideSortOptions()
-                }
+                
+                self.view.addSubview(sv)
             }
         } else { sortView = SortOptionListView(withDelegate: self); showSortOptions() }
     }

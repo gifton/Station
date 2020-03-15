@@ -71,11 +71,11 @@ private extension ThoughtExtendedPreviewCell {
         dateLabel.sizeToFit()
         dateLabel.right = title.right
         dateLabel.top = title.bottom.addPadding(.medium) + 2 // center since text is smaller on right than left
-        dateLabel.textColor = Styles.Colors.secondaryGray
+        dateLabel.textColor = Colors.secondaryGray
         
         // subthought
         subThoughts.sizeToFit()
-        subThoughts.textColor = Styles.Colors.primaryBlue
+        subThoughts.textColor = Colors.primaryBlue
         subThoughts.top = title.bottom.addPadding(.medium)
         subThoughts.left = Styles.Padding.xLarge.rawValue
         

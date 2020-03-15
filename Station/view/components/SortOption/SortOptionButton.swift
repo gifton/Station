@@ -16,11 +16,11 @@ enum SortOption: String {
 class SortOptionButton: UIButton {
     init(point: CGPoint, option: SortOption) {
         self.option = option
-        super.init(frame: CGRect(origin: point, size: CGSize(Device.width.subtractPadding(.xLarge, multiplier: 2), 42)))
+        super.init(frame: CGRect(origin: point, size: CGSize(Device.width.subtractPadding(.xXLarge, multiplier: 2), 42)))
         
         setTitle(option.rawValue, for: .normal)
         
-        layer.cornerRadius = 5
+        layer.cornerRadius = 16
         layer.masksToBounds = true
         setButton()
         
@@ -31,13 +31,13 @@ class SortOptionButton: UIButton {
     
     public func selected() {
         
-        backgroundColor = Styles.Colors.primaryBlue
-        setTitleColor(Styles.Colors.lightGray, for: .normal)
+        backgroundColor = Colors.primaryBlue
+        setTitleColor(Colors.lightGray, for: .normal)
     }
     
     public func animate() {
         UIView.animate(withDuration: 0.15, animations: {
-            self.backgroundColor = Styles.Colors.darkBlue
+            self.backgroundColor = Colors.darkBlue
         }) { (_) in
             self.selected()
         }
@@ -46,8 +46,8 @@ class SortOptionButton: UIButton {
     
     private func setButton() {
         
-        backgroundColor = Styles.Colors.lightGray
-        setTitleColor(Styles.Colors.primaryBlue, for: .normal)
+        backgroundColor = Colors.lightGray
+        setTitleColor(Colors.primaryBlue, for: .normal)
             
     }
     

@@ -195,7 +195,7 @@ extension UILabel {
     static func title(_ payload: String? = nil, _ fontSize: Styles.FontSize = .xXLarge) -> UILabel {
         let lbl = UILabel(payload)
         lbl.font = Styles.Font.title(ofSize: fontSize)
-        lbl.textColor = Styles.Colors.darkGray
+        lbl.textColor = Colors.darkGray
         
         
         return lbl

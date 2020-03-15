@@ -16,6 +16,7 @@ protocol DataManagerDelegate {
 protocol DataManager: class {
     
 //    func start(completion: (() ->())? )
+    func refresh()
     var delegate: DataManagerDelegate? { get set }
     var moc: NSManagedObjectContext { get }
     init(moc: NSManagedObjectContext)

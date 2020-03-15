@@ -59,7 +59,7 @@ private extension BasicStatsBar {
         if (titleLabel != nil) {
             titleLabel?.sizeToFit()
             titleLabel?.frame.origin = .zero
-            titleLabel?.textColor = Styles.Colors.secondaryGray
+            titleLabel?.textColor = Colors.secondaryGray
             titleLabel?.left += 5
             addSubview(titleLabel!)
         }
@@ -68,7 +68,7 @@ private extension BasicStatsBar {
         let cell = UIView(frame: CGRect(x: 0, y: titleLabel?.bottom.addPadding(.small) ?? 0, width: width, height: height - (titleLabel?.height ?? 0)))
         cell.layer.cornerRadius = 18
         cell.layer.masksToBounds = true
-        cell.layer.borderColor = Styles.Colors.lightGray.cgColor
+        cell.layer.borderColor = Colors.lightGray.cgColor
         cell.layer.borderWidth = 2
         
         addSubview(cell)
@@ -78,12 +78,12 @@ private extension BasicStatsBar {
         icon.frame.size = CGSize(35, 25)
         icon.left = Styles.Padding.large.rawValue
         icon.center.y = cell.height / 2
-        icon.tintColor = Styles.Colors.primaryBlue
+        icon.tintColor = Colors.primaryBlue
         
         weekLabel.text = "\(statType) this week"
         monthLabel.text = "\(statType) this month"
-        weekLabel.textColor = Styles.Colors.darkGray
-        monthLabel.textColor = Styles.Colors.darkGray
+        weekLabel.textColor = Colors.darkGray
+        monthLabel.textColor = Colors.darkGray
         weekLabel.sizeToFit()
         monthLabel.sizeToFit()
         
@@ -98,8 +98,8 @@ private extension BasicStatsBar {
         // only our lord and savior elon musk knows why this doesnt workn in the child cell, however it works fine, so pls dont touch.
         addSubview(labelStack)
         
-        weekCountLabel.textColor = Styles.Colors.primaryBlue
-        monthCountLabel.textColor = Styles.Colors.primaryBlue
+        weekCountLabel.textColor = Colors.primaryBlue
+        monthCountLabel.textColor = Colors.primaryBlue
         weekCountLabel.text = String(describing: weekCount)
         monthCountLabel.text = String(describing: monthCount)
         weekCountLabel.sizeToFit()

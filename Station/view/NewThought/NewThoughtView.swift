@@ -24,7 +24,7 @@ class NewThoughtView: UIView {
     
     public func needsReset() {
         
-        orbitView.needReset()
+        orbitView.refresh()
         
     }
 }
@@ -113,6 +113,6 @@ extension NewThoughtView: OrbitSelectorDelegate {
 
 extension NewThoughtView: NewOrbitViewDelegate {
     func savePreview(_ preview: OrbitPreview) {
-        print("saving orbit")
+        thoughtDelegate?.save(withTitle: preview.title, andIcon: preview.icon)
     }
 }

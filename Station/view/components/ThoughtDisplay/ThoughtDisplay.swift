@@ -22,8 +22,14 @@ class ThoughtDisplay: UIView {
     
     var direction: UICollectionView.ScrollDirection = .horizontal
     var title: UILabel? = UILabel.title()
+    var isEmpty = true
     var delegate: ThoughtDisplayDelegate? {
         didSet {
+            if delegate?.thoughts.count == 0 {
+                isEmpty = true
+            } else {
+                isEmpty = false
+            }
             collection.reloadData()
         }
     }
@@ -50,6 +56,7 @@ private extension ThoughtDisplay {
         
         collection = UICollectionView(frame: CGRect(x: 0, y: title?.bottom.addPadding(.small) ?? 0, width: width, height: 155), collectionViewLayout: layout)
         collection.registerCell(ThoughtExtendedPreviewCell.self)
+        collection.registerCell(EmptyCollectionCell.self)
         collection.backgroundView = .init(withColor: Colors.hardBG)
         collection.showsVerticalScrollIndicator = false
         collection.isScrollEnabled = true
@@ -64,10 +71,16 @@ private extension ThoughtDisplay {
 extension ThoughtDisplay: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isEmpty {
+            return 1
+        }
         return delegate?.thoughts.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if isEmpty {
+            return collectionView.dequeueReusableCell(withClass: EmptyCollectionCell.self, for: indexPath)
+        }
         let cell = collectionView.dequeueReusableCell(withClass: ThoughtExtendedPreviewCell.self, for: indexPath)
         if let del = delegate {
             cell.set(withThought: del.thoughts[indexPath.row])

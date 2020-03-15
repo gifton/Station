@@ -37,7 +37,7 @@ private extension ThoughtPreviewCell {
     func setView() {
         backgroundColor = Colors.softBG.withAlphaComponent(0.4)
         layer.borderWidth = 2
-        layer.borderColor = Styles.Colors.lightGray.cgColor
+        layer.borderColor = Colors.lightGray.cgColor
         guard let thought = thought else { return }
         
         addSubview(titleLabel)
@@ -60,7 +60,7 @@ private extension ThoughtPreviewCell {
         // subthought count
         subThoughtCount.text = "\(thought.subThoughts.count) Sub Thoughts"
         subThoughtCount.sizeToFit()
-        subThoughtCount.textColor = Styles.Colors.primaryGreen
+        subThoughtCount.textColor = Colors.primaryGreen
         subThoughtCount.underline()
         subThoughtCount.left = Styles.Padding.xLarge.rawValue
         subThoughtCount.bottom = height.subtractPadding(.xLarge)
