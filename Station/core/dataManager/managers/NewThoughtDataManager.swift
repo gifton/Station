@@ -10,7 +10,7 @@ import CoreLocation
 class NewThoughtDataManager: DataManager {
 
     
-    var delegate: DataManagerDelegate?
+    weak var delegate: DataManagerDelegate?
     
     required init(moc: NSManagedObjectContext) {
         self.moc = moc
@@ -26,7 +26,7 @@ class NewThoughtDataManager: DataManager {
         
         orbits = getOrbits(batchSize: 500)
         
-        
+        print("initialized data manager")
     }
     
     private(set) var moc: NSManagedObjectContext

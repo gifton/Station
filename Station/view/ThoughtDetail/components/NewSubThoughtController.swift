@@ -19,7 +19,7 @@ class NewSubThoughtController: Controller {
     private var subThoughtType: SubThoughtType
     private var thoughtTextView = UITextView()
     private var linkTextView = UITextView()
-    private var pasteFromClipboard = ConfirmationButton(point: .zero, color: .light, text: "paste from clipoard", width: .half)
+    private var pasteFromClipboard = ConfirmationButton(point: .zero, color: .light, text: "paste from clipoard", width: .third, font: Styles.Font.body())
     private var preview: SubThoughtPreview?
     
     public var completion: (() -> (SubThoughtPreview))?
@@ -33,18 +33,23 @@ class NewSubThoughtController: Controller {
 
 
 private extension NewSubThoughtController {
+    
     func setView() {
         // type title
-        let title = UILabel.body(String(describing: subThoughtType), .medium)
+        let title = UILabel.title(String(describing: subThoughtType), .medium)
+        title.textColor = Colors.primaryBlue
         title.sizeToFit()
-        let icon = Icons.iv(withImageType: .subThought, size: .small)
-        icon.tintColor = .black
-        let stack = UIStackView(arrangedSubviews: [icon,  title], axis: .horizontal, spacing: 5, alignment: .leading, distribution: .fillProportionally)
-        stack.frame = CGRect(origin: .init(Styles.Padding.xLarge.rawValue), size: .init(title.width + 5 + icon.width, max(icon.height,title.height)))
         
-        let thoughtTitle = UILabel.title(self.thoughtTitle, .xLarge)
+        let icon = Icons.iconView(withImageType: .orbit, size: .small, color: Colors.primaryBlue)
+
+        let stack = UIStackView(arrangedSubviews: [icon,  title], axis: .horizontal, spacing: Styles.Padding.large.rawValue, alignment: .leading, distribution: .fill)
+        stack.frame = CGRect(origin: .init(Styles.Padding.xLarge.rawValue), size: .init(title.width + Styles.Padding.large.rawValue + icon.width, max(icon.height,title.height)))
+        
+        let thoughtTitle = UILabel.mediumTitle(self.thoughtTitle, .xLarge)
+        thoughtTitle.numberOfLines = 0
+        thoughtTitle.width = view.width.subtractPadding(.xLarge, multiplier: 2)
         thoughtTitle.sizeToFit()
-        thoughtTitle.left = title.left
+        thoughtTitle.left = title.left.addPadding(.xLarge)
         thoughtTitle.top = stack.bottom.addPadding()
         
         view.addSubview(stack)
@@ -77,17 +82,22 @@ private extension NewSubThoughtController {
         
         linkTextView.font = Styles.Font.body(ofSize: .large)
         linkTextView.layer.cornerRadius = 8
-        linkTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width.subtractPadding(.xLarge, multiplier: 2), height: 45)
+        linkTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width / 2, height: 45)
         linkTextView.textContainerInset = UIEdgeInsets(top: 15, left: 20, bottom: 20, right: 20)
         linkTextView.backgroundColor = Colors.white
-        linkTextView.text = "Start typing..."
+        linkTextView.text = "Add Link"
         linkTextView.autocapitalizationType = .sentences
         linkTextView.isEditable = true
         linkTextView.keyboardDismissMode = .onDrag
         linkTextView.returnKeyType = .done
         linkTextView.delegate = self
-        view.addSubview(linkTextView)
         
+        pasteFromClipboard.left = linkTextView.right.addPadding()
+        pasteFromClipboard.top = linkTextView.top
+        pasteFromClipboard.height = linkTextView.height
+        
+        view.addSubview(linkTextView)
+        view.addSubview(pasteFromClipboard)
     }
     
     func setNoteView() {

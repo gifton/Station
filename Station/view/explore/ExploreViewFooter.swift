@@ -13,7 +13,7 @@ class ExploreViewFooter: UIView {
     }
     
     var tv: UITableView!
-    var delegate: ExploreDelegate?{
+    weak var delegate: ExploreDelegate?{
         didSet{
             tv.reloadData()
         }

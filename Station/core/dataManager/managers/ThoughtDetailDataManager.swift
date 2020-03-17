@@ -6,7 +6,7 @@ import CoreData
 // in charge of creation of new SubTHought declertions related to said Thought
  
 class ThoughtDetailDataManager: DataManager {
-    var delegate: DataManagerDelegate?
+    weak var delegate: DataManagerDelegate?
     var moc: NSManagedObjectContext
     private var rawThought: Thought!
     
@@ -53,7 +53,7 @@ extension ThoughtDetailDataManager: SubThoughtDataAccessable {
         
     }
     
-    func addThoughtToOrbit(_ orbit: Orbit) {
+    func addThoughtToOrbit(_ orbits: [Orbit]) {
         print("adding orbit to thought")
     }
     

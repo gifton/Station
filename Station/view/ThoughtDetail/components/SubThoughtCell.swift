@@ -35,14 +35,14 @@ class SubThoughtCell:  UITableViewCell {
 private extension SubThoughtCell {
     
     func setLowerContent() {
-        let date = UILabel.mediumTitle()
+        let date = UILabel.mediumTitle("", .medium)
         let typeIcon: UIImageView!
         if let preview = preview {
             
             switch preview.type {
-            case .link: typeIcon = Icons.iv(withImageType: .link, size: .small, color: .black)
-            case .image: typeIcon = Icons.iv(withImageType: .camera, size: .small, color: .black)
-            case .note: typeIcon = Icons.iv(withImageType: .note, size: .small, color: .black)
+            case .link: typeIcon = Icons.iconView(withImageType: .link, size: .xSmall, color: .black)
+            case .image: typeIcon = Icons.iconView(withImageType: .camera, size: .xSmall, color: .black)
+            case .note: typeIcon = Icons.iconView(withImageType: .note, size: .xSmall, color: .black)
             }
             
             typeIcon.left = left.addPadding()
@@ -61,7 +61,6 @@ private extension SubThoughtCell {
         
         let body = UILabel.body()
         
-        
         if let preview = preview {
             
             body.text = preview.note
@@ -71,10 +70,6 @@ private extension SubThoughtCell {
             body.sizeToFit()
             addSubview(body)
         }
-        
-       
-        
-        
         
     }
     

@@ -41,7 +41,7 @@ class InfoController: Controller {
     }
     
     let titleLabel = UILabel.title("Station", .max)
-    let infoButton = Icons.iv(withImageType: .info, size: .large)
+    let infoButton = Icons.iconView(withImageType: .info, size: .large)
     let typeLabel = UILabel.mediumTitle()
     let missionStatementTitle = UILabel.mediumTitle("Mission Statement", .xLarge)
     let missionStatement = UILabel.body(InfoDescription.missionStatement.rawValue, .large)
@@ -93,9 +93,9 @@ private  extension InfoController {
     func buildGeneralInfo() {
         let stack = UIStackView(
             arrangedSubviews: [
-                Icons.iv(withImageType: .thought, size: .large),
-                Icons.iv(withImageType: .subThought, size: .large),
-                Icons.iv(withImageType: .orbit, size: .large)
+                Icons.iconView(withImageType: .thought, size: .large),
+                Icons.iconView(withImageType: .subThought, size: .large),
+                Icons.iconView(withImageType: .orbit, size: .large)
             ],
             axis: .horizontal,
             spacing: 5

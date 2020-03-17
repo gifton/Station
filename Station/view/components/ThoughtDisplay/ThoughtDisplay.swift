@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol ThoughtDisplayDelegate {
+protocol ThoughtDisplayDelegate: AnyObject {
     
     var thoughts: [ThoughtPreview] { get }
     func selectedThought( atIndex index: Int)
@@ -13,6 +13,7 @@ class ThoughtDisplay: UIView {
     init(point: CGPoint, title: Bool = true, delegate: ThoughtDisplayDelegate) {
         
         if title { self.title = UILabel.lightBody("Recent Thoughts") } else { self.title = nil}
+        self.delegate = delegate
         super.init(frame: CGRect(origin: point, size: .init(Device.width, 190)))
         setView()
         
@@ -20,12 +21,12 @@ class ThoughtDisplay: UIView {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
-    var direction: UICollectionView.ScrollDirection = .horizontal
-    var title: UILabel? = UILabel.title()
-    var isEmpty = true
-    var delegate: ThoughtDisplayDelegate? {
+    private var direction: UICollectionView.ScrollDirection = .horizontal
+    private var title: UILabel? = UILabel.title()
+    private var isEmpty = true
+    unowned var delegate: ThoughtDisplayDelegate {
         didSet {
-            if delegate?.thoughts.count == 0 {
+            if delegate.thoughts.count == 0 {
                 isEmpty = true
             } else {
                 isEmpty = false
@@ -74,7 +75,7 @@ extension ThoughtDisplay: UICollectionViewDataSource, UICollectionViewDelegate {
         if isEmpty {
             return 1
         }
-        return delegate?.thoughts.count ?? 0
+        return delegate.thoughts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -82,14 +83,12 @@ extension ThoughtDisplay: UICollectionViewDataSource, UICollectionViewDelegate {
             return collectionView.dequeueReusableCell(withClass: EmptyCollectionCell.self, for: indexPath)
         }
         let cell = collectionView.dequeueReusableCell(withClass: ThoughtExtendedPreviewCell.self, for: indexPath)
-        if let del = delegate {
-            cell.set(withThought: del.thoughts[indexPath.row])
-        }
+        cell.set(withThought: delegate.thoughts[indexPath.row])
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.selectedThought(atIndex: indexPath.row)
+        delegate.selectedThought(atIndex: indexPath.row)
     }
 }

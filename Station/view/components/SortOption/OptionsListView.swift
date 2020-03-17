@@ -23,33 +23,27 @@ final class SortOptionListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var delegate: SortOptionsListDelegate
+    unowned var delegate: SortOptionsListDelegate
 }
 
 private extension SortOptionListView {
     
     func setView() {
         
+        // set title and icon
         let title = UILabel.mediumTitle("Sort", .large)
-        let icon = Icons.iv(withImageType: .sort, size: .medium)
-        
+        let icon = Icons.iconView(withImageType: .sort, size: .medium)
+        title.sizeToFit()
         addSubview(title)
         addSubview(icon)
-        
-        title.sizeToFit()
-        title.backgroundColor = .red
-        
         let stack = UIStackView(arrangedSubviews: [icon, title], axis: .horizontal, spacing: 5)
-        stack.frame.center.x = width / 2
         stack.top = CGFloat(0).addPadding()
         stack.frame.size = .init(title.width + icon.width + 5, max(title.height, icon.height))
-        
+        stack.frame.center.x = width / 2
         addSubview(stack)
-        
-        print(stack.frame)
     
-        var startY = title.bottom.addPadding(.xLarge)
-        
+        // seet option buttons
+        var startY = stack.bottom.addPadding(.xLarge)
         for option in SortOption.all {
             
             let btn = SortOptionButton(point: .init(Styles.Padding.xLarge.rawValue, startY), option: option)

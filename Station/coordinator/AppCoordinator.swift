@@ -14,7 +14,7 @@ final class AppCoordinator: Coordinator {
     
     func start() {
         
-        var coordinator = verifyLogin()
+        let coordinator = verifyLogin()
         coordinator.parentCoordinator = self
         // no parent coordinator is set because new coordinator  will  be set as default parent
         coordinator.start()

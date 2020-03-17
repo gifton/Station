@@ -14,7 +14,7 @@ import CoreLocation
     
 class ThoughtListDataManager: DataManager {
 
-    public var delegate: DataManagerDelegate?
+   weak public var delegate: DataManagerDelegate?
     private var isSearching = false
     internal var moc: NSManagedObjectContext
     

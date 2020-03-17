@@ -35,7 +35,7 @@ class Controller: UIViewController {
 
     
     private var dataIsSet: Bool = false
-    var coordinator: Coordinator?
+    weak var coordinator: Coordinator?
     
     // deinit method
     func controllerWillDeInit() {

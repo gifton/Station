@@ -11,7 +11,7 @@ class ThoughtDetailOrbitCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var delegate: ThoughtDetailOrbitCellDelegate? {
+    weak var delegate: ThoughtDetailOrbitCellDelegate? {
         didSet {
             setView()
         }

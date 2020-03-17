@@ -12,7 +12,7 @@ class NewOrbitView: UIView {
         setView()
     }
     
-    private var delegate: NewOrbitViewDelegate
+    private unowned var delegate: NewOrbitViewDelegate
     public  var saveButton = UILabel.body("Save", .large)
     private var iconView = UITextView()
     private var titleView = UITextField()

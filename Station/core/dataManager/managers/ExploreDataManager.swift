@@ -15,7 +15,7 @@ class ExploreDataManager: DataManager {
         completion?()
     }
     
-    internal var delegate: DataManagerDelegate?
+    weak internal var delegate: DataManagerDelegate?
     private var predicate: String?
     internal var moc: NSManagedObjectContext
     private var thoughts = [Thought]()

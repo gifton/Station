@@ -13,7 +13,7 @@ class CreateSubThoughtView: UIView {
     }
     
     private let titleLabel = UILabel.body("create", .xXLarge)
-    private var delegate: CreateSubThoughtDelegate
+    unowned private var delegate: CreateSubThoughtDelegate
     private var camera: UIImageView!
     private var note: UIImageView!
     private var link: UIImageView!
@@ -36,7 +36,7 @@ private extension CreateSubThoughtView {
     func setIcons() {
         
         // camera
-        camera = Icons.iv(withImageType: .camera, size: .large)
+        camera = Icons.iconView(withImageType: .camera, size: .large)
         camera.tintColor = .white
         camera.frame.origin = .init(Device.width  / 2)
         camera.center.y = titleLabel.center.y
@@ -44,7 +44,7 @@ private extension CreateSubThoughtView {
         addSubview(camera)
         
         // link
-        link = Icons.iv(withImageType: .link, size: .medium)
+        link = Icons.iconView(withImageType: .link, size: .medium)
         link.tintColor = .white
         link.frame.origin = .init(camera.right.addPadding(.xLarge))
         link.center.y = titleLabel.center.y
@@ -52,7 +52,7 @@ private extension CreateSubThoughtView {
         addSubview(link)
         
         // note
-        note = Icons.iv(withImageType: .note, size: .medium)
+        note = Icons.iconView(withImageType: .note, size: .medium)
         note.tintColor = .white
         note.frame.origin = .init(link.right.addPadding(.xLarge))
         note.center.y = titleLabel.center.y

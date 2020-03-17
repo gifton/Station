@@ -32,13 +32,13 @@ private extension ThoughtDetailController{
     func setHeader() {
         
         header.frame.size = .init(Device.width, 80)
-        let back = Icons.iv(withImageType: .arrow, size: .large)
+        let back = Icons.iconView(withImageType: .arrow, size: .large)
         back.sizeToFit()
         back.frame.origin = .init(Styles.Padding.xLarge.rawValue)
         back.bottom = header.bottom.subtractPadding(.small)
         back.addTapGestureRecognizer(action: (coordinator as? ThoughtDetailCoordinator)?.navigateBack)
         
-        let icon = Icons.iv(withImageType: .thought, size: .xLarge)
+        let icon = Icons.iconView(withImageType: .thought, size: .xLarge)
         icon.tintColor = .black
         icon.sizeToFit()
         icon.right = header.right.subtractPadding(.xLarge)
@@ -96,6 +96,20 @@ extension ThoughtDetailController: ThoughtDetailDelegate {
             return ThoughtPreview.zero
         }
         return dm.thought
+    }
+    
+    
+}
+
+
+extension ThoughtDetailController: ThoughtDetailOrbitSelectorDelegate {
+    var orbits: [Orbit] {
+        return []
+    }
+    
+    func selectedOrbits(_ orbits: [Orbit]) {
+        
+        (dataManager as? ThoughtDetailDataManager)?.addThoughtToOrbit(orbits)
     }
     
     

@@ -14,7 +14,7 @@ class NewThoughtView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var thoughtDelegate: NewThoughtViewDelegate?
+    weak var thoughtDelegate: NewThoughtViewDelegate?
     
     private let saveButton = ConfirmationButton(point: .zero, color: .regular, text: "Save", width: .full)
     private var orbitView: OrbitSelector!
@@ -97,7 +97,10 @@ extension NewThoughtView: OrbitSelectorDelegate {
             selectedOrbits.append(orbits[index])
         } else  {
             // remove from list because orbit is being selected a second time, or "deselcted"
-            selectedOrbits.remove(at: index)
+            if selectedOrbits.count >= index {
+                selectedOrbits.remove(at: index)
+            }
+            
         }
         
     }

@@ -1,5 +1,5 @@
 
-protocol NewThoughtViewDelegate {
+protocol NewThoughtViewDelegate: AnyObject {
 
     func newOrbit()
     func save(withTitle title: String, andOrbits orbits: [Orbit])

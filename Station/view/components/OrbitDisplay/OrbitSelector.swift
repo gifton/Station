@@ -147,6 +147,7 @@ extension OrbitSelector: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withClass: OrbitCell.self, for: indexPath)
         cell.set(withOrbit: delegate.orbits[indexPath.row])
+        
         return cell
         
     }

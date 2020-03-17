@@ -4,7 +4,7 @@ import UIKit
 
 // new thought card is where users input informatino for a new thought object to be createed
 
-protocol NewThoughtCardDelegate {
+protocol NewThoughtCardDelegate: AnyObject {
     func titleUpdated()
     
 }
@@ -26,7 +26,7 @@ class NewThoughtCard: UIView {
         return thoughtTextView.text
     }
     
-    var thoughtDelegate: NewThoughtCardDelegate?
+    weak var thoughtDelegate: NewThoughtCardDelegate?
     private var topView = UIView(withColor: Colors.lightGray)
     private var tapToStart = UILabel.body("tap to start", .large)
     private var thoughtTextView = UITextView()

@@ -9,7 +9,6 @@ class ExploreView: UIScrollView {
         self.delegate = self
         backgroundColor = .blue
         contentSize = .init(width, ((Device.height - Device.tabBarheight) * 2))
-        print(contentSize, frame)
         backgroundColor = Colors.hardBG
         isPagingEnabled = true
         showsVerticalScrollIndicator = false
@@ -21,7 +20,7 @@ class ExploreView: UIScrollView {
     
     var topView: ExploreViewHeader!
 	var table: UITableView!
-    var exploreDelegate: ExploreDelegate
+    unowned var exploreDelegate: ExploreDelegate
     var bottomView: ExploreViewFooter!
     private let haptic = UINotificationFeedbackGenerator()
     

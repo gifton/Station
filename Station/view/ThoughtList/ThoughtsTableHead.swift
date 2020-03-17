@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol ThoughtTableHeadDelegate {
+protocol ThoughtTableHeadDelegate: AnyObject {
     func filter(withPredicate predicate: String)
     func showInfo()
     func showSortOptions()
@@ -27,7 +27,7 @@ class ThoughtTableHead: UITableViewHeaderFooterView {
     private var infoButton: UIImageView!
     private var sortButton: UILabel!
     
-    public var delegate: ThoughtTableHeadDelegate? {
+    weak public var delegate: ThoughtTableHeadDelegate? {
         didSet {
             setTargets()
             setCountView()
@@ -56,7 +56,7 @@ private extension ThoughtTableHead {
         searchBar.showsCancelButton = false
         addSubview(searchBar)
         // infoButton
-        infoButton = Icons.iv(withImageType: .info, size: .small)
+        infoButton = Icons.iconView(withImageType: .info, size: .small)
         
         infoButton.right = Device.width.subtractPadding(.xLarge)
         infoButton.center.y = searchBar.center.y

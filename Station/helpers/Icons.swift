@@ -17,7 +17,7 @@ final class Icons {
     
     // imageView allows for propper size cropping of image
     // return image view with desired icon calling on iconForType(_) for content
-    static func iv(withImageType type: IconType, size: IconSize = .large, color: UIColor? = nil) -> UIImageView {
+    static func iconView(withImageType type: IconType, size: IconSize = .large, color: UIColor? = nil) -> UIImageView {
         let iv =  UIImageView(frame: .init(origin: .zero, size: sizeFor(size)))
         iv.image = iconForType(type, color: color)
         iv.contentMode = .scaleAspectFit

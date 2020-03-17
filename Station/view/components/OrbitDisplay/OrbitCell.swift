@@ -41,9 +41,11 @@ class OrbitCell: UICollectionViewCell {
     public func didGetSelected() {
         if backgroundColor == .clear {
             backgroundColor = Colors.accentBlue
-        } else {
-            backgroundColor = .clear
-        }
+        } else { reset() }
+    }
+    
+    public func reset() {
+        backgroundColor = .clear
     }
     
 }

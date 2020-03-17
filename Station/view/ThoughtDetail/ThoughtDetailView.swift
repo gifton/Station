@@ -19,7 +19,7 @@ class ThoughtDetailView: UIScrollView {
         setBottomView()
     }
     
-    private var detailDelegate: ThoughtDetailDelegate
+    unowned private var detailDelegate: ThoughtDetailDelegate
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

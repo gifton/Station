@@ -10,13 +10,16 @@ enum ConfirmButtonColor {
 enum ConfirmationButtonWidth: Int {
     case full = 1
     case half = 2
+    case third = 3
 }
 
 class ConfirmationButton: UIButton {
-    init(point: CGPoint, color: ConfirmButtonColor = .light, text: String, width widthType: ConfirmationButtonWidth = .full) {
+    init(point: CGPoint, color: ConfirmButtonColor = .light, text: String, width widthType: ConfirmationButtonWidth = .full, font: UIFont = Styles.Font.title()) {
         super.init(frame: CGRect(origin: point, size: CGSize((Device.width / CGFloat(widthType.rawValue)).subtractPadding(multiplier: 2), 50)))
         
         setTitle(text, for: .normal)
+        titleLabel?.font = font
+        titleLabel?.numberOfLines = 2
         
         switch color {
         case .regular:

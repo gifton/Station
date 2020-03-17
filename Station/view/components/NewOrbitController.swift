@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol NewOrbitDelegate {
+protocol NewOrbitDelegate: AnyObject {
     func saveOrbit(completion: () -> (Bool))
 }
 
@@ -9,7 +9,7 @@ protocol NewOrbitDelegate {
 
 class NewOrbitController: UIViewController {
     
-    public var delegate: NewOrbitDelegate?
+    weak public var delegate: NewOrbitDelegate?
     
     init() {
         

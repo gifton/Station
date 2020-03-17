@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol ExploreHeadDelegate {
+protocol ExploreHeadDelegate: AnyObject {
     func showInfo()
     func showThought(atIndex index: Int)
     func scrollToBottom()
@@ -24,15 +24,15 @@ class ExploreViewHeader: UIView {
     // private vars
     private var station = UILabel.title("Station", .max)
     private var greeting = UILabel.mediumTitle()
-    private var greetingIcon = Icons.iv(withImageType: .planet, size: .max)
-    private var infoIcon = Icons.iv(withImageType: .info, size: .large)
+    private var greetingIcon = Icons.iconView(withImageType: .planet, size: .max)
+    private var infoIcon = Icons.iconView(withImageType: .info, size: .large)
     private var thoughtDisplay: ThoughtDisplay!
     private var subThoughtIconBar: BasicStatsBar!
     private var thoughtIconBar: BasicStatsBar!
     private var showOrbitsLabel = UILabel.directionLabel("Orbits", direction: .right)
     private var dirStack: UIStackView!
     
-    public var delegate: ExploreHeadDelegate? {
+    weak public var delegate: ExploreHeadDelegate? {
         didSet {
             setDisplay()
             setTargets()

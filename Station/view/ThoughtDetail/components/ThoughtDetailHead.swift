@@ -7,7 +7,7 @@ class ThoughtDetailHead: UITableViewHeaderFooterView {
         
     }
     
-    var delegate: ThoughtDetailHeadDelegate? {
+    weak var delegate: ThoughtDetailHeadDelegate? {
         didSet {
             setView()
         }

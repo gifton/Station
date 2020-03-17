@@ -158,7 +158,7 @@ extension ThoughtListController: SortOptionsListDelegate  {
     func hideSortOptions() {
         if let sv = sortView {
             UIView.animate(withDuration: 0.25) {
-                sv.frame.origin.y += sv.height
+                sv.frame.origin.y += sv.height + 50
             }
             sortView = nil
         }
@@ -177,9 +177,11 @@ extension ThoughtListController: SortOptionsListDelegate  {
     func showSortOptions() {
         
         if let sv = sortView {
-            self.cover = UIView()
+            
+            self.cover = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.systemUltraThinMaterialDark))
             self.cover.frame = self.view.bounds
-            self.cover.blurBackground(type: .extraLight, cornerRadius: 0)
+            self.cover.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
             self.view.addSubview(self.cover)
             self.cover.addTapGestureRecognizer {
                 self.cover.removeFromSuperview()
@@ -187,11 +189,10 @@ extension ThoughtListController: SortOptionsListDelegate  {
             }
             
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-                self.cover.backgroundColor = UIColor.black.withAlphaComponent(0.65)
-            }) { (_) in
-                
+//                self.cover.alpha = 0.95
                 self.view.addSubview(sv)
-            }
+                sv.top -= 50
+            }) { (_) in }
         } else { sortView = SortOptionListView(withDelegate: self); showSortOptions() }
     }
     

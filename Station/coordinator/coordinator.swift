@@ -11,7 +11,7 @@ import UIKit
 //      - DataManager
 //      - transition coordinator
 
-protocol Coordinator {
+protocol Coordinator: AnyObject {
     
     var flow: [Coordinator] { get set }
     var parentCoordinator: BaseCoordinator? { get set }

@@ -42,7 +42,7 @@ private extension LongOrbitCell {
         guard let orbit = orbit else { return }
         
         // create views
-        arrow = Icons.iv(withImageType: .arrow, size: .small)
+        arrow = Icons.iconView(withImageType: .arrow, size: .small)
         arrow.image = arrow.image?.rotate(radians: -(.pi))
         count = UILabel.body(String(describing: 55), .large)
         icon = UILabel.body(orbit.icon, .large)

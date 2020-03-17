@@ -10,7 +10,6 @@ class NewThoughtController: Controller {
         ntView.thoughtDelegate = self
         
         view = ntView
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

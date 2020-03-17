@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol MicroOrbitDelegate {
+protocol MicroOrbitDelegate: AnyObject {
     var orbits: [Orbit] { get }
     func didSelectOrbit(_ orbit: Orbit)
     func addNewOrbit()
@@ -19,7 +19,7 @@ class MicroOrbitView: UIView {
     }
     
     var cv: UICollectionView!
-    var delegate: MicroOrbitDelegate
+    unowned var delegate: MicroOrbitDelegate
 }
 
 private extension MicroOrbitView {
@@ -57,7 +57,7 @@ extension MicroOrbitView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 { delegate.addNewOrbit() }
-        delegate.didSelectOrbit(delegate.orbits[indexPath.row - 1])
+        else {  delegate.didSelectOrbit(delegate.orbits[indexPath.row - 1]) }
     }
 }
 
