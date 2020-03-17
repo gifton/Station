@@ -20,6 +20,9 @@ class ThoughtDetailHead: UITableViewHeaderFooterView {
     var card: ThoughtDetailHeadCard!
     var similarTHoughtsButton = UILabel.body("See similar Thoughts", .medium)
     
+    deinit {
+        delegate = nil
+    }
 }
 
 

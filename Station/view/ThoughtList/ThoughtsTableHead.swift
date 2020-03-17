@@ -33,6 +33,10 @@ class ThoughtTableHead: UITableViewHeaderFooterView {
             setCountView()
         }
     }
+    
+    deinit {
+        delegate = nil
+    }
 }
 
 

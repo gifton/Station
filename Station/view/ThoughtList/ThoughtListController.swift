@@ -189,7 +189,7 @@ extension ThoughtListController: SortOptionsListDelegate  {
             }
             
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-//                self.cover.alpha = 0.95
+                self.cover.alpha = 0.95
                 self.view.addSubview(sv)
                 sv.top -= 50
             }) { (_) in }

@@ -7,7 +7,7 @@ import UIKit
 //      newButton type (circular, inline)
 //      title label (insert label)
 
-protocol OrbitSelectorDelegate {
+protocol OrbitSelectorDelegate: AnyObject {
     
     func createNewOrbit()
     var orbits: [Orbit] { get }
@@ -68,7 +68,7 @@ final class OrbitSelector: UIView {
     private var title: UILabel? = UILabel.body()
     private var collection: UICollectionView?
     private var collectionHeight: CGFloat = 0
-    private var delegate: OrbitSelectorDelegate
+    unowned private var delegate: OrbitSelectorDelegate
     private let searchbar = UISearchBar()
     
 }

@@ -38,6 +38,10 @@ class ExploreViewHeader: UIView {
             setTargets()
         }
     }
+    
+    deinit {
+        delegate = nil
+    }
 }
 
 

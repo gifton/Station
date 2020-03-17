@@ -108,9 +108,7 @@ extension ThoughtDetailController: ThoughtDetailOrbitSelectorDelegate {
     }
     
     func selectedOrbits(_ orbits: [Orbit]) {
-        
         (dataManager as? ThoughtDetailDataManager)?.addThoughtToOrbit(orbits)
     }
-    
     
 }

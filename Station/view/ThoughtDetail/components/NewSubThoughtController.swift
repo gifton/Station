@@ -25,6 +25,9 @@ class NewSubThoughtController: Controller {
     public var completion: (() -> (SubThoughtPreview))?
     weak public var delegate: NewSubThoughtDelegate?
     
+    deinit {
+        delegate = nil
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

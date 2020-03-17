@@ -20,6 +20,10 @@ class NewOrbitController: UIViewController {
         
     }
     
+    deinit {
+        delegate = nil
+    }
+    
     public var orbitIcon: String {
         return iconView.text
     }

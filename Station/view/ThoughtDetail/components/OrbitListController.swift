@@ -5,6 +5,8 @@ protocol ThoughtDetailOrbitSelectorDelegate: AnyObject {
     var orbits: [Orbit] { get }
     func selectedOrbits(_ orbits: [Orbit])
 }
+
+
 class OrbitListController: Controller {
     init(delegate: ThoughtDetailOrbitSelectorDelegate) {
         super.init(nibName: nil, bundle: nil)
@@ -19,6 +21,10 @@ class OrbitListController: Controller {
     
     private var tv: UITableView!
     private weak var delegate: ThoughtDetailOrbitSelectorDelegate?
+    
+    deinit {
+        delegate = nil
+    }
     
     private var selectedOrbits: [Orbit] = []
 }

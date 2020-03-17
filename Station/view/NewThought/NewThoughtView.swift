@@ -27,6 +27,10 @@ class NewThoughtView: UIView {
         orbitView.refresh()
         
     }
+    
+    deinit {
+        thoughtDelegate = nil
+    }
 }
 
 

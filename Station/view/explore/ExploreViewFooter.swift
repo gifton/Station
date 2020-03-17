@@ -18,6 +18,10 @@ class ExploreViewFooter: UIView {
             tv.reloadData()
         }
     }
+    
+    deinit {
+        delegate = nil
+    }
 }
 
 

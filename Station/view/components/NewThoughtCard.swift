@@ -39,6 +39,10 @@ class NewThoughtCard: UIView {
         
         addTapToStart()
     }
+    
+    deinit {
+        thoughtDelegate = nil
+    }
 }
 
 
