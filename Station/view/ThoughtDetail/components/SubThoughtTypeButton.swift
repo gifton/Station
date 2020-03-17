@@ -2,7 +2,7 @@
 import UIKit
 
 
-class SubThoughtTypeButton: UIView {
+final class SubThoughtTypeButton: UIView {
     init(type: SubThoughtType) {
         super.init(frame: CGRect(origin: .zero, size: .init(95)))
         

@@ -7,7 +7,7 @@ import CoreLocation
 // displays all available orbits for search/filtering
 // hadles creation of new Thought && Orbit objects
  
-class NewThoughtDataManager: DataManager {
+final class NewThoughtDataManager: DataManager {
 
     
     weak var delegate: DataManagerDelegate?

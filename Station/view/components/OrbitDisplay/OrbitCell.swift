@@ -3,12 +3,11 @@ import UIKit
 // orbit cell includes title and icon
 // optional: thoughtCount && arrow
 
-class OrbitCell: UICollectionViewCell {
+final class OrbitCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        backgroundColor = .clear
         layer.borderColor = Colors.lightGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 8

@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ExploreView: UIScrollView {
+final class ExploreView: UIScrollView {
     
     init(delegate: ExploreDelegate) {
         exploreDelegate = delegate

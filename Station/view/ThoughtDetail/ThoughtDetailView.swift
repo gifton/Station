@@ -3,7 +3,7 @@ import UIKit
 
 
 
-class ThoughtDetailView: UIScrollView {
+final class ThoughtDetailView: UIScrollView {
     init(withDelegate: ThoughtDetailDelegate) {
         detailDelegate = withDelegate
         super.init(frame: CGRect(x: 0, y: 80, width: Device.width, height: Device.height - 80))

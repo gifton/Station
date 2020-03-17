@@ -13,7 +13,7 @@ enum SortOption: String {
     static var all: [SortOption] { return [.dateAscending, .dateDescending, .subThoughtAscending, .subThoughtDescending]}
 }
 
-class SortOptionButton: UIButton {
+final class SortOptionButton: UIButton {
     init(point: CGPoint, option: SortOption) {
         self.option = option
         super.init(frame: CGRect(origin: point, size: CGSize(Device.width.subtractPadding(.xXLarge, multiplier: 2), 42)))

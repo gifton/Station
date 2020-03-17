@@ -16,7 +16,7 @@ enum InfoDescription: String {
     
 }
 
-class InfoController: Controller {
+final class InfoController: Controller {
     
     init(type: InfoType) {
         infoType = type

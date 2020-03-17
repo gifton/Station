@@ -9,7 +9,7 @@ protocol NewThoughtCardDelegate: AnyObject {
     
 }
 
-class NewThoughtCard: UIView {
+final class NewThoughtCard: UIView {
     
     init(point: CGPoint) {
         super.init(frame: CGRect(origin: point, size: CGSize(width: Device.width.subtractPadding(multiplier: 2), height: 200)))

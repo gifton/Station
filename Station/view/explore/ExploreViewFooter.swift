@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ExploreViewFooter: UIView {
+final class ExploreViewFooter: UIView {
     init() {
         super.init(frame: CGRect(origin: .zero, size: .init(Device.width, Device.height - Device.tabBarheight)))
         backgroundColor = Colors.primaryGreen

@@ -1,7 +1,7 @@
 
 import UIKit
 
-class NewThoughtController: Controller {
+final class NewThoughtController: Controller {
     
     override func viewDidLoad() {
         super.viewDidLoad()

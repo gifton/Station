@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 // coordinator handles movement from explore page to child views
-class NewThoughtCoordinator: Coordinator {
+final class NewThoughtCoordinator: Coordinator {
     
     var flow: [Coordinator] = []
     var moc: NSManagedObjectContext? 

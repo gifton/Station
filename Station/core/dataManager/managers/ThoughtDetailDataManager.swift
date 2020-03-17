@@ -5,7 +5,7 @@ import CoreData
 // handles display of Single thought
 // in charge of creation of new SubTHought declertions related to said Thought
  
-class ThoughtDetailDataManager: DataManager {
+final class ThoughtDetailDataManager: DataManager {
     weak var delegate: DataManagerDelegate?
     var moc: NSManagedObjectContext
     private var rawThought: Thought!

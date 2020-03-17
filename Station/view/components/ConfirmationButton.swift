@@ -13,8 +13,8 @@ enum ConfirmationButtonWidth: Int {
     case third = 3
 }
 
-class ConfirmationButton: UIButton {
-    init(point: CGPoint, color: ConfirmButtonColor = .light, text: String, width widthType: ConfirmationButtonWidth = .full, font: UIFont = Styles.Font.title()) {
+final class ConfirmationButton: UIButton {
+    init(point: CGPoint, color: ConfirmButtonColor = .light, text: String, width widthType: ConfirmationButtonWidth = .full, font: UIFont = Styles.Font.mediumTitle(ofSize: .xXLarge)) {
         super.init(frame: CGRect(origin: point, size: CGSize((Device.width / CGFloat(widthType.rawValue)).subtractPadding(multiplier: 2), 50)))
         
         setTitle(text, for: .normal)

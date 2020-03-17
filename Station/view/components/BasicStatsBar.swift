@@ -17,7 +17,7 @@ struct BasicStatInfo {
 }
 
 
-class BasicStatsBar: UIView {
+final class BasicStatsBar: UIView {
     
     init(point: CGPoint, info: BasicStatInfo, withTitle title: Bool = false) {
         self.statType = info.statType

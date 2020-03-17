@@ -1,7 +1,7 @@
 
 import UIKit
 
-class NewThoughtView: UIView {
+final class NewThoughtView: UIView {
     
     init() {
         super.init(frame: Device.frame)

@@ -2,7 +2,7 @@
 import UIKit
 
 
-class ThoughtExtendedPreviewCell: UICollectionViewCell {
+final class ThoughtExtendedPreviewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 10

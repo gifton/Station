@@ -1,11 +1,12 @@
 
 import UIKit
+import SwiftLinkPreview
 
 protocol NewSubThoughtDelegate: ThoughtDetailCoordinator {
     func createPreview(_ preview: SubThoughtPreview)
 }
 
-class NewSubThoughtController: Controller {
+final class NewSubThoughtController: Controller {
     init(controllerForType: SubThoughtType, title: String) {
         thoughtTitle = title
         self.subThoughtType = controllerForType
@@ -14,15 +15,14 @@ class NewSubThoughtController: Controller {
         setView()
     }
     
-    public var saveButton = ConfirmationButton(point: .init(Styles.Padding.xLarge.rawValue, 500), color: .regular, text: "Save", width: .full)
+    public var saveButton = ConfirmationButton(point: .init(Styles.Padding.xLarge.rawValue, 500), color: .regular, text: "Create Sub Thought", width: .full)
     private var thoughtTitle: String
     private var subThoughtType: SubThoughtType
     private var thoughtTextView = UITextView()
     private var linkTextView = UITextView()
-    private var pasteFromClipboard = ConfirmationButton(point: .zero, color: .light, text: "paste from clipoard", width: .third, font: Styles.Font.body())
+    private var pasteFromClipboard = ConfirmationButton(point: .zero, color: .monoChrome, text: "paste from clipoard", width: .third, font: Styles.Font.body())
     private var preview: SubThoughtPreview?
     
-    public var completion: (() -> (SubThoughtPreview))?
     weak public var delegate: NewSubThoughtDelegate?
     
     deinit {
@@ -66,14 +66,17 @@ private extension NewSubThoughtController {
         
         saveButton.bottom = view.bottom.subtractPadding(.xLarge, multiplier: 4)
         saveButton.alpha = 0.3
-        
+        view.addSubview(saveButton)
         saveButton.addTapGestureRecognizer {
             self.preview = SubThoughtPreview(text: self.thoughtTextView.text, thought: nil)
-            if let preview = self.preview {
-                self.delegate?.createPreview(preview)
-            }
+            if let preview = self.preview { self.delegate?.createPreview(preview) }
         }
-        view.addSubview(saveButton)
+        
+        let styleLine = UIView(withColor: Colors.primaryText)
+        styleLine.frame = CGRect(x: Styles.Padding.xLarge.rawValue, y: thoughtTitle.bottom.addPadding(), width: view.width.subtractPadding(.xLarge, multiplier: 2), height: 2)
+        styleLine.layer.cornerRadius = 1
+        view.addSubview(styleLine)
+        
     }
     
     
@@ -85,8 +88,8 @@ private extension NewSubThoughtController {
         
         linkTextView.font = Styles.Font.body(ofSize: .large)
         linkTextView.layer.cornerRadius = 8
-        linkTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width / 2, height: 45)
-        linkTextView.textContainerInset = UIEdgeInsets(top: 15, left: 20, bottom: 20, right: 20)
+        linkTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width / 1.75, height: 45)
+        linkTextView.textContainerInset = UIEdgeInsets(top: 12.5, left: 20, bottom: 20, right: 20)
         linkTextView.backgroundColor = Colors.white
         linkTextView.text = "Add Link"
         linkTextView.autocapitalizationType = .sentences
@@ -109,7 +112,7 @@ private extension NewSubThoughtController {
         thoughtTextView.layer.cornerRadius = 10
         thoughtTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width.subtractPadding(.xLarge, multiplier: 2), height: saveButton.top.subtractPadding() - 150)
         thoughtTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        thoughtTextView.backgroundColor = Colors.white
+        thoughtTextView.backgroundColor = .clear
         thoughtTextView.text = "Start typing..."
         thoughtTextView.autocapitalizationType = .sentences
         thoughtTextView.isEditable = true
@@ -125,6 +128,8 @@ private extension NewSubThoughtController {
 extension NewSubThoughtController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         saveButton.alpha = 1.0
+        textView.text = ""
+        textView.textContainerInset = UIEdgeInsets(top: 12.5, left: 20, bottom: 20, right: 20)
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text != "" {
@@ -133,4 +138,13 @@ extension NewSubThoughtController: UITextViewDelegate {
             saveButton.alpha = 0.3
         }
     }
+}
+
+// link preview work
+private extension NewSubThoughtController {
+    func checkURL(_ url: String) {
+        
+    }
+    
+    
 }

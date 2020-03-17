@@ -7,7 +7,7 @@ protocol MicroOrbitDelegate: AnyObject {
     func addNewOrbit()
 }
 
-class MicroOrbitView: UIView {
+final class MicroOrbitView: UIView {
     init(withDelegate delegate: MicroOrbitDelegate, point: CGPoint) {
         self.delegate = delegate
         super.init(frame: CGRect(origin: point, size: .init(Device.width - (point.x * 2), 80)))

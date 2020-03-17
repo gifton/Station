@@ -2,7 +2,7 @@
 import UIKit
 
 
-class ExploreController: Controller {
+final class ExploreController: Controller {
     init() {
         super.init(nibName: nil, bundle: nil)
         let exp = ExploreView(delegate: self)

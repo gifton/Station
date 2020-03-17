@@ -12,7 +12,7 @@ import CoreLocation
     // keyword/predicate
     // SubThought Count 
     
-class ThoughtListDataManager: DataManager {
+final class ThoughtListDataManager: DataManager {
 
    weak public var delegate: DataManagerDelegate?
     private var isSearching = false

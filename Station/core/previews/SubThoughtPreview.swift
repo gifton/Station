@@ -2,7 +2,7 @@
 import UIKit
 
 // subthought preview is used during creation process to decouple Core data from as many objects as possible
-class SubThoughtPreview: DataPreview {
+final class SubThoughtPreview: DataPreview {
     
     var note: String? {
         didSet { type = .note }

@@ -7,7 +7,7 @@ protocol ThoughtDetailOrbitSelectorDelegate: AnyObject {
 }
 
 
-class OrbitListController: Controller {
+final class OrbitListController: Controller {
     init(delegate: ThoughtDetailOrbitSelectorDelegate) {
         super.init(nibName: nil, bundle: nil)
         self.delegate = delegate

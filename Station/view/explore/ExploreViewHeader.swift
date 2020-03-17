@@ -10,7 +10,7 @@ protocol ExploreHeadDelegate: AnyObject {
     var thoughtCount: BasicStatInfo { get }
 }
 
-class ExploreViewHeader: UIView {
+final class ExploreViewHeader: UIView {
     init() {
         super.init(frame: CGRect(origin: .zero, size: .init(Device.width,  Device.height - Device.tabBarheight)))
         setStaticContent()

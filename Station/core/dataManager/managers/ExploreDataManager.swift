@@ -6,7 +6,7 @@ import CoreLocation
 // accesses recently created thoughts, and all user-created orbits 
 // creation methods present in object
 
-class ExploreDataManager: DataManager {
+final class ExploreDataManager: DataManager {
     
     func start(completion: (() -> ())?) {
         

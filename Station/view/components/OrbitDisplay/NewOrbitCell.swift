@@ -3,7 +3,7 @@ import UIKit
 
 // new orbit cells have 2 types; Circular and inline
 // MARK: CircularOrbitCell
-class CircularNewOrbitCell: UICollectionViewCell {
+final class CircularNewOrbitCell: UICollectionViewCell {
     // simple impletation negates need for private extensions
     override init(frame: CGRect) {
         super.init(frame: frame)

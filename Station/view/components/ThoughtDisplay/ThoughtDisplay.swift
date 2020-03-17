@@ -8,7 +8,7 @@ protocol ThoughtDisplayDelegate: AnyObject {
     
 }
 
-class ThoughtDisplay: UIView {
+final class ThoughtDisplay: UIView {
     
     init(point: CGPoint, title: Bool = true, delegate: ThoughtDisplayDelegate) {
         

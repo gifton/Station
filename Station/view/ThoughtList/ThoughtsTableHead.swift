@@ -12,7 +12,7 @@ protocol ThoughtTableHeadController: UITableViewHeaderFooterView {
     func updateSortOption(_ option: SortOption)
 }
 
-class ThoughtTableHead: UITableViewHeaderFooterView {
+final class ThoughtTableHead: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setView()

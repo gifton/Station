@@ -2,7 +2,7 @@
 import UIKit
 
 
-class ThoughtDetailHeadCard: UIView {
+final class ThoughtDetailHeadCard: UIView {
     init(title: String, date: Date, point: CGPoint) {
         self.title = title
         self.date = date

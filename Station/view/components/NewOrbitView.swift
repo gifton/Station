@@ -5,7 +5,7 @@ protocol NewOrbitViewDelegate: UIView {
     func savePreview(_ preview: OrbitPreview)
 }
 
-class NewOrbitView: UIView {
+final class NewOrbitView: UIView {
     init(point: CGPoint, delegate: NewOrbitViewDelegate) {
         self.delegate = delegate
         super.init(frame: CGRect(origin: point, size: .init(Device.width.subtractPadding(.large, multiplier: 2), 55)))

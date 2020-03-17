@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SubThoughtCell:  UITableViewCell {
+final class SubThoughtCell:  UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundView = .init(withColor: Colors.softBG)

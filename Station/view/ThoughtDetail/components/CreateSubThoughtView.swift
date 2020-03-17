@@ -1,7 +1,7 @@
 
 import UIKit
 
-class CreateSubThoughtView: UIView {
+final class CreateSubThoughtView: UIView {
     init(withDelegate delegate: CreateSubThoughtDelegate, point: CGPoint) {
         self.delegate = delegate
         super.init(frame: CGRect(origin: point, size: .init(Device.width, Device.tabBarheight)))

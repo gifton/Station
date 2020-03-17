@@ -4,7 +4,7 @@ import CoreLocation
 
 // view that displaysall the thoughts available for user
 // MARK: THoguhtListController
-class ThoughtListController: Controller {
+final class ThoughtListController: Controller {
     
     init() {
         super.init(nibName: nil, bundle: nil)

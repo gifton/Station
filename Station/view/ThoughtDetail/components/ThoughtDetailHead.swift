@@ -1,7 +1,7 @@
 import  UIKit
 
 
-class ThoughtDetailHead: UITableViewHeaderFooterView {
+final class ThoughtDetailHead: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
