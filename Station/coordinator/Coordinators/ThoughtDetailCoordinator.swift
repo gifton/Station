@@ -9,11 +9,10 @@ final class ThoughtDetailCoordinator: Coordinator {
     var navigationController: UINavigationController
     var thought: Thought!
     var moc: NSManagedObjectContext?
-    private  var dataManager: DataManager?
+    private var dataManager: DataManager?
     private var vc: Controller!
+    
     func start() {
-        
-        
         if let moc = moc, let thought = thought {
             
             dataManager = ThoughtDetailDataManager(moc: moc, thought: thought)
@@ -35,10 +34,14 @@ final class ThoughtDetailCoordinator: Coordinator {
 }
 
 extension ThoughtDetailCoordinator: OrbitDetailFlow {
-    func showOrbit(_ orbit: Orbit) {
-        print("showing orbit")
-    }
     
+    func showOrbit(_ orbit: Orbit) {
+        let coordinator = OrbitDetailCoordinator(withNavigationController: navigationController)
+        coordinator.moc = moc
+        coordinator.orbit = orbit
+        flow.append(coordinator)
+        coordinator.start()
+    }
     
 }
 

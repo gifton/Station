@@ -58,5 +58,10 @@
 	<string>Station lets you save photos directly in the application</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>You can optionally keep track of your location for thoughts and Sub Thoughts</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

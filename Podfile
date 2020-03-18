@@ -7,5 +7,6 @@ target 'Station' do
 
   # Pods for Station
   pod 'SwiftLinkPreview', '~> 3.1.0'
+  pod 'Kingfisher', '~> 5.0'
   pod 'IQKeyboardManagerSwift'
 end

@@ -43,24 +43,3 @@ final class NewThoughtCoordinator: Coordinator {
     
     
 }
-
-// MARK: new OrbitFlow conformance
-extension NewThoughtCoordinator: NewOrbitFlow {
-    func newOrbit(_ completion: @escaping (String, String) -> ()) {
-        
-        let orbitController = NewOrbitController()
-        orbitController.preferredContentSize = .init(Device.width, 500)
-        navigationController.showDetailViewController(orbitController, sender: nil)
-        
-        orbitController.saveButton.addTapGestureRecognizer {
-            
-            if let title = orbitController.orbitTitle {
-                completion(title, orbitController.orbitIcon)
-                
-                self.navigationController.popViewController(animated: true)
-            }
-            
-        }
-        
-    }
-}

@@ -1,11 +1,12 @@
 
 import CoreLocation
-import CoreData
+
 
 protocol OrbitDataAccessable: DataManager { }
 
 extension OrbitDataAccessable {
-    internal func getOrbits(batchSize: Int) -> [Orbit] {
+    
+    internal func getAllOrbits(batchSize: Int) -> [Orbit] {
         let request = Orbit.sortedFetchRequest
         request.fetchBatchSize = batchSize
         request.fetchLimit = batchSize

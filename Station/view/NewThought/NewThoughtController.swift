@@ -29,30 +29,7 @@ extension NewThoughtController: NewThoughtViewDelegate {
         }
     }
     
-    
-    // showing new orbit
-    func newOrbit() {
-        
-        // confirm coordinator is available casted properly
-        if let coordinator = (coordinator as? NewThoughtCoordinator) {
-            
-            // call show orbit
-            coordinator.newOrbit({ (title, icon) in
-                print("orbit with title: \(title), and icon: \(icon) set in controller")
-                
-                // completion returns orbit title and icon
-                // cast datamanger as proper type
-                if let dm = self.dataManager as? NewThoughtDataManager {
-                    
-                    dm.createOrbit(withTitle: title, andIcon: icon)
-                    (self.view as? NewThoughtView)?.needsReset()
-                    
-                }
-                
-            })
-        }
-        
-    }
+
     
     func save(withTitle title: String, andOrbits orbits: [Orbit]) {
         if let dm = self.dataManager as? NewThoughtDataManager {

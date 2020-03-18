@@ -109,10 +109,6 @@ extension NewThoughtView: OrbitSelectorDelegate {
         
     }
     
-    func createNewOrbit() {
-        thoughtDelegate?.newOrbit()
-        
-    }
     var orbits: [Orbit] {
         return thoughtDelegate?.orbits ?? []
     }

@@ -11,7 +11,7 @@ final class ExploreDataManager: DataManager {
     func start(completion: (() -> ())?) {
         
         thoughts = getThoughts(batchSize: 10)
-        orbits = getOrbits(batchSize: 500)
+        orbits = getAllOrbits(batchSize: 500)
         completion?()
     }
     
@@ -46,7 +46,7 @@ final class ExploreDataManager: DataManager {
         thoughts = getThoughts(batchSize: 10)
         
         orbits = []
-        orbits = getOrbits(batchSize: 500)
+        orbits = getAllOrbits(batchSize: 500)
     }
 }
 

@@ -1,6 +1,8 @@
 
 import UIKit
 import SwiftLinkPreview
+import Kingfisher
+import AVFoundation
 
 protocol NewSubThoughtDelegate: ThoughtDetailCoordinator {
     func createPreview(_ preview: SubThoughtPreview)
@@ -15,14 +17,48 @@ final class NewSubThoughtController: Controller {
         setView()
     }
     
-    public var saveButton = ConfirmationButton(point: .init(Styles.Padding.xLarge.rawValue, 500), color: .regular, text: "Create Sub Thought", width: .full)
+    public var saveButton = ConfirmationButton(
+        point: .init(Styles.Padding.xLarge.rawValue, 500),
+        color: .regular,
+        text: "Create Sub Thought",
+        width: .full
+    )
     private var thoughtTitle: String
     private var subThoughtType: SubThoughtType
     private var thoughtTextView = UITextView()
-    private var linkTextView = UITextView()
-    private var pasteFromClipboard = ConfirmationButton(point: .zero, color: .monoChrome, text: "paste from clipoard", width: .third, font: Styles.Font.body())
+    private var linkTextView = UITextField()
+    private var pasteFromClipboard = ConfirmationButton(
+        point: .zero,
+        color: .monoChrome,
+        text: "paste from clipoard",
+        width: .third,
+        font: Styles.Font.body()
+    )
     private var preview: SubThoughtPreview?
     
+    /// link content
+    private var linkPreview: LinkPreview! {
+        didSet {
+            setPreview()
+            preview = SubThoughtPreview(link: linkPreview.link, thought: nil)
+        }
+    }
+    /// image content
+    // MARK: Private vars
+    var captureSession: AVCaptureSession!
+    var stillImageOutput: AVCapturePhotoOutput!
+    var interactionLabel = UILabel()
+    var previewLayer: AVCaptureVideoPreviewLayer!
+    
+    private var errorLabel = UILabel.body("please  enter a  vlid link", .xLarge)
+    private lazy var linkIcon = UIImageView()
+    private lazy var linkDescription = UILabel.body()
+    private lazy var linkTitle = UILabel.title()
+    private lazy var slp = SwiftLinkPreview(session: URLSession.shared,
+        workQueue: SwiftLinkPreview.defaultWorkQueue,
+        responseQueue: DispatchQueue.main,
+        cache: DisabledCache.instance
+    )
     weak public var delegate: NewSubThoughtDelegate?
     
     deinit {
@@ -34,7 +70,6 @@ final class NewSubThoughtController: Controller {
     }
 }
 
-
 private extension NewSubThoughtController {
     
     func setView() {
@@ -45,9 +80,11 @@ private extension NewSubThoughtController {
         
         let icon = Icons.iconView(withImageType: .orbit, size: .small, color: Colors.primaryBlue)
 
+        // upper stack
         let stack = UIStackView(arrangedSubviews: [icon,  title], axis: .horizontal, spacing: Styles.Padding.large.rawValue, alignment: .leading, distribution: .fill)
         stack.frame = CGRect(origin: .init(Styles.Padding.xLarge.rawValue), size: .init(title.width + Styles.Padding.large.rawValue + icon.width, max(icon.height,title.height)))
         
+        // thought title
         let thoughtTitle = UILabel.mediumTitle(self.thoughtTitle, .xLarge)
         thoughtTitle.numberOfLines = 0
         thoughtTitle.width = view.width.subtractPadding(.xLarge, multiplier: 2)
@@ -58,12 +95,14 @@ private extension NewSubThoughtController {
         view.addSubview(stack)
         view.addSubview(thoughtTitle)
         
+        // type
         switch subThoughtType {
         case .image: setImageView()
         case .link: setLinkView()
         case .note: setNoteView()
         }
         
+        // save button
         saveButton.bottom = view.bottom.subtractPadding(.xLarge, multiplier: 4)
         saveButton.alpha = 0.3
         view.addSubview(saveButton)
@@ -72,15 +111,19 @@ private extension NewSubThoughtController {
             if let preview = self.preview { self.delegate?.createPreview(preview) }
         }
         
+        // style line
         let styleLine = UIView(withColor: Colors.primaryText)
-        styleLine.frame = CGRect(x: Styles.Padding.xLarge.rawValue, y: thoughtTitle.bottom.addPadding(), width: view.width.subtractPadding(.xLarge, multiplier: 2), height: 2)
-        styleLine.layer.cornerRadius = 1
+        styleLine.frame = CGRect(x: Styles.Padding.xLarge.rawValue, y: thoughtTitle.bottom.addPadding(), width: view.width.subtractPadding(.xLarge, multiplier: 2), height: 1.5)
+        styleLine.layer.cornerRadius = 0.75
         view.addSubview(styleLine)
         
     }
     
     
     func setImageView() {
+        
+        // TODO: implement image sourcing
+        
         
     }
     
@@ -89,14 +132,12 @@ private extension NewSubThoughtController {
         linkTextView.font = Styles.Font.body(ofSize: .large)
         linkTextView.layer.cornerRadius = 8
         linkTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width / 1.75, height: 45)
-        linkTextView.textContainerInset = UIEdgeInsets(top: 12.5, left: 20, bottom: 20, right: 20)
         linkTextView.backgroundColor = Colors.white
-        linkTextView.text = "Add Link"
+        linkTextView.text = "Insert Link"
         linkTextView.autocapitalizationType = .sentences
-        linkTextView.isEditable = true
-        linkTextView.keyboardDismissMode = .onDrag
         linkTextView.returnKeyType = .done
         linkTextView.delegate = self
+        linkTextView.keyboardType = .URL
         
         pasteFromClipboard.left = linkTextView.right.addPadding()
         pasteFromClipboard.top = linkTextView.top
@@ -121,7 +162,6 @@ private extension NewSubThoughtController {
         thoughtTextView.delegate = self
         
         view.addSubview(thoughtTextView)
-        
     }
 }
 
@@ -131,20 +171,67 @@ extension NewSubThoughtController: UITextViewDelegate {
         textView.text = ""
         textView.textContainerInset = UIEdgeInsets(top: 12.5, left: 20, bottom: 20, right: 20)
     }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text != "" {
-            saveButton.alpha = 1.0
-        } else {
-            saveButton.alpha = 0.3
-        }
+        if textView.text != "" { saveButton.alpha = 1.0 }
+        else { saveButton.alpha = 0.3 }
     }
 }
 
 // link preview work
 private extension NewSubThoughtController {
-    func checkURL(_ url: String) {
+    
+    func setPreview() {
+        print("setting preview")
+        linkIcon.frame.size = .init(150)
+        linkIcon.center.x = view.bounds.center.x
+        linkIcon.top = linkTextView.bottom.addPadding(.xLarge)
+        linkIcon.kf.setImage(with: URL(string: linkPreview.iconURL))
+        linkIcon.layer.cornerRadius  =  6
+        linkIcon.layer.masksToBounds = true
+        linkIcon.backgroundColor = .white
+        view.addSubview(linkIcon)
+        
+        linkDescription.text = linkPreview.description
+        linkDescription.numberOfLines = 0
+        linkDescription.width = view.width.subtractPadding(.xXLarge, multiplier: 2)
+        linkDescription.height = 100
+        linkDescription.top = linkIcon.bottom.addPadding()
+        linkDescription.center.x = view.center.x
+        view.addSubview(linkDescription)
         
     }
     
+    func checkURL(_ url: String?) {
+        
+        if let url = url {
+            linkIcon.removeFromSuperview()
+            linkDescription.removeFromSuperview()
+            slp.preview(url, onSuccess: { (body) in
+                self.linkPreview = .init(body) })
+            { (error) in
+                print(error)
+                self.errorLabel.sizeToFit()
+                self.errorLabel.center = self.view.bounds.center
+                self.errorLabel.textColor = .red
+                self.view.addSubview(self.errorLabel)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.errorLabel.removeFromSuperview()
+                }
+            }
+        }
+    }
     
+    
+}
+
+extension NewSubThoughtController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        checkURL(textField.text)
+        return false
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
 }

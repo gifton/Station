@@ -24,7 +24,7 @@ final class NewThoughtDataManager: DataManager {
 //        } catch let error as NSError { print(error) }
 
         
-        orbits = getOrbits(batchSize: 500)
+        orbits = getAllOrbits(batchSize: 500)
         
         print("initialized data manager")
     }
@@ -44,7 +44,7 @@ final class NewThoughtDataManager: DataManager {
     
     func refresh() {
         orbits = []
-        orbits = getOrbits(batchSize: 500)
+        orbits = getAllOrbits(batchSize: 500)
     }
     
     func filterOrbits(_ predicate: String) {

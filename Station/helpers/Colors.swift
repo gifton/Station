@@ -14,7 +14,7 @@ struct Colors {
     
     static let secondaryBlue = UIColor(hex: "84A3FB")
     static let accentBlue    = UIColor(hex: "A1BAFF")
-    static let primaryGreen     = UIColor(hex: "4DB6AC")
+    static let primaryGreen  = UIColor(hex: "4DB6AC")
     static let white         = UIColor(hex: "FFFFFE")
     static let black         = UIColor(hex: "010000")
     

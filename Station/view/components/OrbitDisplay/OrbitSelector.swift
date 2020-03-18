@@ -9,7 +9,6 @@ import UIKit
 
 protocol OrbitSelectorDelegate: AnyObject {
     
-    func createNewOrbit()
     var orbits: [Orbit] { get }
     func filterOrbits(withPredicate predicate: String)
     func didSelectOrbit(atIndex index: Int)
