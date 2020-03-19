@@ -8,7 +8,7 @@ import CoreLocation
 // individual objects will have a protocol conforming that object to the methods required for access
 
 protocol DataManagerDelegate: Controller {
-    func data(isSet success: Bool)
+    func dataIsSet()
     func requestLocation() -> CLLocation?
 }
 

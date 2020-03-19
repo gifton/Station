@@ -28,7 +28,11 @@ final class NewThoughtDataManager: DataManager {
     }
     
     private(set) var moc: NSManagedObjectContext
-    private(set) var orbits: [Orbit] = []
+    private(set) var orbits: [Orbit] = [] {
+        didSet {
+            delegate?.dataIsSet()
+        }
+    }
     private(set) var filteredOrbits: [Orbit] = []
     private var isSearching: Bool = false
     

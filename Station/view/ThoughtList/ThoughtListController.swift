@@ -12,6 +12,10 @@ final class ThoughtListController: Controller {
         setView()
     }
     
+    override func controllerNeedsRefresh() {
+        tv.reloadData()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

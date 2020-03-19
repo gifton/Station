@@ -28,7 +28,11 @@ final class ThoughtListDataManager: DataManager {
         thoughts = getThoughts(batchSize: 500)
     }
     
-    private var thoughts: [Thought] = []
+    private var thoughts: [Thought] = [] {
+        didSet {
+            delegate?.dataIsSet()
+        }
+    }
     private var filteredThoughts: [Thought] = []
     
     public var displayableThoughts: [Thought] {

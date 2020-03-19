@@ -18,6 +18,10 @@ final class NewThoughtController: Controller {
         (dataManager as? NewThoughtDataManager)?.refresh()
         (view as? NewThoughtView)?.needsReset()
     }
+    
+    override func controllerNeedsRefresh() {
+        (view as? NewThoughtView)?.needsReset()
+    }
 }
 
 

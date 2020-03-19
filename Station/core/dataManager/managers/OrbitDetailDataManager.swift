@@ -10,7 +10,11 @@ final class OrbitDetailDataManager: DataManager {
     
     var delegate: DataManagerDelegate?
     var moc: NSManagedObjectContext
-    var orbit: Orbit!
+    var orbit: Orbit!{
+        didSet {
+            delegate?.dataIsSet()
+        }
+    }
     init(moc: NSManagedObjectContext) {
         self.moc = moc
         

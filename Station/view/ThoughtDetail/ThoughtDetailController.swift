@@ -15,7 +15,9 @@ class ThoughtDetailController: Controller {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    override func controllerNeedsRefresh() {
+        tv.reloadData()
+    }
     var header = UIView(withColor: .white)
     var tv: UITableView!
     var createView: CreateSubThoughtView!

@@ -26,7 +26,11 @@ final class ThoughtDetailDataManager: DataManager {
     private var allSubThoughts: [SubThought] = []
     public var allOrbits: [Orbit] =  []
     public var thoughtOrbits: [Orbit] =  []
-    public var thought: ThoughtPreview!
+    public var thought: ThoughtPreview!{
+        didSet {
+            delegate?.dataIsSet()
+        }
+    }
     
     func refresh() {
         let req = Thought.sortedFetchRequest

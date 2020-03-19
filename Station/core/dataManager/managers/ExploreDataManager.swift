@@ -21,6 +21,7 @@ final class ExploreDataManager: DataManager {
         self.moc = moc
         thoughts = getThoughts(batchSize: 10)
         orbits = getAllOrbits(batchSize: 500)
+        delegate?.dataIsSet()
     }
     
     func thoughtForIndex(_  index: Int) -> Thought {

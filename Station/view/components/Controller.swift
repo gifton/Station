@@ -34,7 +34,6 @@ class Controller: UIViewController {
     }
 
     
-    private var dataIsSet: Bool = false
     weak var coordinator: Coordinator?
     
     // deinit method
@@ -63,15 +62,8 @@ class Controller: UIViewController {
 // MARK: COntroller DataManagerDelegate conformance
 extension Controller: DataManagerDelegate {    
     
-    func data(isSet success: Bool) {
-        
-        if success {
-            dataIsSet = true
-            controllerNeedsRefresh()
-        } else {
-            showMessage(title: "unable to prossess data", message: "refresh")   
-        }
-        
+    func dataIsSet() {
+        controllerNeedsRefresh()
     }
     
     // public facin location requestin method
