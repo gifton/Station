@@ -70,7 +70,6 @@ private extension NewThoughtView {
         if isAvailable {
             saveButton.alpha = 1.0
             saveButton.isEnabled = true
-            orbitView.setAvalibility(true)
         } else {
             saveButton.alpha = 0.3
             saveButton.isEnabled = false
@@ -95,7 +94,6 @@ extension NewThoughtView: OrbitSelectorDelegate {
         thoughtDelegate?.filterOrbits(withPredicate: predicate)
     }
     func didSelectOrbit(atIndex index: Int) {
-        
         // if orbit is not in list, append
         if !(selectedOrbits.contains(orbits[index])) {
             selectedOrbits.append(orbits[index])

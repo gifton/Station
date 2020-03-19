@@ -60,7 +60,6 @@ private extension ExploreViewHeader {
         greeting.numberOfLines = 2
         greeting.text = String.timeSensativeGreeting()  + "\nGifton"
         print(String.timeSensativeGreeting())
-        print(" cccccccccccccccc")
         greeting.textColor = Colors.primaryText
         greeting.sizeToFit()
         greeting.top = station.bottom.addPadding(.small)

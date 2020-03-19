@@ -12,7 +12,9 @@ final class OrbitCell: UICollectionViewCell {
         layer.borderWidth = 1
         layer.cornerRadius = 8
         layer.masksToBounds = true
+        backgroundColor = .clear
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

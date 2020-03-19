@@ -28,23 +28,13 @@ final class OrbitSelector: UIView {
             self.title?.text = title
         } else {
             self.title = nil
-            setAvalibility(true)
         }
         
         setTitle()
+        
         if withSearch { setSearch() }
         
         setCollection()
-    }
-    
-    func setAvalibility(_ available: Bool = false) {
-        
-        if available {
-            collection?.layer.opacity = 1.0
-        } else {
-            collection?.layer.opacity = 0.3
-        }
-        
     }
     
     var isSearching: Bool
@@ -52,7 +42,6 @@ final class OrbitSelector: UIView {
     // call on npage reset, or new Object creation
     func needReset() {
         refresh()
-        setAvalibility()
     }
     
     func refresh() {
@@ -152,7 +141,7 @@ extension OrbitSelector: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print("selected cell")
         let cell = collectionView.cellForItem(at: indexPath)
         (cell as? OrbitCell)?.didGetSelected()
         delegate.didSelectOrbit(atIndex: indexPath.row)
