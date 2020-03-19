@@ -12,6 +12,9 @@ final class ExploreView: UIScrollView {
         backgroundColor = Colors.hardBG
         isPagingEnabled = true
         showsVerticalScrollIndicator = false
+        
+        setContentOffset(.init(0, 50), animated: false)
+        
         setTopView()
         setTable()
     }
@@ -73,5 +76,5 @@ extension ExploreView: ExploreHeadDelegate {
 }
 extension ExploreView: UIScrollViewDelegate {
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) { haptic.notificationOccurred(UINotificationFeedbackGenerator.FeedbackType.success) }
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) { haptic.notificationOccurred(UINotificationFeedbackGenerator.FeedbackType.success) }
 }

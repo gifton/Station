@@ -52,14 +52,13 @@ private extension ExploreViewHeader {
         station.sizeToFit()
         station.left = left.addPadding(.xLarge)
         station.top = 60
-        station.textColor = Colors.primaryText
+        station.textColor = Colors.secondaryText
         addSubview(station)
         
         // greeting
         
         greeting.numberOfLines = 2
-        greeting.text = String.timeSensativeGreeting()  + "\nGifton"
-        print(String.timeSensativeGreeting())
+        greeting.text = String.timeSensativeGreeting() + ","  + "\nGifton"
         greeting.textColor = Colors.primaryText
         greeting.sizeToFit()
         greeting.top = station.bottom.addPadding(.small)

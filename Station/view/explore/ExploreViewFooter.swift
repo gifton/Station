@@ -3,8 +3,8 @@ import UIKit
 
 final class ExploreViewFooter: UIView {
     init() {
-        super.init(frame: CGRect(origin: .zero, size: .init(Device.width, Device.height - Device.tabBarheight)))
-        backgroundColor = Colors.primaryGreen
+        super.init(frame: CGRect(origin: .zero, size: .init(Device.width, Device.height - (Device.tabBarheight / 2))))
+        backgroundColor = Colors.softBG
         setView()
     }
     
@@ -33,7 +33,7 @@ private extension ExploreViewFooter {
         title.frame.origin = .init(Styles.Padding.xLarge.rawValue, 50)
         addSubview(title)
         
-        tv = UITableView(frame: CGRect(x: 0, y: 100, width: width, height: height - 50), style: .insetGrouped)
+        tv = UITableView(frame: CGRect(x: 0, y: 100, width: width, height: height - title.bottom), style: .insetGrouped)
         tv.register(cellWithClass: LongOrbitCell.self)
         tv.delegate = self
         tv.dataSource = self

@@ -7,7 +7,7 @@ final class ExploreController: Controller {
     override var dataManager: DataManager? {
         didSet {
             let exp = ExploreView(delegate: self)
-            exp.frame = CGRect(x: 0, y: 0, width: Device.width, height: Device.height - Device.tabBarheight)
+            exp.frame = CGRect(x: 0, y: 0, width: Device.width, height: view.height - Device.tabBarheight)
             view = exp
         }
     }

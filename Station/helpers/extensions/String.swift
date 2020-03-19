@@ -34,10 +34,10 @@ extension String {
         if hourInt >= 12 && hourInt <= 16 {
             greeting = "Good Afternoon"
         }
-        else if hourInt >= 7 && hourInt <= 12 {
+        else if hourInt <= 12 {
             greeting = "Good Morning"
         }
-        else if hourInt >= 18 && hourInt <= 24 {
+        else if hourInt >= 16 && hourInt <= 24 {
             greeting = "Good Evening"
         }
         

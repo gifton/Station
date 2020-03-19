@@ -11,7 +11,7 @@ enum InfoType: String {
 enum InfoDescription: String {
     case thought = "Thoughts are the fundamental building blocks of Station. \nYou'll use them to define a basic idea of what  you're thinking about. Tap the plus button in the tab bar below to start a new thought"
     case subThought = "Sub Thoughts help you continue your train of thought. They let you add pictures, links and pure text to a pre defined thought, and help relate continued ideas to that original thought to evolve and grow your understanding"
-    case missionStatement = "Station aims to improve the way think by creating an simple and safe way to record what your thinking. More than a notes app, Station lets you catagorize your thoughts using a system called 'Orbits' and continue your thinking with 'Sub Thoughts'"
+    case missionStatement = "Station aims to improve the way think by creating a simple and safe way to record what your thinking. More than a notes app, Station lets you catagorize your thoughts using a system called 'Orbits' and continue your thinking with 'Sub Thoughts'"
     case orbit = "Orbits help you catogarize and group thoughts.  Orbits relate thoughts with a keyword, like 'Self improvement' or 'Personal'"
     
 }
@@ -21,7 +21,10 @@ final class InfoController: Controller {
     init(type: InfoType) {
         infoType = type
         super.init(nibName: nil, bundle: nil)
-        
+        let sv = UIScrollView(frame: view.frame)
+        sv.contentSize = .init(Device.width, Device.height + 50)
+        sv.backgroundColor = Colors.offWhite
+        view = sv
         buildHeaders()
         
         switch type {
@@ -93,15 +96,15 @@ private  extension InfoController {
     func buildGeneralInfo() {
         let stack = UIStackView(
             arrangedSubviews: [
-                Icons.iconView(withImageType: .thought, size: .large),
-                Icons.iconView(withImageType: .subThought, size: .large),
-                Icons.iconView(withImageType: .orbit, size: .large)
+                Icons.iconView(withImageType: .thought, size: .small, color: .black),
+                Icons.iconView(withImageType: .note, size: .small, color: .black),
+                Icons.iconView(withImageType: .orbit, size: .small, color: .black)
             ],
             axis: .horizontal,
             spacing: 5
         )
-        stack.width = ((35 + 5) * 3)
-        stack.height = 35
+        stack.width = ((20 + 5) * 3)
+        stack.height = 20
         
         let title = UILabel.title("Building Blocks", .xLarge)
         let description = UILabel.mediumTitle("Station employes three main objects to help you efficiantly record record and continue your thoughts", .large)

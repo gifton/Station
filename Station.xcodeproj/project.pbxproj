@@ -64,6 +64,8 @@
 		60B9A3A623FDE03F00BB4CFB /* InfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A3A523FDE03F00BB4CFB /* InfoController.swift */; };
 		60B9A3A823FDE2E500BB4CFB /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A3A723FDE2E500BB4CFB /* CGFloat.swift */; };
 		60D2FFD6240E37FC0057CAD6 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2FFD5240E37FC0057CAD6 /* ManagedObject.swift */; };
+		60D6B4232423682100DD437F /* NewSubThought+Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6B4222423682100DD437F /* NewSubThought+Link.swift */; };
+		60D6B425242369A600DD437F /* NewSubThought+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6B424242369A600DD437F /* NewSubThought+Photo.swift */; };
 		60E2992C23F6F54D009B9A84 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2992B23F6F54D009B9A84 /* UIViewController.swift */; };
 		60E2992E23F6F62B009B9A84 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2992D23F6F62B009B9A84 /* AppCoordinator.swift */; };
 		60E2993023F71FBA009B9A84 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2992F23F71FBA009B9A84 /* Icons.swift */; };
@@ -175,6 +177,8 @@
 		60B9A3A523FDE03F00BB4CFB /* InfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoController.swift; sourceTree = "<group>"; };
 		60B9A3A723FDE2E500BB4CFB /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		60D2FFD5240E37FC0057CAD6 /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
+		60D6B4222423682100DD437F /* NewSubThought+Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewSubThought+Link.swift"; sourceTree = "<group>"; };
+		60D6B424242369A600DD437F /* NewSubThought+Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewSubThought+Photo.swift"; sourceTree = "<group>"; };
 		60E2992B23F6F54D009B9A84 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		60E2992D23F6F62B009B9A84 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		60E2992F23F71FBA009B9A84 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -331,7 +335,7 @@
 		60B7B373240476B80099BC59 /* components */ = {
 			isa = PBXGroup;
 			children = (
-				607F3A732405D4750011ED02 /* NewSubThoughtController.swift */,
+				60D6B4212423680F00DD437F /* NewSubThought */,
 				607F3A7124052FB50011ED02 /* SubThoughtTypeButton.swift */,
 				607F3A6F240526360011ED02 /* MicroOrbitView.swift */,
 				60B7B36B24044F590099BC59 /* ThoughtDetailHeadCard.swift */,
@@ -342,6 +346,16 @@
 				606634EB241E09FF009DED28 /* OrbitListController.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		60D6B4212423680F00DD437F /* NewSubThought */ = {
+			isa = PBXGroup;
+			children = (
+				607F3A732405D4750011ED02 /* NewSubThoughtController.swift */,
+				60D6B4222423682100DD437F /* NewSubThought+Link.swift */,
+				60D6B424242369A600DD437F /* NewSubThought+Photo.swift */,
+			);
+			path = NewSubThought;
 			sourceTree = "<group>";
 		};
 		60E2993723F73157009B9A84 /* NewThought */ = {
@@ -739,6 +753,7 @@
 				6095B10D23EBF419000B9BAC /* ConfirmationButton.swift in Sources */,
 				6088D7762400370400090421 /* ExploreView.swift in Sources */,
 				6095B12223ED6092000B9BAC /* ThoughtPreviewCell.swift in Sources */,
+				60D6B4232423682100DD437F /* NewSubThought+Link.swift in Sources */,
 				60E2993A23F7351A009B9A84 /* ThoughtDataAccessable.swift in Sources */,
 				60FE0A0B23E348FD003FB238 /* CGSize.swift in Sources */,
 				60B7B37224046F480099BC59 /* ThoughtDetailOrbitCell.swift in Sources */,
@@ -750,6 +765,7 @@
 				6095B11C23ECB1DA000B9BAC /* BasicStatsBar.swift in Sources */,
 				60B0D3122416EF930026EB0A /* NewOrbitView.swift in Sources */,
 				60FE09FB23E3485E003FB238 /* UICollectionView.swift in Sources */,
+				60D6B425242369A600DD437F /* NewSubThought+Photo.swift in Sources */,
 				606AD40523F53FC000751B77 /* ExploreCoordinator.swift in Sources */,
 				60B7B36E240450130099BC59 /* ThoughtDetailHead.swift in Sources */,
 				6095B11A23EC1048000B9BAC /* Device.swift in Sources */,

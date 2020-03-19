@@ -26,35 +26,42 @@ final class NewSubThoughtController: Controller {
     private var thoughtTitle: String
     private var subThoughtType: SubThoughtType
     private var thoughtTextView = UITextView()
-    private var linkTextView = UITextField()
-    private var pasteFromClipboard = ConfirmationButton(
+    internal var linkTextView = UITextField()
+    internal let camFrame = CGRect(x: 0, y: 100, width: Device.width, height: 500)
+    internal lazy var outputImage = UIImageView()
+    internal var pasteFromClipboard = ConfirmationButton(
         point: .zero,
         color: .monoChrome,
         text: "paste from clipoard",
         width: .third,
         font: Styles.Font.body()
     )
-    private var preview: SubThoughtPreview?
+    internal var preview: SubThoughtPreview? {
+        didSet {
+            saveButton.alpha = 1.0
+        }
+    }
     
     /// link content
-    private var linkPreview: LinkPreview! {
+    internal var linkPreview: LinkPreview! {
         didSet {
-            setPreview()
+            setLinkPreview()
             preview = SubThoughtPreview(link: linkPreview.link, thought: nil)
         }
     }
     /// image content
     // MARK: Private vars
-    var captureSession: AVCaptureSession!
-    var stillImageOutput: AVCapturePhotoOutput!
-    var interactionLabel = UILabel()
-    var previewLayer: AVCaptureVideoPreviewLayer!
+    internal var captureSession: AVCaptureSession!
+    internal var stillImageOutput: AVCapturePhotoOutput!
+    internal lazy var interactionLabel = UILabel()
+    internal var cameraPreviewLayer: AVCaptureVideoPreviewLayer!
+    internal lazy var imagePicker = UIImagePickerController()
     
-    private var errorLabel = UILabel.body("please  enter a  vlid link", .xLarge)
-    private lazy var linkIcon = UIImageView()
-    private lazy var linkDescription = UILabel.body()
-    private lazy var linkTitle = UILabel.title()
-    private lazy var slp = SwiftLinkPreview(session: URLSession.shared,
+    internal var linkErrorLabel = UILabel.body("please  enter a  vlid link", .xLarge)
+    internal lazy var linkIcon = UIImageView()
+    internal lazy var linkDescription = UILabel.body()
+    internal lazy var linkTitle = UILabel.title()
+    internal lazy var slp = SwiftLinkPreview(session: URLSession.shared,
         workQueue: SwiftLinkPreview.defaultWorkQueue,
         responseQueue: DispatchQueue.main,
         cache: DisabledCache.instance
@@ -63,6 +70,10 @@ final class NewSubThoughtController: Controller {
     
     deinit {
         delegate = nil
+        endSession()
+        captureSession = nil
+        stillImageOutput  = nil
+        cameraPreviewLayer = nil
     }
     
     required init?(coder: NSCoder) {
@@ -105,6 +116,7 @@ private extension NewSubThoughtController {
         // save button
         saveButton.bottom = view.bottom.subtractPadding(.xLarge, multiplier: 4)
         saveButton.alpha = 0.3
+        saveButton.layer.cornerRadius = saveButton.height / 2
         view.addSubview(saveButton)
         saveButton.addTapGestureRecognizer {
             self.preview = SubThoughtPreview(text: self.thoughtTextView.text, thought: nil)
@@ -117,54 +129,6 @@ private extension NewSubThoughtController {
         styleLine.layer.cornerRadius = 0.75
         view.addSubview(styleLine)
         
-    }
-    
-    
-    func setImageView() {
-        
-        // TODO: implement image sourcing
-        // create capture session, .medium for meh quality photos
-        captureSession = AVCaptureSession()
-        captureSession.sessionPreset = .medium
-        //guard into back camera
-        //TODO: add front camera support
-        guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video) else { print("Unable to access back camera"); return }
-        do {
-            // recieve input
-            let input = try AVCaptureDeviceInput(device: backCamera)
-            stillImageOutput = AVCapturePhotoOutput()
-            
-            // check if input and output is validated
-            if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
-                captureSession.addInput(input)
-                captureSession.addOutput(stillImageOutput)
-                setupLivePreview()
-            }
-        }
-        catch let error  {
-            print("Error Unable to initialize back camera:  \(error.localizedDescription)")
-        }
-        
-    }
-    
-    func setLinkView() {
-        
-        linkTextView.font = Styles.Font.body(ofSize: .large)
-        linkTextView.layer.cornerRadius = 8
-        linkTextView.frame = CGRect(x: CGFloat(0).addPadding(.xLarge), y: 150, width: view.width / 1.75, height: 45)
-        linkTextView.backgroundColor = Colors.white
-        linkTextView.text = "Insert Link"
-        linkTextView.autocapitalizationType = .sentences
-        linkTextView.returnKeyType = .done
-        linkTextView.delegate = self
-        linkTextView.keyboardType = .URL
-        
-        pasteFromClipboard.left = linkTextView.right.addPadding()
-        pasteFromClipboard.top = linkTextView.top
-        pasteFromClipboard.height = linkTextView.height
-        
-        view.addSubview(linkTextView)
-        view.addSubview(pasteFromClipboard)
     }
     
     func setNoteView() {
@@ -198,55 +162,6 @@ extension NewSubThoughtController: UITextViewDelegate {
     }
 }
 
-// link preview work
-private extension NewSubThoughtController {
-    
-    func setPreview() {
-        print("setting preview")
-        linkIcon.frame.size = .init(150)
-        linkIcon.center.x = view.bounds.center.x
-        linkIcon.top = linkTextView.bottom.addPadding(.xLarge)
-        linkIcon.kf.setImage(with: URL(string: linkPreview.iconURL))
-        linkIcon.layer.cornerRadius  =  6
-        linkIcon.layer.masksToBounds = true
-        linkIcon.backgroundColor = .white
-        view.addSubview(linkIcon)
-        
-        linkDescription.text = linkPreview.description
-        linkDescription.numberOfLines = 0
-        linkDescription.width = view.width.subtractPadding(.xXLarge, multiplier: 2)
-        linkDescription.height = 100
-        linkDescription.top = linkIcon.bottom.addPadding()
-        linkDescription.center.x = view.center.x
-        view.addSubview(linkDescription)
-        
-    }
-    
-    func checkURL(_ url: String?) {
-        
-        if let url = url {
-            linkIcon.removeFromSuperview()
-            linkDescription.removeFromSuperview()
-            slp.preview(url, onSuccess: { (body) in
-                self.linkPreview = .init(body) })
-            { (error) in
-                print(error)
-                self.errorLabel.sizeToFit()
-                self.errorLabel.center = self.view.bounds.center
-                self.errorLabel.textColor = .red
-                self.view.addSubview(self.errorLabel)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    self.errorLabel.removeFromSuperview()
-                }
-            }
-        }
-    }
-    
-    func setupLivePreview() {
-        
-    }
-    
-}
 
 extension NewSubThoughtController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -258,3 +173,4 @@ extension NewSubThoughtController: UITextFieldDelegate {
         textField.text = ""
     }
 }
+
