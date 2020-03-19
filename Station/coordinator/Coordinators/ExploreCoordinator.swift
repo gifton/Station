@@ -22,7 +22,6 @@ final class ExploreCoordinator: Coordinator {
         vc.coordinator = self
         if let moc = moc {
             let dm = ExploreDataManager(moc: moc)
-            dm.start(completion: nil)
             vc.dataManager = dm
         }
         
@@ -57,7 +56,7 @@ extension ExploreCoordinator: OrbitDetailFlow {
 
 extension ExploreCoordinator: ThoughtDetailFlow {
     func showThought(_ thought: Thought) {
-        print("showing thought in coordinator")
+        
         let coordinator = ThoughtDetailCoordinator(withNavigationController: navigationController)
         coordinator.thought = thought
         coordinator.moc = moc

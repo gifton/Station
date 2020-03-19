@@ -25,8 +25,6 @@ final class NewThoughtDataManager: DataManager {
 
         
         orbits = getAllOrbits(batchSize: 500)
-        
-        print("initialized data manager")
     }
     
     private(set) var moc: NSManagedObjectContext

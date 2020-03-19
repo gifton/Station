@@ -3,39 +3,38 @@ import UIKit
 
 
 final class ExploreController: Controller {
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        let exp = ExploreView(delegate: self)
-        exp.frame = CGRect(x: 0, y: 0, width: Device.width, height: Device.height - Device.tabBarheight)
-        view = exp
-        
+    
+    override var dataManager: DataManager? {
+        didSet {
+            let exp = ExploreView(delegate: self)
+            exp.frame = CGRect(x: 0, y: 0, width: Device.width, height: Device.height - Device.tabBarheight)
+            view = exp
+        }
     }
     
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
-    var dm: ExploreDataManager? {
-        return (dataManager as? ExploreDataManager)
+    override func controllerNeedsRefresh() {
+        (view as? ExploreView)?.viewNeedsRefresh()
     }
     
 }
 
 extension ExploreController: ExploreDelegate {
     var recentThoughts: [ThoughtPreview] {
-        if let dm = dm {
+        if let dm = (dataManager as? ExploreDataManager) {
             return dm.displayableThoughts
         }
         return []
     }
     
     var orbits: [Orbit] {
-        if let dm = dm {
+        if let dm = (dataManager as? ExploreDataManager) {
             return dm.orbits
         }
         return []
     }
     
     var stats: [BasicStatInfo] {
-        if let dm = dm {
+        if let dm = (dataManager as? ExploreDataManager) {
             return [dm.subThoughtStats, dm.thoughtStats]
         }
         return []
@@ -48,9 +47,8 @@ extension ExploreController: ExploreDelegate {
     }
     
     func showThought(atIndex index: Int) {
-        
-        if let thought = dm?.thoughtForIndex(index) {
-            
+        if let dm = (dataManager as? ExploreDataManager) {
+            let thought = dm.thoughtForIndex(index)
             (coordinator as? ExploreCoordinator)?.showThought(thought)
         }
     }

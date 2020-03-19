@@ -24,13 +24,16 @@ final class ExploreView: UIScrollView {
     var bottomView: ExploreViewFooter!
     private let haptic = UINotificationFeedbackGenerator()
     
+    public func viewNeedsRefresh() {
+        
+    }
+    
 }
 private extension ExploreView {
     
 	func setTopView() {
         
-        topView = ExploreViewHeader()
-        topView.delegate = self
+        topView = ExploreViewHeader(self)
         addSubview(topView)
         
 	}

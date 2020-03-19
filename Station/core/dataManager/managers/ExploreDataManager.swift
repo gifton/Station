@@ -8,13 +8,6 @@ import CoreLocation
 
 final class ExploreDataManager: DataManager {
     
-    func start(completion: (() -> ())?) {
-        
-        thoughts = getThoughts(batchSize: 10)
-        orbits = getAllOrbits(batchSize: 500)
-        completion?()
-    }
-    
     weak internal var delegate: DataManagerDelegate?
     private var predicate: String?
     internal var moc: NSManagedObjectContext
@@ -26,6 +19,8 @@ final class ExploreDataManager: DataManager {
     
     required init(moc: NSManagedObjectContext) {
         self.moc = moc
+        thoughts = getThoughts(batchSize: 10)
+        orbits = getAllOrbits(batchSize: 500)
     }
     
     func thoughtForIndex(_  index: Int) -> Thought {

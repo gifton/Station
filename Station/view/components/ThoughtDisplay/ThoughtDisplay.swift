@@ -26,16 +26,18 @@ final class ThoughtDisplay: UIView {
     private var isEmpty = true
     unowned var delegate: ThoughtDisplayDelegate {
         didSet {
-            if delegate.thoughts.count == 0 {
-                isEmpty = true
-            } else {
-                isEmpty = false
-            }
+            
+            if delegate.thoughts.count == 0 { isEmpty = true }
+            else { isEmpty = false }
             collection.reloadData()
         }
     }
     var collection: UICollectionView!
     var searchBar = UISearchBar()
+    
+    public func viewNeedsRefresh() {
+        collection.reloadData()
+    }
 
 }
 

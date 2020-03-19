@@ -9,14 +9,12 @@ import CoreLocation
 
 protocol DataManagerDelegate: Controller {
     func data(isSet success: Bool)
-    func data<T: DataPreview>() -> T
     func requestLocation() -> CLLocation?
 }
 
 
 protocol DataManager: AnyObject {
     
-//    func start(completion: (() ->())? )
     func refresh()
     var delegate: DataManagerDelegate? { get set }
     var moc: NSManagedObjectContext { get }

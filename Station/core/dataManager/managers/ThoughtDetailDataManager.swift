@@ -29,7 +29,9 @@ final class ThoughtDetailDataManager: DataManager {
     public var thought: ThoughtPreview!
     
     func refresh() {
-        print("refreshing!")
+        let req = Thought.sortedFetchRequest
+        req.predicate = NSPredicate(format: "self == %@", rawThought)
+        _ = try! moc.fetch(req)
     }
     
     public func createDemoSubThought()   {

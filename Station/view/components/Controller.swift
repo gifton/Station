@@ -55,20 +55,19 @@ class Controller: UIViewController {
         }
     }
     
+    func controllerNeedsRefresh() { }
+    
 }
 
 
 // MARK: COntroller DataManagerDelegate conformance
-extension Controller: DataManagerDelegate {
-    func data<T>() -> T where T: DataPreview {
-        return ThoughtPreview.zero as! T
-    }
-    
+extension Controller: DataManagerDelegate {    
     
     func data(isSet success: Bool) {
         
         if success {
-            dataIsSet = true 
+            dataIsSet = true
+            controllerNeedsRefresh()
         } else {
             showMessage(title: "unable to prossess data", message: "refresh")   
         }

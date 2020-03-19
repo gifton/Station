@@ -11,14 +11,22 @@ protocol ExploreHeadDelegate: AnyObject {
 }
 
 final class ExploreViewHeader: UIView {
-    init() {
+    init(_ delegate: ExploreHeadDelegate) {
+        self.delegate = delegate
         super.init(frame: CGRect(origin: .zero, size: .init(Device.width,  Device.height - Device.tabBarheight)))
         setStaticContent()
         backgroundColor = Colors.hardBG
+        
+        setDisplay()
+        setTargets()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func viewNeedsRefresh() {
+        thoughtDisplay.viewNeedsRefresh()
     }
     
     // private vars
@@ -32,16 +40,7 @@ final class ExploreViewHeader: UIView {
     private var showOrbitsLabel = UILabel.directionLabel("Orbits", direction: .right)
     private var dirStack: UIStackView!
     
-    weak public var delegate: ExploreHeadDelegate? {
-        didSet {
-            setDisplay()
-            setTargets()
-        }
-    }
-    
-    deinit {
-        delegate = nil
-    }
+    private var delegate: ExploreHeadDelegate
 }
 
 
@@ -57,9 +56,12 @@ private extension ExploreViewHeader {
         addSubview(station)
         
         // greeting
+        
         greeting.numberOfLines = 2
         greeting.text = String.timeSensativeGreeting()  + "\nGifton"
-        greeting.textColor = Colors.secondaryText
+        print(String.timeSensativeGreeting())
+        print(" cccccccccccccccc")
+        greeting.textColor = Colors.primaryText
         greeting.sizeToFit()
         greeting.top = station.bottom.addPadding(.small)
         greeting.left = left.addPadding(.xLarge)
@@ -87,23 +89,20 @@ private extension ExploreViewHeader {
         addSubview(thoughtDisplay)
         
         // stats bars
-        if let del = delegate{
-            
-            thoughtIconBar = BasicStatsBar(
-                point: .init(infoIcon.left, thoughtDisplay.bottom.addPadding(.xXLarge)),
-                info: del.thoughtCount,
-                withTitle: true
-            )
-            
-            subThoughtIconBar = BasicStatsBar(
-                point: .init(infoIcon.left, thoughtIconBar.bottom.addPadding(.medium)),
-                info: del.subThoughtCount,
-                withTitle: false
-            )
-            
-            addSubview(thoughtIconBar)
-            addSubview(subThoughtIconBar)
-        }
+        thoughtIconBar = BasicStatsBar(
+            point: .init(infoIcon.left, thoughtDisplay.bottom.addPadding(.xXLarge)),
+            info: delegate.thoughtCount,
+            withTitle: true
+        )
+        
+        subThoughtIconBar = BasicStatsBar(
+            point: .init(infoIcon.left, thoughtIconBar.bottom.addPadding(.medium)),
+            info: delegate.subThoughtCount,
+            withTitle: false
+        )
+        
+        addSubview(thoughtIconBar)
+        addSubview(subThoughtIconBar)
         
         // show OrbitsView
         // directionLabel
@@ -124,18 +123,18 @@ private extension ExploreViewHeader {
     }
     
     func setTargets() {
-        infoIcon.addTapGestureRecognizer(action: delegate?.showInfo)
-        dirStack.addTapGestureRecognizer(action: delegate?.scrollToBottom)
+        infoIcon.addTapGestureRecognizer(action: delegate.showInfo)
+        dirStack.addTapGestureRecognizer(action: delegate.scrollToBottom)
     }
 }
 
 extension ExploreViewHeader: ThoughtDisplayDelegate {
     
     var thoughts: [ThoughtPreview] {
-        return delegate?.recentThoughts ?? []
+        return delegate.recentThoughts
     }
     func selectedThought(atIndex index: Int) {
-        delegate?.showThought(atIndex: index)
+        delegate.showThought(atIndex: index)
         
     }
     

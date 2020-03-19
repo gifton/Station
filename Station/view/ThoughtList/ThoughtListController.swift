@@ -48,10 +48,7 @@ private extension ThoughtListController {
         view.addSubview(tv)
         
         if let nums = (dataManager as? ThoughtListDataManager)?.displayableThoughts.count {
-            if nums == 0 {
-                print("is empty)")
-                setEmpty()
-            }
+            if nums == 0 { setEmpty() }
         }
         
     }
@@ -165,12 +162,7 @@ extension ThoughtListController: SortOptionsListDelegate  {
     }
     
     func setSort(option: SortOption) {
-        if let head = (tv.tableHeaderView as? ThoughtTableHead) {
-            head.updateSortOption(option)
-            print("set")
-        }
-        
-        print("didnt set")
+        if let head = (tv.tableHeaderView as? ThoughtTableHead) { head.updateSortOption(option) }
     }
     
     

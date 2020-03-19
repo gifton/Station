@@ -92,7 +92,7 @@ extension ThoughtDetailController: ThoughtDetailDelegate {
     
     var thought: ThoughtPreview {
         guard let dm = (dataManager as? ThoughtDetailDataManager) else {
-            print("unable to access thought")
+            print("unable to access thought preview, returning empty thought")
             return ThoughtPreview.zero
         }
         return dm.thought

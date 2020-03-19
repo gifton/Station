@@ -123,7 +123,27 @@ private extension NewSubThoughtController {
     func setImageView() {
         
         // TODO: implement image sourcing
-        
+        // create capture session, .medium for meh quality photos
+        captureSession = AVCaptureSession()
+        captureSession.sessionPreset = .medium
+        //guard into back camera
+        //TODO: add front camera support
+        guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video) else { print("Unable to access back camera"); return }
+        do {
+            // recieve input
+            let input = try AVCaptureDeviceInput(device: backCamera)
+            stillImageOutput = AVCapturePhotoOutput()
+            
+            // check if input and output is validated
+            if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
+                captureSession.addInput(input)
+                captureSession.addOutput(stillImageOutput)
+                setupLivePreview()
+            }
+        }
+        catch let error  {
+            print("Error Unable to initialize back camera:  \(error.localizedDescription)")
+        }
         
     }
     
@@ -222,6 +242,9 @@ private extension NewSubThoughtController {
         }
     }
     
+    func setupLivePreview() {
+        
+    }
     
 }
 

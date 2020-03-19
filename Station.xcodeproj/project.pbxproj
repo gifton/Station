@@ -281,6 +281,7 @@
 		6095B10B23EBF402000B9BAC /* components */ = {
 			isa = PBXGroup;
 			children = (
+				60FE0A3123E3FC5D003FB238 /* Controller.swift */,
 				60B9A3A523FDE03F00BB4CFB /* InfoController.swift */,
 				60B0D3112416EF930026EB0A /* NewOrbitView.swift */,
 				6095B12323ED6CE6000B9BAC /* ThoughtDisplay */,
@@ -452,7 +453,6 @@
 				60B0D315241811F40026EB0A /* Colors.swift */,
 				60FE0A1B23E35B18003FB238 /* coreData */,
 				60FE09F323E3480C003FB238 /* extensions */,
-				60FE0A3123E3FC5D003FB238 /* Controller.swift */,
 				6095B11923EC1048000B9BAC /* Device.swift */,
 				60E2992F23F71FBA009B9A84 /* Icons.swift */,
 			);
