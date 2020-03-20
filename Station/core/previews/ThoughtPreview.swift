@@ -11,6 +11,15 @@ struct ThoughtPreview: DataPreview {
     var location:    CLLocation?
     private(set) var orbits: [Orbit] = []
     var subThoughts: [SubThought] = []
+    var computedSubThoughts: [SubThoughtPreview] {
+        
+        var out: [SubThoughtPreview] = subThoughts.toPreview()
+        out.sort { (s1, s2) -> Bool in
+            s1.date > s2.date
+        }
+        
+        return out
+    }
     
     init(thought: Thought) {
         title = thought.title
@@ -46,5 +55,11 @@ struct ThoughtPreview: DataPreview {
 extension Array where Element == Thought {
     func toPreview() -> [ThoughtPreview] {
         return map { ThoughtPreview(thought: $0) }
+    }
+}
+
+extension Array where Element == SubThoughtPreview {
+    func types() -> [String] {
+        return map { String(describing: $0.type) }
     }
 }

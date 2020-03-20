@@ -70,6 +70,7 @@ extension ThoughtDetailController: ThoughtDetailDelegate {
     func newPhoto(completion: () -> ()) {
         if let c = (coordinator as? ThoughtDetailCoordinator) {
             c.createSubThought(ofType: .image) {
+                print("completed  photo")
                 completion()
             }
         }

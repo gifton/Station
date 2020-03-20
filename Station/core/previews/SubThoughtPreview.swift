@@ -32,7 +32,7 @@ final class SubThoughtPreview: DataPreview {
         var preview: SubThoughtPreview!
         switch sb.subThoughtType {
         case .image:
-            if let data = sb.rawImage, let img = UIImage(data: data) {
+            if let data = sb.rawPhoto, let img = UIImage(data: data) {
                 preview = SubThoughtPreview(img: img, thought: sb.thought)
             } else {
                 preview = SubThoughtPreview(img: UIImage(), thought: sb.thought)
@@ -60,20 +60,29 @@ final class SubThoughtPreview: DataPreview {
         self.note = text
         self.thought = thought
         date = Date()
+        
     }
     
     init(img: UIImage, thought: Thought?) {
         self.image = img
         self.thought = thought
         date = Date()
+        type = .image
     }
     
     init(link: String, thought: Thought?) {
         self.link = link
         self.thought = thought
         date = Date()
+        type  = .link
     }
     
     var date: Date
     var type: SubThoughtType = .note
+}
+
+extension Array where Element == SubThought {
+    func toPreview() -> [SubThoughtPreview] {
+        return map { SubThoughtPreview.fromCoreObject($0) }
+    }
 }

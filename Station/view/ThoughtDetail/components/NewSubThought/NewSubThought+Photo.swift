@@ -11,7 +11,7 @@ extension NewSubThoughtController {
         captureSession.sessionPreset = .medium
         //guard into back camera
         //TODO: add front camera support
-        guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video) else { print("Unable to access back camera"); return }
+        guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video) else { print("Unable to access back camera"); setupLivePreview(); return }
         do {
             // recieve input
             let input = try AVCaptureDeviceInput(device: backCamera)
@@ -21,12 +21,14 @@ extension NewSubThoughtController {
             if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
                 captureSession.addInput(input)
                 captureSession.addOutput(stillImageOutput)
-                setupLivePreview()
+                
             }
         }
         catch let error  {
             print("Error Unable to initialize back camera:  \(error.localizedDescription)")
         }
+        
+        setupLivePreview()
         
     }
     
@@ -88,12 +90,12 @@ extension NewSubThoughtController {
         setSelectedImage(image)
         
         preview = SubThoughtPreview(img: image, thought: nil)
-        print("set preview with a photo!")
+        
     }
     
     // end session public for call form MSGCenterPhotoView
     public func endSession() {
-        print("ending session")
+        print("ending camera session")
         captureSession.stopRunning()
         cameraPreviewLayer.removeFromSuperlayer()
     }
@@ -131,6 +133,6 @@ extension NewSubThoughtController: UIImagePickerControllerDelegate, UINavigation
         }
         
         self.setSelectedImage(image)
-        self.preview = SubThoughtPreview(img: image, thought: nil)
+        preview = SubThoughtPreview(img: image, thought: nil)
     }
 }

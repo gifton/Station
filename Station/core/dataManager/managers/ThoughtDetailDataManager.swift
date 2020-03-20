@@ -35,24 +35,21 @@ final class ThoughtDetailDataManager: DataManager {
     func refresh() {
         let req = Thought.sortedFetchRequest
         req.predicate = NSPredicate(format: "self == %@", rawThought)
-        _ = try! moc.fetch(req)
-    }
-    
-    public func createDemoSubThought()   {
-        _ = SubThought.insertWithNote(into: moc, with: "Man I love testing", for: rawThought)
-        if moc.saveOrRollback() {
-            print("saved sb")
-        } else {
-            print("couldnt save sb")
-        }
+        let out = try! moc.fetch(req)
+        
+        print("refreshed dm")
+        thought = ThoughtPreview(thought: out.first!)
     }
 }
 
 extension ThoughtDetailDataManager: SubThoughtDataAccessable {
     func createSubThought(withPreview preview: SubThoughtPreview) {
-        _ = SubThought.insertWithNote(into: moc, with: preview.note ?? "", for: rawThought)
+        
+        preview.thought = rawThought
+        _ = SubThought.insertFromPreview(into: moc, with: preview)
         if moc.saveOrRollback() {
-            print("saved sb")
+            print("saved subthought with type: \(preview.type)")
+            refresh()
         } else {
             print("couldnt save sb")
         }

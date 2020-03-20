@@ -186,7 +186,7 @@ extension ThoughtDetailView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: SubThoughtCell.self, for: indexPath)
-        cell.set(withPreview: SubThoughtPreview.fromCoreObject(detailDelegate.thought.subThoughts[indexPath.row]))
+        cell.set(withPreview: detailDelegate.thought.computedSubThoughts[indexPath.row])
         return cell
     }
     
@@ -194,8 +194,9 @@ extension ThoughtDetailView: UITableViewDataSource {
 }
 extension ThoughtDetailView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let sb = detailDelegate.thought.subThoughts[indexPath.row]
-        switch sb.subThoughtType {
+        let sb = detailDelegate.thought.computedSubThoughts[indexPath.row]
+        
+        switch sb.type {
         case .note:
             if let note = sb.note {
                 let height = note.minimumHeightForDisplay( font: Styles.Font.body(), width: Device.width.subtractPadding(.xXLarge, multiplier: 2) )
@@ -203,7 +204,14 @@ extension ThoughtDetailView: UITableViewDelegate {
                 return height + 60
             }; return 100
             
-        case .image: return 150
+        case .image:
+            if let image = sb.image {
+                if let out = image.scaled(toWidth: tableView.width) {
+                    return out.size.height + 25
+                }
+                return 55
+            }
+            return 100
         case .link: return 90
         }
     }

@@ -119,7 +119,6 @@ private extension NewSubThoughtController {
         saveButton.layer.cornerRadius = saveButton.height / 2
         view.addSubview(saveButton)
         saveButton.addTapGestureRecognizer {
-            self.preview = SubThoughtPreview(text: self.thoughtTextView.text, thought: nil)
             if let preview = self.preview { self.delegate?.createPreview(preview) }
         }
         
@@ -154,6 +153,12 @@ extension NewSubThoughtController: UITextViewDelegate {
         saveButton.alpha = 1.0
         textView.text = ""
         textView.textContainerInset = UIEdgeInsets(top: 12.5, left: 20, bottom: 20, right: 20)
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        preview = SubThoughtPreview(text: textView.text, thought: nil)
+        return true
+        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

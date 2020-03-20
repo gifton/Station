@@ -12,7 +12,7 @@ public class SubThought: NSManagedObject {
     @NSManaged public var createdAt: Date
     @NSManaged public var link: String?
     @NSManaged public var id: String
-    @NSManaged public var rawImage: Data?
+    @NSManaged public var rawPhoto: Data?
     
     @NSManaged public var thought: Thought
     
@@ -22,7 +22,7 @@ extension SubThought {
     // claculated variabls
     var subThoughtType: SubThoughtType {
         if note != nil { return .note }
-        else if rawImage != nil { return .image }
+        else if rawPhoto != nil { return .image }
         else { return .link }
     }
     
@@ -33,11 +33,20 @@ extension SubThought {
 // this is done because in order to create sb in thought, the entire object has to be loaded into memory again (innefeciant)
 extension SubThought {
     
+    static func insertFromPreview(into moc: NSManagedObjectContext, with preview: SubThoughtPreview) -> SubThought {
+        guard let thought = preview.thought else { fatalError("unable to correlate subThought to parent thought")}
+        switch preview.type {
+        case .link: return insertWithLink(into: moc, with: preview.link ?? "Not available", for: thought)
+        case .note: return insertWithNote(into: moc, with: preview.note ?? "Not available", for: thought)
+        case .image: return insertWithImage(into: moc, with: preview.image ?? UIImage(), for: thought)
+        }
+    }
+    
     // photo subthought
     static func insertWithImage(into moc: NSManagedObjectContext, with component: UIImage, for thought: Thought) -> SubThought {
         let subThought: SubThought = moc.insertObject()
-        
-        subThought.rawImage = component.jpegData(compressionQuality: 1.0)
+        guard let img = component.jpegData(compressionQuality: 1.0) else { fatalError("unable to convert data to png")}
+        subThought.rawPhoto = img
         subThought.thought = thought
         subThought.createdAt = Date()
         subThought.id = UserDefaults.createdNewSubThought(forThoughtID: thought.id)
