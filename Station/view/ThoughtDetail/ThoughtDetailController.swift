@@ -5,11 +5,22 @@ class ThoughtDetailController: Controller {
     
     init(dm: ThoughtDetailDataManager, coordinator: ThoughtDetailCoordinator) {
         super.init(nibName: nil, bundle: nil)
+        
         self.dataManager = dm
         self.coordinator = coordinator
-        view.addSubview(ThoughtDetailView(withDelegate: self))
         view.backgroundColor = .white
         setHeader()
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.addSubview(ThoughtDetailView(withDelegate: self))
     }
     
     required init?(coder: NSCoder) {

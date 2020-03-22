@@ -36,8 +36,8 @@ final class ThoughtPreviewCell: UITableViewCell {
 private extension ThoughtPreviewCell {
     func setView() {
         backgroundColor = Colors.softBG.withAlphaComponent(0.4)
-        layer.borderWidth = 2
-        layer.borderColor = Colors.lightGray.cgColor
+//        layer.borderWidth = 2
+//        layer.borderColor = Colors.lightGray.cgColor
         guard let thought = thought else { return }
         
         addSubview(titleLabel)

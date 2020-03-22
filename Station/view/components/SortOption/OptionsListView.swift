@@ -46,7 +46,7 @@ private extension SortOptionListView {
         var startY = stack.bottom.addPadding(.xLarge)
         for option in SortOption.all {
             
-            let btn = SortOptionButton(point: .init(Styles.Padding.xLarge.rawValue, startY), option: option)
+            let btn = SortOptionButton(point: .init(Styles.Padding.large.rawValue, startY), option: option)
             btn.addTapGestureRecognizer {
                 self.didSelect(option: option) { (animate) in
                     if animate { btn.animate() }

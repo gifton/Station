@@ -158,6 +158,7 @@ private extension ThoughtDetailView {
         tv.dataSource = self
         tv.backgroundView = .init(withColor: .white)
         tv.register(cellWithClass: SubThoughtCell.self)
+        tv.separatorInset = .zero
         addSubview(tv)
     }  
 }
@@ -207,7 +208,8 @@ extension ThoughtDetailView: UITableViewDelegate {
         case .image:
             if let image = sb.image {
                 if let out = image.scaled(toWidth: tableView.width) {
-                    return out.size.height + 25
+                    print("calculated size from detail view: \(out.size)")
+                    return out.size.height + 10
                 }
                 return 55
             }

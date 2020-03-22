@@ -25,7 +25,7 @@ final class NewOrbitView: UIView {
 
 private extension NewOrbitView {
     func setView() {
-        backgroundColor = Colors.primaryGreen
+        backgroundColor = Colors.darkBlue
         layer.cornerRadius = 20
         layer.masksToBounds = true
         
@@ -55,8 +55,8 @@ private extension NewOrbitView {
         saveButton.layer.cornerRadius = 15
         saveButton.layer.masksToBounds = true
         saveButton.textAlignment = .center
-        saveButton.textColor = Colors.primaryGreen
-        saveButton.backgroundColor = Colors.hardBG
+        saveButton.textColor = Colors.offWhite
+        saveButton.backgroundColor = Colors.primaryGreen
         saveButton.addTapGestureRecognizer(action: save)
         addSubview(saveButton)
         

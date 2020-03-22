@@ -69,6 +69,7 @@ private extension SubThoughtCell {
             body.width = bounds.width.subtractPadding(.large, multiplier: 2)
             body.sizeToFit()
             addSubview(body)
+            
         }
         
     }
@@ -78,6 +79,16 @@ private extension SubThoughtCell {
     }
     
     func setImageView() {
+        let imageView = UIImageView()
+        if let preview = preview, let img = preview.image {
+            imageView.image = img
+            if let imgSize = img.scaled(toWidth: bounds.width)?.size {
+                print("image scaled to: \(imgSize)")
+                imageView.frame = .init(x: 0, y: 0, width: width, height: imgSize.height)
+                addSubview(imageView)
+            }
+        }
+        
         
     }
 }

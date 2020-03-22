@@ -69,7 +69,7 @@ extension ThoughtListController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if section == 0 { return 150 }
+        if section == 0 { return 175 }
         
         return 0
     }

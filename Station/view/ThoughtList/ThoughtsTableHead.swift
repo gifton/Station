@@ -50,7 +50,7 @@ private extension ThoughtTableHead {
         titleLable.frame.origin = .init(30, Styles.Padding.xXLarge.rawValue)
         addSubview(titleLable)
         // searchBar
-        searchBar = UISearchBar(frame: CGRect(origin: .init(Styles.Padding.large.rawValue, titleLable.bottom + Styles.Padding.medium.rawValue), size: .init(250, 45)))
+        searchBar = UISearchBar(frame: CGRect(origin: .init(Styles.Padding.large.rawValue, titleLable.bottom + Styles.Padding.medium.rawValue), size: .init(300, 45)))
         searchBar.placeholder = "Search for a thought"
         searchBar.autocapitalizationType = .none
         searchBar.backgroundImage = UIImage()
@@ -66,13 +66,14 @@ private extension ThoughtTableHead {
         infoButton.center.y = searchBar.center.y
         addSubview(infoButton)
         // sortButton
-        sortButton = UILabel.body("Sort by: \(SortOption.dateDescending.rawValue)", .large)
+        sortButton = UILabel.title("Sort by: \(SortOption.dateDescending.rawValue)", .large)
+        
         sortButton.textColor = Colors.primaryBlue
         sortButton.addBorders(edges: .bottom, color: Colors.primaryBlue)
         sortButton.sizeToFit()
         addSubview(sortButton)
         sortButton.left = left.addPadding(.xLarge)
-        sortButton.top = searchBar.bottom  + Styles.Padding.small.rawValue
+        sortButton.top = searchBar.bottom.addPadding()
         
     }
     
