@@ -1,4 +1,5 @@
 
+import Kingfisher
 import UIKit
 
 final class SubThoughtCell:  UITableViewCell {
@@ -12,6 +13,10 @@ final class SubThoughtCell:  UITableViewCell {
     }
     
     var preview: SubThoughtPreview?
+    var typeIcon: UIImageView!
+    let date = UILabel.mediumTitle("", .medium)
+    let icon = UIImageView()
+    let title = UILabel.body()
     
     func set(withPreview preview: SubThoughtPreview) {
         self.preview = preview
@@ -25,18 +30,21 @@ final class SubThoughtCell:  UITableViewCell {
         }
     }
     
-    override func prepareForReuse() {
-        subviews.forEach {
-            $0.removeFromSuperview()
-        }
+    deinit {
+        preview = nil
+        typeIcon = nil
+        date.text = ""
+        icon.image = nil
+        title.text = ""
     }
+    
 }
 
 private extension SubThoughtCell {
     
     func setLowerContent() {
-        let date = UILabel.mediumTitle("", .medium)
-        let typeIcon: UIImageView!
+        
+        
         if let preview = preview {
             
             switch preview.type {
@@ -75,6 +83,23 @@ private extension SubThoughtCell {
     }
     
     func setLinkView() {
+        if let preview = preview, let linkIcon = preview.linkIcon, let link = preview.link {
+            title.text = link
+            
+            icon.setImageWith(link: URL(string: linkIcon))
+            icon.frame = CGRect(origin: .init(15), size: .init(25))
+            
+            icon.backgroundColor = .blue
+            
+            title.sizeToFit()
+            title.left = icon.right.addPadding()
+            title.center.y = icon.center.y
+            
+            addSubview(icon)
+            addSubview(title)
+            
+            
+        }
         
     }
     
@@ -83,12 +108,10 @@ private extension SubThoughtCell {
         if let preview = preview, let img = preview.image {
             imageView.image = img
             if let imgSize = img.scaled(toWidth: bounds.width)?.size {
-                print("image scaled to: \(imgSize)")
                 imageView.frame = .init(x: 0, y: 0, width: width, height: imgSize.height)
                 addSubview(imageView)
             }
         }
-        
         
     }
 }

@@ -28,7 +28,7 @@ final class OrbitDetailDataManager: DataManager {
         self.init(moc: moc)
         self.orbit = orbit
         print(orbit.title)
-        print(orbit.relatedThoughts)
+        
     }
     
 }

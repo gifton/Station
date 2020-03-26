@@ -1,5 +1,6 @@
 
 import CoreData
+import UIKit
 
 // MARK: ThoughtDetail DM
 // handles display of Single thought
@@ -40,6 +41,11 @@ final class ThoughtDetailDataManager: DataManager {
         print("refreshed dm")
         thought = ThoughtPreview(thought: out.first!)
     }
+    
+    func contentForIndex(_ index: Int) -> (UIImage,String) {
+        
+        return (UIImage(), "")
+    }
 }
 
 extension ThoughtDetailDataManager: SubThoughtDataAccessable {
@@ -63,7 +69,7 @@ extension ThoughtDetailDataManager: SubThoughtDataAccessable {
 }
 
 
-extension ThoughtDetailDataManager:  OrbitDataAccessable {
+extension ThoughtDetailDataManager: OrbitDataAccessable {
     func getOrbits() -> [Orbit] {
         let request = Orbit.sortedFetchRequest
         request.fetchBatchSize = 100

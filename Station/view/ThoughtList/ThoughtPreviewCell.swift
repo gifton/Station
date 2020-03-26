@@ -30,6 +30,14 @@ final class ThoughtPreviewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    deinit {
+        thought = nil
+        titleLabel.text = ""
+        orbits.text = ""
+        subThoughtCount.text = ""
+        
+    }
 }
 
 

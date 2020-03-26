@@ -12,6 +12,7 @@ public class SubThought: NSManagedObject {
     @NSManaged public var createdAt: Date
     @NSManaged public var link: String?
     @NSManaged public var id: String
+    @NSManaged public var linkIcon: String?
     @NSManaged public var rawPhoto: Data?
     
     @NSManaged public var thought: Thought
@@ -36,7 +37,7 @@ extension SubThought {
     static func insertFromPreview(into moc: NSManagedObjectContext, with preview: SubThoughtPreview) -> SubThought {
         guard let thought = preview.thought else { fatalError("unable to correlate subThought to parent thought")}
         switch preview.type {
-        case .link: return insertWithLink(into: moc, with: preview.link ?? "Not available", for: thought)
+        case .link: return insertWithLink(into: moc, with: preview.link ?? "Not available", and: "", for: thought)
         case .note: return insertWithNote(into: moc, with: preview.note ?? "Not available", for: thought)
         case .image: return insertWithImage(into: moc, with: preview.image ?? UIImage(), for: thought)
         }
@@ -67,10 +68,11 @@ extension SubThought {
     }
     
     // link subthought
-    static func insertWithLink(into moc: NSManagedObjectContext, with component: String, for thought: Thought) -> SubThought {
+    static func insertWithLink(into moc: NSManagedObjectContext, with link: String, and icon: String?, for thought: Thought) -> SubThought {
         let subThought: SubThought = moc.insertObject()
         
-        subThought.link = component
+        subThought.link = link
+        subThought.linkIcon = icon
         subThought.thought = thought
         subThought.createdAt = Date()
         subThought.id = UserDefaults.createdNewSubThought(forThoughtID: thought.id)

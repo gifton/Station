@@ -33,6 +33,15 @@ final class LongOrbitCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        orbit = nil
+        rightStack = nil
+        leftStack = nil
+        arrow = nil
+        count = nil
+        title = nil
+    }
+    
 }
 
 

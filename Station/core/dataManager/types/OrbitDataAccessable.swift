@@ -1,7 +1,6 @@
 
 import CoreLocation
 
-
 protocol OrbitDataAccessable: DataManager { }
 
 extension OrbitDataAccessable {
@@ -31,3 +30,5 @@ extension OrbitDataAccessable {
         
     }
 }
+
+

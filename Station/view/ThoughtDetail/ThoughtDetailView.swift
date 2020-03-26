@@ -208,7 +208,7 @@ extension ThoughtDetailView: UITableViewDelegate {
         case .image:
             if let image = sb.image {
                 if let out = image.scaled(toWidth: tableView.width) {
-                    print("calculated size from detail view: \(out.size)")
+                    
                     return out.size.height + 10
                 }
                 return 55

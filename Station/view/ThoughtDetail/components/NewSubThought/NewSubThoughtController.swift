@@ -46,7 +46,7 @@ final class NewSubThoughtController: Controller {
     internal var linkPreview: LinkPreview! {
         didSet {
             setLinkPreview()
-            preview = SubThoughtPreview(link: linkPreview.link, thought: nil)
+            preview = SubThoughtPreview(link: linkPreview.link, icon: linkPreview.iconURL, thought: nil)
         }
     }
     /// image content

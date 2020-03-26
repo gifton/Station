@@ -29,13 +29,15 @@ final class ThoughtExtendedPreviewCell: UICollectionViewCell {
     
     deinit {
         orbits.text = ""
+        dateLabel.text = ""
+        subThoughts.text = ""
+        title.text = ""
     }
 }
 
 private extension ThoughtExtendedPreviewCell {
     func setView() {
         guard let thought = thought else { return }
-        
         addSubview(title)
         addSubview(dateLabel)
         addSubview(orbits)

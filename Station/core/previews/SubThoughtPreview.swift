@@ -13,6 +13,7 @@ final class SubThoughtPreview: DataPreview {
     var link: String? {
         didSet { type = .link }
     }
+    var linkIcon: String?
     
     var thought: Thought?
     
@@ -45,9 +46,9 @@ final class SubThoughtPreview: DataPreview {
             }
         case .link:
             if let link = sb.link {
-                preview = SubThoughtPreview(link: link, thought: sb.thought)
+                preview = SubThoughtPreview(link: link, icon: sb.linkIcon, thought: sb.thought)
             } else {
-                preview = SubThoughtPreview(link: "", thought: sb.thought)
+                preview = SubThoughtPreview(link: "", icon: sb.linkIcon, thought: sb.thought)
             }
         }
         
@@ -70,9 +71,10 @@ final class SubThoughtPreview: DataPreview {
         type = .image
     }
     
-    init(link: String, thought: Thought?) {
+    init(link: String, icon: String?, thought: Thought?) {
         self.link = link
         self.thought = thought
+        self.linkIcon = icon
         date = Date()
         type  = .link
     }

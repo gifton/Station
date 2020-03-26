@@ -1,8 +1,8 @@
 PODS:
-  - IQKeyboardManagerSwift (6.5.4)
-  - Kingfisher (5.11.0):
-    - Kingfisher/Core (= 5.11.0)
-  - Kingfisher/Core (5.11.0)
+  - IQKeyboardManagerSwift (6.5.5)
+  - Kingfisher (5.13.2):
+    - Kingfisher/Core (= 5.13.2)
+  - Kingfisher/Core (5.13.2)
   - SwiftLinkPreview (3.1.0)
 
 DEPENDENCIES:
@@ -17,8 +17,8 @@ SPEC REPOS:
     - SwiftLinkPreview
 
 SPEC CHECKSUMS:
-  IQKeyboardManagerSwift: 2dde0fc70110e8eac7ccce2a46fdbec6a850b414
-  Kingfisher: 4569606189149e19c7d9439f47e885d0679b7a90
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
   SwiftLinkPreview: 3d924eeaae8d17410a827a4b37675713af1a0a8a
 
 PODFILE CHECKSUM: 4d06387e0109cf9852f2b5c74fb6b77399d6fc62

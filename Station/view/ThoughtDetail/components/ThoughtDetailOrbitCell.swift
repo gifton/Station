@@ -18,11 +18,16 @@ final class ThoughtDetailOrbitCell: UITableViewCell {
     }
     
     var orbitSelector: OrbitSelector!
+    let titleLabel = UILabel.labelWithImage("Orbits", image: Icons.iconForType(.orbit), location: .left)
+    
+    deinit {
+        orbitSelector = nil
+        delegate = nil
+    }
 }
 
 private extension ThoughtDetailOrbitCell {
     func setView() {
-        let titleLabel = UILabel.labelWithImage("Orbits", image: Icons.iconForType(.orbit), location: .left)
         titleLabel.sizeToFit()
         titleLabel.left = 15
         titleLabel.top = 5
