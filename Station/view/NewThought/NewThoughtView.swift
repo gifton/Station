@@ -113,7 +113,7 @@ extension NewThoughtView: OrbitSelectorDelegate {
 }
 
 extension NewThoughtView: NewOrbitViewDelegate {
-    func savePreview(_ preview: OrbitPreview) {
+    func savePreview(_ preview: TopicPreview) {
         thoughtDelegate?.save(withTitle: preview.title, andIcon: preview.icon)
     }
 }

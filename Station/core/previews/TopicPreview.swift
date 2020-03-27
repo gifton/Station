@@ -2,7 +2,8 @@
 import UIKit
 
 // TODO: define validity 
-final class OrbitPreview: DataPreview {
+final class TopicPreview: DataPreview {
+    var previewType: PreviewType { return .topic}
     var title: String
     var createdAt: Date
     var relatedThoughts: [Thought]?

@@ -9,10 +9,18 @@
 /* Begin PBXBuildFile section */
 		023289BB16D8809C57881C56 /* Pods_Station.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AB906762736AE14C2A227E /* Pods_Station.framework */; };
 		60074513240E362100D57CC7 /* ExploreViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60074512240E362100D57CC7 /* ExploreViewHeader.swift */; };
+		603152C4242CB26F00A1DE44 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603152C3242CB26F00A1DE44 /* HomeViewController.swift */; };
+		603152C7242CB28700A1DE44 /* HomeTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603152C6242CB28700A1DE44 /* HomeTableHeader.swift */; };
+		603152C9242CB29000A1DE44 /* TopicsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603152C8242CB29000A1DE44 /* TopicsCollectionView.swift */; };
+		603152CB242CB29900A1DE44 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603152CA242CB29900A1DE44 /* TopicCell.swift */; };
+		603152CD242CB45000A1DE44 /* UIStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603152CC242CB45000A1DE44 /* UIStyle.swift */; };
+		603152CF242CB61200A1DE44 /* UIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603152CE242CB61200A1DE44 /* UIController.swift */; };
+		603152D1242CBC4F00A1DE44 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603152D0242CBC4F00A1DE44 /* ViewModel.swift */; };
 		603BD94323F6E97700C94334 /* SubThoughtDetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603BD94223F6E97700C94334 /* SubThoughtDetailFlow.swift */; };
 		603BD94623F6ECA000C94334 /* ThoughtListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603BD94523F6ECA000C94334 /* ThoughtListCoordinator.swift */; };
 		60404AFB2418AA93004E5620 /* SubThoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60404AFA2418AA93004E5620 /* SubThoughtCell.swift */; };
 		60452DE823F538E20087C791 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60452DE723F538E20087C791 /* TabBarController.swift */; };
+		604F0FE6242CCAA40044208D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604F0FE5242CCAA40044208D /* HomeViewModel.swift */; };
 		606634EC241E09FF009DED28 /* OrbitListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606634EB241E09FF009DED28 /* OrbitListController.swift */; };
 		606AD3FD23F53B6B00751B77 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AD3FC23F53B6B00751B77 /* TabBarCoordinator.swift */; };
 		606AD3FF23F53D5E00751B77 /* NewThoughtFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AD3FE23F53D5E00751B77 /* NewThoughtFlow.swift */; };
@@ -32,7 +40,7 @@
 		60897D0B2411D93B004569CF /* ExploreViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60897D0A2411D93B004569CF /* ExploreViewFooter.swift */; };
 		6095B10423EB7984000B9BAC /* SubThought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10323EB7984000B9BAC /* SubThought.swift */; };
 		6095B10623EB7D5B000B9BAC /* Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10523EB7D5B000B9BAC /* Orbit.swift */; };
-		6095B10823EBA44E000B9BAC /* OrbitPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10723EBA44E000B9BAC /* OrbitPreview.swift */; };
+		6095B10823EBA44E000B9BAC /* TopicPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10723EBA44E000B9BAC /* TopicPreview.swift */; };
 		6095B10A23EBA457000B9BAC /* SubThoughtPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10923EBA457000B9BAC /* SubThoughtPreview.swift */; };
 		6095B10D23EBF419000B9BAC /* ConfirmationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10C23EBF419000B9BAC /* ConfirmationButton.swift */; };
 		6095B10F23EBF6FC000B9BAC /* NewThoughtCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10E23EBF6FC000B9BAC /* NewThoughtCard.swift */; };
@@ -123,10 +131,18 @@
 /* Begin PBXFileReference section */
 		35AB906762736AE14C2A227E /* Pods_Station.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Station.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60074512240E362100D57CC7 /* ExploreViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewHeader.swift; sourceTree = "<group>"; };
+		603152C3242CB26F00A1DE44 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		603152C6242CB28700A1DE44 /* HomeTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableHeader.swift; sourceTree = "<group>"; };
+		603152C8242CB29000A1DE44 /* TopicsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsCollectionView.swift; sourceTree = "<group>"; };
+		603152CA242CB29900A1DE44 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		603152CC242CB45000A1DE44 /* UIStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStyle.swift; sourceTree = "<group>"; };
+		603152CE242CB61200A1DE44 /* UIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIController.swift; sourceTree = "<group>"; };
+		603152D0242CBC4F00A1DE44 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		603BD94223F6E97700C94334 /* SubThoughtDetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThoughtDetailFlow.swift; sourceTree = "<group>"; };
 		603BD94523F6ECA000C94334 /* ThoughtListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtListCoordinator.swift; sourceTree = "<group>"; };
 		60404AFA2418AA93004E5620 /* SubThoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThoughtCell.swift; sourceTree = "<group>"; };
 		60452DE723F538E20087C791 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		604F0FE5242CCAA40044208D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		606634EB241E09FF009DED28 /* OrbitListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitListController.swift; sourceTree = "<group>"; };
 		606AD3FC23F53B6B00751B77 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarCoordinator.swift; path = Station/coordinator/Coordinators/TabBarCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		606AD3FE23F53D5E00751B77 /* NewThoughtFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewThoughtFlow.swift; sourceTree = "<group>"; };
@@ -146,7 +162,7 @@
 		60897D0A2411D93B004569CF /* ExploreViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewFooter.swift; sourceTree = "<group>"; };
 		6095B10323EB7984000B9BAC /* SubThought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThought.swift; sourceTree = "<group>"; };
 		6095B10523EB7D5B000B9BAC /* Orbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orbit.swift; sourceTree = "<group>"; };
-		6095B10723EBA44E000B9BAC /* OrbitPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitPreview.swift; sourceTree = "<group>"; };
+		6095B10723EBA44E000B9BAC /* TopicPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPreview.swift; sourceTree = "<group>"; };
 		6095B10923EBA457000B9BAC /* SubThoughtPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThoughtPreview.swift; sourceTree = "<group>"; };
 		6095B10C23EBF419000B9BAC /* ConfirmationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationButton.swift; sourceTree = "<group>"; };
 		6095B10E23EBF6FC000B9BAC /* NewThoughtCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewThoughtCard.swift; sourceTree = "<group>"; };
@@ -257,6 +273,29 @@
 				8CBA4D8480CF2F39FF6103D9 /* Pods-Station.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		603152C2242CB26500A1DE44 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				603152C3242CB26F00A1DE44 /* HomeViewController.swift */,
+				603152C5242CB27300A1DE44 /* components */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		603152C5242CB27300A1DE44 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				603152C6242CB28700A1DE44 /* HomeTableHeader.swift */,
+				603152C8242CB29000A1DE44 /* TopicsCollectionView.swift */,
+				603152CA242CB29900A1DE44 /* TopicCell.swift */,
+				603152CC242CB45000A1DE44 /* UIStyle.swift */,
+				603152CE242CB61200A1DE44 /* UIController.swift */,
+				603152D0242CBC4F00A1DE44 /* ViewModel.swift */,
+				604F0FE5242CCAA40044208D /* HomeViewModel.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 		603BD94423F6EC6B00C94334 /* Coordinators */ = {
@@ -451,6 +490,7 @@
 		60FE09DF23E2D62A003FB238 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				603152C2242CB26500A1DE44 /* Home */,
 				60EF851324214C1200E551A5 /* OrbitDetail */,
 				6095B10B23EBF402000B9BAC /* components */,
 				6088D772240036B900090421 /* explore */,
@@ -529,7 +569,7 @@
 			children = (
 				60FE0A1023E34EAF003FB238 /* DataPreview.swift */,
 				60FE0A2523E370D2003FB238 /* ThoughtPreview.swift */,
-				6095B10723EBA44E000B9BAC /* OrbitPreview.swift */,
+				6095B10723EBA44E000B9BAC /* TopicPreview.swift */,
 				6095B10923EBA457000B9BAC /* SubThoughtPreview.swift */,
 				60EF851824217B0900E551A5 /* LinkPreview.swift */,
 			);
@@ -718,12 +758,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				603152C7242CB28700A1DE44 /* HomeTableHeader.swift in Sources */,
 				60FE0A0F23E349FE003FB238 /* NSObject.swift in Sources */,
 				606AD40723F6DFF900751B77 /* ThoughtDetailFlow.swift in Sources */,
 				60E2992E23F6F62B009B9A84 /* AppCoordinator.swift in Sources */,
 				60FE09E623E2D683003FB238 /* coordinator.swift in Sources */,
 				603BD94323F6E97700C94334 /* SubThoughtDetailFlow.swift in Sources */,
 				606AD40B23F6E02100751B77 /* OrbitDetailFlow.swift in Sources */,
+				603152CD242CB45000A1DE44 /* UIStyle.swift in Sources */,
 				6088D7782400370D00090421 /* ExploreDelegate.swift in Sources */,
 				6095B12523ED6D0B000B9BAC /* ThoughtDisplay.swift in Sources */,
 				606AD3FD23F53B6B00751B77 /* TabBarCoordinator.swift in Sources */,
@@ -744,9 +786,11 @@
 				60E2992C23F6F54D009B9A84 /* UIViewController.swift in Sources */,
 				60FE0A0723E348E9003FB238 /* DateFormatter.swift in Sources */,
 				6095B11323EBF7E5000B9BAC /* OrbitCell.swift in Sources */,
+				604F0FE6242CCAA40044208D /* HomeViewModel.swift in Sources */,
 				60FE0A0323E348B6003FB238 /* UITabBar.swift in Sources */,
 				6095B10A23EBA457000B9BAC /* SubThoughtPreview.swift in Sources */,
 				60EF851924217B0900E551A5 /* LinkPreview.swift in Sources */,
+				603152CF242CB61200A1DE44 /* UIController.swift in Sources */,
 				60E2993623F73151009B9A84 /* NewThoughtDelegate.swift in Sources */,
 				60FE0A1D23E35B27003FB238 /* Managed.swift in Sources */,
 				603BD94623F6ECA000C94334 /* ThoughtListCoordinator.swift in Sources */,
@@ -773,6 +817,7 @@
 				60B7B36E240450130099BC59 /* ThoughtDetailHead.swift in Sources */,
 				6095B11A23EC1048000B9BAC /* Device.swift in Sources */,
 				60FE0A0D23E34909003FB238 /* String.swift in Sources */,
+				603152C4242CB26F00A1DE44 /* HomeViewController.swift in Sources */,
 				60E2993023F71FBA009B9A84 /* Icons.swift in Sources */,
 				60B7B3612403A8B30099BC59 /* OptionsListView.swift in Sources */,
 				60B7B375240476D50099BC59 /* ThoughtDetailDelegates.swift in Sources */,
@@ -801,6 +846,7 @@
 				60FE0A0123E348A5003FB238 /* UIStackView.swift in Sources */,
 				60FE0A3223E3FC5D003FB238 /* Controller.swift in Sources */,
 				6095B10423EB7984000B9BAC /* SubThought.swift in Sources */,
+				603152CB242CB29900A1DE44 /* TopicCell.swift in Sources */,
 				60FE09F023E346EA003FB238 /* ExploreFlow.swift in Sources */,
 				606634EC241E09FF009DED28 /* OrbitListController.swift in Sources */,
 				60FE0A1823E35300003FB238 /* rt-db4.xcdatamodeld in Sources */,
@@ -818,10 +864,12 @@
 				60FE09F923E34853003FB238 /* UILabel.swift in Sources */,
 				6095B11523EBF82F000B9BAC /* NewOrbitCell.swift in Sources */,
 				60FE09CD23E2D5E1003FB238 /* SceneDelegate.swift in Sources */,
-				6095B10823EBA44E000B9BAC /* OrbitPreview.swift in Sources */,
+				6095B10823EBA44E000B9BAC /* TopicPreview.swift in Sources */,
+				603152D1242CBC4F00A1DE44 /* ViewModel.swift in Sources */,
 				60FE09FD23E34868003FB238 /* UITableView.swift in Sources */,
 				6095B12023ED3CB6000B9BAC /* LongOrbitCell.swift in Sources */,
 				606AD3FF23F53D5E00751B77 /* NewThoughtFlow.swift in Sources */,
+				603152C9242CB29000A1DE44 /* TopicsCollectionView.swift in Sources */,
 				60FE0A2B23E3C364003FB238 /* NewThoughtDataManager.swift in Sources */,
 				606AD40123F53D6600751B77 /* NewThoughtCoordinator.swift in Sources */,
 				60B9A3A623FDE03F00BB4CFB /* InfoController.swift in Sources */,

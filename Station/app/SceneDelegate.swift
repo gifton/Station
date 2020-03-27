@@ -31,10 +31,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if let window = self.window {
                 window.windowScene = windowScene
                 window.backgroundColor = .black
-                let appCoordinator = AppCoordinator(window: window)
-                appCoordinator.moc = container.viewContext
-                
-                appCoordinator.start()
+                let vm = HomeViewModel(moc: container.viewContext)
+                let vc = HomeViewController(model: vm, type: .thought)
+                vm.delegate = vc
+                vm.start()
+                window.rootViewController = UINavigationController(rootViewController: vc)
+                window.makeKeyAndVisible()
+//                let appCoordinator = AppCoordinator(window: window)
+//                appCoordinator.moc = container.viewContext
+//
+//                appCoordinator.start()
             }
         }
         

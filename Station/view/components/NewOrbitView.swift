@@ -2,7 +2,7 @@
 import UIKit
 
 protocol NewOrbitViewDelegate: UIView {
-    func savePreview(_ preview: OrbitPreview)
+    func savePreview(_ preview: TopicPreview)
 }
 
 final class NewOrbitView: UIView {
@@ -64,7 +64,7 @@ private extension NewOrbitView {
     
     func save() {
         if let title = titleView.text {
-            delegate.savePreview(OrbitPreview(title: title, icon: iconView.text))
+            delegate.savePreview(TopicPreview(title: title, icon: iconView.text))
             UIView.animate(withDuration: 0.25, animations: {
                 self.saveButton.frame.size.width += 5
                 self.saveButton.frame.size.height += 5

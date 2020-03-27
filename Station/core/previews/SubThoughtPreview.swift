@@ -4,8 +4,11 @@ import UIKit
 // subthought preview is used during creation process to decouple Core data from as many objects as possible
 final class SubThoughtPreview: DataPreview {
     
+    var previewType: PreviewType {
+        return PreviewType(rawValue: String(describing: type)) ?? .image
+    }
     var note: String? {
-        didSet { type = .note }
+        didSet { type = .note; }
     }
     var image: UIImage? {
         didSet { type = .image }
@@ -69,6 +72,7 @@ final class SubThoughtPreview: DataPreview {
         self.thought = thought
         date = Date()
         type = .image
+        
     }
     
     init(link: String, icon: String?, thought: Thought?) {
@@ -77,10 +81,26 @@ final class SubThoughtPreview: DataPreview {
         self.linkIcon = icon
         date = Date()
         type  = .link
+        
     }
     
     var date: Date
     var type: SubThoughtType = .note
+    var contentHeight: CGFloat?
+    
+    func setHeight() {
+        if let note = note {
+            contentHeight = note.minimumHeightForDisplay(
+                font: Styles.Font.body(ofSize: .large),
+                width: Device.width.subtractPadding(.large, multiplier: 2))
+        } else if image != nil {
+            contentHeight = 175.0
+        } else {
+            contentHeight = 100.0
+        }
+    }
+    
+    
 }
 
 extension Array where Element == SubThought {

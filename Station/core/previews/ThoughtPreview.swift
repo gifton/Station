@@ -6,6 +6,7 @@ import CoreLocation
 // displaying thoughts in scroll views doenst require all thought data,
 // this object makes passing data more concise
 struct ThoughtPreview: DataPreview {
+    var previewType: PreviewType { return .thought }
     var title:       String
     var date:        Date = Date()
     var location:    CLLocation?
