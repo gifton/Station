@@ -291,6 +291,8 @@
 		603152C5242CB27300A1DE44 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				60936199242F6B6A002DBB26 /* ThoughtPointBar */,
+				60936197242F6B3C002DBB26 /* ThoughtBar */,
 				604F0FE7242F5C5E0044208D /* TopicSliverTable */,
 				603152C6242CB28700A1DE44 /* HomeTableHeader.swift */,
 				603152C8242CB29000A1DE44 /* TopicsCollectionView.swift */,
@@ -334,6 +336,20 @@
 				60897D0A2411D93B004569CF /* ExploreViewFooter.swift */,
 			);
 			path = explore;
+			sourceTree = "<group>";
+		};
+		60936197242F6B3C002DBB26 /* ThoughtBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThoughtBar;
+			sourceTree = "<group>";
+		};
+		60936199242F6B6A002DBB26 /* ThoughtPointBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThoughtPointBar;
 			sourceTree = "<group>";
 		};
 		6095B10B23EBF402000B9BAC /* components */ = {
