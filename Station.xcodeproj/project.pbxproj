@@ -40,6 +40,8 @@
 		6088D7782400370D00090421 /* ExploreDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088D7772400370D00090421 /* ExploreDelegate.swift */; };
 		60897D0B2411D93B004569CF /* ExploreViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60897D0A2411D93B004569CF /* ExploreViewFooter.swift */; };
 		60936196242F62CE002DBB26 /* GestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60936195242F62CE002DBB26 /* GestureRecognizer.swift */; };
+		6093619B242FDFD1002DBB26 /* UITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6093619A242FDFD1002DBB26 /* UITheme.swift */; };
+		6093619D2431C83E002DBB26 /* TopicSliverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6093619C2431C83E002DBB26 /* TopicSliverCell.swift */; };
 		6095B10423EB7984000B9BAC /* SubThought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10323EB7984000B9BAC /* SubThought.swift */; };
 		6095B10623EB7D5B000B9BAC /* Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10523EB7D5B000B9BAC /* Orbit.swift */; };
 		6095B10823EBA44E000B9BAC /* TopicPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6095B10723EBA44E000B9BAC /* TopicPreview.swift */; };
@@ -164,6 +166,8 @@
 		6088D7772400370D00090421 /* ExploreDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDelegate.swift; sourceTree = "<group>"; };
 		60897D0A2411D93B004569CF /* ExploreViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewFooter.swift; sourceTree = "<group>"; };
 		60936195242F62CE002DBB26 /* GestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureRecognizer.swift; sourceTree = "<group>"; };
+		6093619A242FDFD1002DBB26 /* UITheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITheme.swift; sourceTree = "<group>"; };
+		6093619C2431C83E002DBB26 /* TopicSliverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicSliverCell.swift; sourceTree = "<group>"; };
 		6095B10323EB7984000B9BAC /* SubThought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubThought.swift; sourceTree = "<group>"; };
 		6095B10523EB7D5B000B9BAC /* Orbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orbit.swift; sourceTree = "<group>"; };
 		6095B10723EBA44E000B9BAC /* TopicPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPreview.swift; sourceTree = "<group>"; };
@@ -301,6 +305,7 @@
 				603152CE242CB61200A1DE44 /* UIController.swift */,
 				603152D0242CBC4F00A1DE44 /* ViewModel.swift */,
 				604F0FE5242CCAA40044208D /* HomeViewModel.swift */,
+				6093619A242FDFD1002DBB26 /* UITheme.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				604F0FE8242F5C730044208D /* TopicSliver.swift */,
+				6093619C2431C83E002DBB26 /* TopicSliverCell.swift */,
 			);
 			path = TopicSliverTable;
 			sourceTree = "<group>";
@@ -823,6 +829,7 @@
 				603152CF242CB61200A1DE44 /* UIController.swift in Sources */,
 				60E2993623F73151009B9A84 /* NewThoughtDelegate.swift in Sources */,
 				60FE0A1D23E35B27003FB238 /* Managed.swift in Sources */,
+				6093619B242FDFD1002DBB26 /* UITheme.swift in Sources */,
 				603BD94623F6ECA000C94334 /* ThoughtListCoordinator.swift in Sources */,
 				60FE0A0923E348F6003FB238 /* CGPoint.swift in Sources */,
 				60FE0A1F23E35B40003FB238 /* PersistantService.swift in Sources */,
@@ -891,6 +898,7 @@
 				60EF851524214C2100E551A5 /* OrbitDetailController.swift in Sources */,
 				60FE0A2323E360BA003FB238 /* UserDefaults.swift in Sources */,
 				604F0FE9242F5C730044208D /* TopicSliver.swift in Sources */,
+				6093619D2431C83E002DBB26 /* TopicSliverCell.swift in Sources */,
 				60E2993C23F7358E009B9A84 /* OrbitDataAccessable.swift in Sources */,
 				60EF851724214CAD00E551A5 /* OrbitDetailDataManager.swift in Sources */,
 				60FE09F923E34853003FB238 /* UILabel.swift in Sources */,

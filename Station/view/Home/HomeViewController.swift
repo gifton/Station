@@ -30,8 +30,6 @@ private extension HomeViewController {
     
     func setUpSliver() {
         
-        sliver.width = 100
-        sliver.height = view.height
         sliver.frame.origin = .zero
         sliver.left -= sliver.width
         view.addSubview(sliver)
@@ -54,7 +52,7 @@ extension HomeViewController: HomeHeadDelegate {
             
             UIView.animate(withDuration: 0.2, animations: {
                 self.view.subviews.forEach {
-                    $0.center.x += 100
+                    $0.center.x += self.sliver.width
                 }
             }) { (_) in
                 self.sliver.willDisplay()
@@ -67,7 +65,7 @@ extension HomeViewController: HomeHeadDelegate {
         sliver.endDisplay {
             UIView.animate(withDuration: 0.2) {
                 self.view.subviews.forEach {
-                    $0.center.x -= 100
+                    $0.center.x -= self.sliver.width
                 }
             }
         }

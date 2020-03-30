@@ -54,6 +54,11 @@ final class HomeTableHeader: UICollectionReusableView {
         self.height = newHeight
         print("progress:\(progress), height: \(newHeight)")
     }
+    
+    internal override func prepareForReuse() {
+        topics.attributedText = nil
+        topics.text = nil
+    }
 }
 
 
@@ -61,6 +66,7 @@ private extension HomeTableHeader {
     
     
     func setView() {
+        
         topics.underline()
         topics.sizeToFit()
         topics.width += 10
@@ -79,6 +85,12 @@ private extension HomeTableHeader {
         greeting.left = left.addPadding(.xLarge)
         addSubview(greeting)
         
+        date.setStringFromDateTime(date: Date(), withStyle: .long)
+        date.textColor = Colors.secondaryGray
+        date.sizeToFit()
+        date.left = greeting.left
+        date.top = greeting.bottom.addPadding(.medium)
+        addSubview(date)
         
     }
     
@@ -95,6 +107,8 @@ private extension HomeTableHeader {
         topicStack.setNeedsLayout(); topicStack.layoutIfNeeded()
         topicStack.insertArrangedSubview(arrow, at: 1)
         
+        topics.attributedText = nil
+        topics.text = nil
         topics.text = "Hide"
         topics.underline()
         
@@ -113,6 +127,9 @@ private extension HomeTableHeader {
         topicStack.setNeedsLayout(); topicStack.layoutIfNeeded()
         topicStack.insertArrangedSubview(arrow, at: 0)
         
+        topics.attributedText = nil
+        topics.text = nil
+        
         topics.text = "Topics"
         topics.underline()
         
@@ -121,4 +138,5 @@ private extension HomeTableHeader {
         Tap.remove(fromView: topicStack, action: hideTopics)
         Tap.on(view: topicStack, fires: showTopics)
     }
+    
 }

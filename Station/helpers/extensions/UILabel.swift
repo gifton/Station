@@ -100,7 +100,7 @@ extension UILabel {
         let dateFormatter: DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateStyle = style
-            formatter.timeStyle = .short
+            formatter.timeStyle = .none
             formatter.doesRelativeDateFormatting = false
             formatter.formattingContext = .standalone
             return formatter
